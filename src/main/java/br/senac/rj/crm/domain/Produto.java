@@ -1,11 +1,11 @@
 package br.senac.rj.crm.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Where;
+
+import javax.persistence.*;
 
 @Entity
+@Where(clause="produto_status=1")
 public class Produto {
 
     @Id
@@ -13,7 +13,13 @@ public class Produto {
     private Integer produtoId;
 
     private String produtoDescricao;
+
+    @Column(name="produto_status")
     private boolean produtoStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "nivel_instrucao_id")
+    private NivelInstrucao nivelInstrucao;
 
     public Integer getProdutoId() {
         return produtoId;
@@ -31,13 +37,17 @@ public class Produto {
         this.produtoDescricao = produtoDescricao;
     }
 
-    public boolean isProdutoStatus() {
+    public boolean getProdutoStatus() {
         return produtoStatus;
     }
 
     public void setProdutoStatus(boolean produtoStatus) {
         this.produtoStatus = produtoStatus;
     }
+
+    public NivelInstrucao getNivelInstrucao() { return nivelInstrucao; }
+
+    public void setNivelInstrucao(NivelInstrucao nivelInstrucao) { this.nivelInstrucao = nivelInstrucao; }
 
     @Override
     public String toString() {

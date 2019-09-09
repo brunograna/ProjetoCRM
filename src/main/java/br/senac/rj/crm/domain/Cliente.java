@@ -1,5 +1,7 @@
 package br.senac.rj.crm.domain;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Where(clause = "cliente_status=1")
 public class Cliente implements Serializable {
 
     @Id
@@ -15,6 +18,11 @@ public class Cliente implements Serializable {
 
     private String clienteCpf;
     private String clienteNome;
+    private String clienteSobrenome;
+    private String clienteEmail;
+
+    @Column(name = "cliente_status")
+    private boolean clienteStatus;
 
     @OneToMany(
             mappedBy = "cliente",
@@ -50,6 +58,18 @@ public class Cliente implements Serializable {
         this.clienteNome = clienteNome;
     }
 
+    public String getClienteSobrenome() { return clienteSobrenome; }
+
+    public void setClienteSobrenome(String clienteSobrenome) { this.clienteSobrenome = clienteSobrenome; }
+
+    public String getClienteEmail() { return clienteEmail; }
+
+    public void setClienteEmail(String clienteEmail) { this.clienteEmail = clienteEmail; }
+
+    public boolean getClienteStatus() { return clienteStatus; }
+
+    public void setClienteStatus(boolean clienteStatus) { this.clienteStatus = clienteStatus; }
+
     public List<ClienteDado> getClienteDado() {
         return clienteDado;
     }
@@ -71,16 +91,19 @@ public class Cliente implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Cliente)) return false;
         Cliente cliente = (Cliente) o;
-        return Objects.equals(clienteId, cliente.clienteId) &&
-                Objects.equals(clienteCpf, cliente.clienteCpf) &&
-                Objects.equals(clienteNome, cliente.clienteNome) &&
-                Objects.equals(clienteDado, cliente.clienteDado);
+        return getClienteStatus() == cliente.getClienteStatus() &&
+                Objects.equals(getClienteId(), cliente.getClienteId()) &&
+                Objects.equals(getClienteCpf(), cliente.getClienteCpf()) &&
+                Objects.equals(getClienteNome(), cliente.getClienteNome()) &&
+                Objects.equals(getClienteSobrenome(), cliente.getClienteSobrenome()) &&
+                Objects.equals(getClienteEmail(), cliente.getClienteEmail()) &&
+                Objects.equals(getClienteDado(), cliente.getClienteDado());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clienteId, clienteCpf, clienteNome, clienteDado);
+        return Objects.hash(getClienteId(), getClienteCpf(), getClienteNome(), getClienteSobrenome(), getClienteEmail(), getClienteStatus(), getClienteDado());
     }
 }

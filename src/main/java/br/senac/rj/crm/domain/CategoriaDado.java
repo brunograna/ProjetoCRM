@@ -1,12 +1,12 @@
 package br.senac.rj.crm.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Where;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Where(clause = "categoria_dado_status")
 public class CategoriaDado {
 
     @Id
@@ -14,6 +14,8 @@ public class CategoriaDado {
     private Integer categoriaDadoId;
 
     private String categoriaDadoDescricao;
+
+    @Column(name = "categoria_dado_status")
     private boolean categoriaDadoStatus;
 
     public CategoriaDado() {
@@ -35,7 +37,7 @@ public class CategoriaDado {
         this.categoriaDadoDescricao = categoriaDadoDescricao;
     }
 
-    public boolean isCategoriaDadoStatus() {
+    public boolean getCategoriaDadoStatus() {
         return categoriaDadoStatus;
     }
 

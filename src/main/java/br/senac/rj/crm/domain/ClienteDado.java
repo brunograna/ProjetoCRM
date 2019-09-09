@@ -1,9 +1,12 @@
 package br.senac.rj.crm.domain;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Where(clause="cliente_dado_status=1")
 public class ClienteDado {
 
     @Id
@@ -11,8 +14,12 @@ public class ClienteDado {
     private Integer clienteDadoId;
 
     private String clienteDadoValor;
+
+    @Column(name = "cliente_dado_status")
     private boolean clienteDadoStatus;
+
     @OneToOne
+    @JoinColumn(name = "dado_tipo_id")
     private DadoTipo dadoTipo;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,7 +45,7 @@ public class ClienteDado {
         this.clienteDadoValor = clienteDadoValor;
     }
 
-    public boolean isClienteDadoStatus() {
+    public boolean getClienteDadoStatus() {
         return clienteDadoStatus;
     }
 

@@ -1,18 +1,24 @@
 package br.senac.rj.crm.domain;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Where(clause="dado_tipo_status=1")
 public class DadoTipo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ddadoTipoId;
+    private Integer dadoTipoId;
 
     private String dadoTipoDescricao;
+
+    @Column(name = "dado_tipo_status")
     private boolean dadoTipoStatus;
+
     private boolean dadoTipoObrigatorio;
     private String dadoTipoPadrao;
     private String dadoTipoMascara;
@@ -21,14 +27,15 @@ public class DadoTipo implements Serializable {
     }
 
     @ManyToOne
+    @JoinColumn(name = "categoria_dado_id")
     private CategoriaDado categoria;
 
     public Integer getDdadoTipoId() {
-        return ddadoTipoId;
+        return dadoTipoId;
     }
 
-    public void setDdadoTipoId(Integer ddadoTipoId) {
-        this.ddadoTipoId = ddadoTipoId;
+    public void setDdadoTipoId(Integer dadoTipoId) {
+        this.dadoTipoId = dadoTipoId;
     }
 
     public String getDadoTipoDescricao() {
@@ -39,7 +46,7 @@ public class DadoTipo implements Serializable {
         this.dadoTipoDescricao = dadoTipoDescricao;
     }
 
-    public boolean isDadoTipoStatus() {
+    public boolean getDadoTipoStatus() {
         return dadoTipoStatus;
     }
 
@@ -86,7 +93,7 @@ public class DadoTipo implements Serializable {
         DadoTipo dadoTipo = (DadoTipo) o;
         return dadoTipoStatus == dadoTipo.dadoTipoStatus &&
                 dadoTipoObrigatorio == dadoTipo.dadoTipoObrigatorio &&
-                Objects.equals(ddadoTipoId, dadoTipo.ddadoTipoId) &&
+                Objects.equals(dadoTipoId, dadoTipo.dadoTipoId) &&
                 Objects.equals(dadoTipoDescricao, dadoTipo.dadoTipoDescricao) &&
                 Objects.equals(dadoTipoPadrao, dadoTipo.dadoTipoPadrao) &&
                 Objects.equals(dadoTipoMascara, dadoTipo.dadoTipoMascara) &&
@@ -95,6 +102,6 @@ public class DadoTipo implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ddadoTipoId, dadoTipoDescricao, dadoTipoStatus, dadoTipoObrigatorio, dadoTipoPadrao, dadoTipoMascara, categoria);
+        return Objects.hash(dadoTipoId, dadoTipoDescricao, dadoTipoStatus, dadoTipoObrigatorio, dadoTipoPadrao, dadoTipoMascara, categoria);
     }
 }
