@@ -48,8 +48,8 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
             System.out.println(produtoIndv.toString());
         }
 
-        produtoService.delete(produto);
-        instrucaoService.delete(instrucao);
+        produtoService.softDelete(produto);
+        instrucaoService.softDelete(instrucao);
 
     }
 }

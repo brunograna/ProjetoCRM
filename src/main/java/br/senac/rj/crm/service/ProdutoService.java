@@ -33,7 +33,7 @@ public class ProdutoService {
         return repository.save(p);
     }
 
-    public Produto update(Produto p) throws NotFoundException {
+    public Produto update(Produto p) throws ObjectNotFoundException {
         Optional<Produto> produtoFromDB = repository.findById(p.getProdutoId());
 
         if(produtoFromDB.isPresent()){
@@ -42,7 +42,7 @@ public class ProdutoService {
             produtoFromDB.get().setNivelInstrucao(p.getNivelInstrucao());
             return produtoFromDB.get();
         }else{
-            throw new NotFoundException("Produto Not Found");
+            throw new ObjectNotFoundException("Produto Not Found");
         }
     }
 
