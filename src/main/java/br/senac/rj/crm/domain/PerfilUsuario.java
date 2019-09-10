@@ -33,7 +33,7 @@ public class PerfilUsuario implements GrantedAuthority {
         this.perfilUsuarioDescricao = perfilUsuarioDescricao;
     }
 
-    public boolean isPerfilUsuarioStatus() {
+    public boolean getPerfilUsuarioStatus() {
         return perfilUsuarioStatus;
     }
 
