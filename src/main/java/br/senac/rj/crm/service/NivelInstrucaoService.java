@@ -5,6 +5,7 @@ import br.senac.rj.crm.domain.Produto;
 import br.senac.rj.crm.repository.NivelInstrucaoRepository;
 import br.senac.rj.crm.repository.ProdutoRepository;
 import javassist.NotFoundException;
+import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,12 @@ public class NivelInstrucaoService {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    public NivelInstrucao findById(Integer id) throws ObjectNotFoundException {
+        Optional<NivelInstrucao> instrucao = repository.findById(id);
+
+        return instrucao.orElseThrow(() -> new ObjectNotFoundException("NivelInstrucao wih id ("+id+") not found"));
+    }
 
     public List<NivelInstrucao> findAll(){
         return repository.findAll();
@@ -42,7 +49,7 @@ public class NivelInstrucaoService {
         }
     }
 
-    public void delete(NivelInstrucao instrucao) {
+    public void softDelete(NivelInstrucao instrucao) {
         Optional<NivelInstrucao> instrucaoFromDB = repository.findById(instrucao.getInstrucaoId());
         if(instrucaoFromDB.isPresent()){
             instrucaoFromDB.get().setInstrucaoStatus(false);

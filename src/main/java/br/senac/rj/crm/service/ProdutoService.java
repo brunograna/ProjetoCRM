@@ -3,6 +3,7 @@ package br.senac.rj.crm.service;
 import br.senac.rj.crm.domain.Produto;
 import br.senac.rj.crm.repository.ProdutoRepository;
 import javassist.NotFoundException;
+import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,12 @@ public class ProdutoService {
 
     @Autowired
     private ProdutoRepository repository;
+
+    public Produto findById(Integer id) throws ObjectNotFoundException {
+        Optional<Produto> produto = repository.findById(id);
+
+        return produto.orElseThrow(() -> new ObjectNotFoundException("Produto wih id ("+id+") not found"));
+    }
 
     public List<Produto> findAll(){
         return repository.findAll();
@@ -39,7 +46,7 @@ public class ProdutoService {
         }
     }
 
-    public void delete(Produto p) {
+    public void softDelete(Produto p) {
         Optional<Produto> produtoFromDB = repository.findById(p.getProdutoId());
         if(produtoFromDB.isPresent()){
             produtoFromDB.get().setProdutoStatus(false);

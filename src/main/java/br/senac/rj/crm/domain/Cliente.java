@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+//@Where(clause = "cliente_status=1")
 @Entity
-@Where(clause = "cliente_status=1")
 public class Cliente implements Serializable {
 
     @Id

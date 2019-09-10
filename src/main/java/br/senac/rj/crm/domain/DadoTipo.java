@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+//@Where(clause="dado_tipo_status=1")
 @Entity
-@Where(clause="dado_tipo_status=1")
 public class DadoTipo implements Serializable {
 
     @Id
@@ -30,11 +30,11 @@ public class DadoTipo implements Serializable {
     @JoinColumn(name = "categoria_dado_id")
     private CategoriaDado categoria;
 
-    public Integer getDdadoTipoId() {
+    public Integer getDadoTipoId() {
         return dadoTipoId;
     }
 
-    public void setDdadoTipoId(Integer dadoTipoId) {
+    public void setDadoTipoId(Integer dadoTipoId) {
         this.dadoTipoId = dadoTipoId;
     }
 
@@ -54,7 +54,7 @@ public class DadoTipo implements Serializable {
         this.dadoTipoStatus = dadoTipoStatus;
     }
 
-    public boolean isDadoTipoObrigatorio() {
+    public boolean getDadoTipoObrigatorio() {
         return dadoTipoObrigatorio;
     }
 

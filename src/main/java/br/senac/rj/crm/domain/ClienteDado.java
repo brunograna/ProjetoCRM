@@ -5,8 +5,8 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.util.Objects;
 
+//@Where(clause="cliente_dado_status=1")
 @Entity
-@Where(clause="cliente_dado_status=1")
 public class ClienteDado {
 
     @Id

@@ -4,8 +4,8 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
+//@Where(clause="instrucao_status=1")
 @Entity
-@Where(clause="instrucao_status=1")
 public class NivelInstrucao {
 
     @Id
