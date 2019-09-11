@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>NESAC</title>
-</head>
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments/head.html :: head"></head>
 <body>
     <h1>Dashboard</h1>
     Hello, [[${#httpServletRequest.remoteUser}]]

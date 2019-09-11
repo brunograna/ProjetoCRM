@@ -1,0 +1,74 @@
+.skin-blue .main-header .navbar {
+    background-color: #004a8d;
+}
+.skin-blue .main-header .logo {
+    background-color: white;
+    color: #fff;
+    border-bottom: 0 solid transparent;
+}
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color: #002d56;
+}
+.skin-blue .sidebar-menu>li.header {
+    color: #ffffff;
+    background: #004a8d;
+    font-weight: 700;
+}
+.skin-blue .sidebar a {
+    color: #ffffff;
+}
+.skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a, .skin-blue .sidebar-menu>li.menu-open>a {
+    color: #fff;
+    background: #004a8d;
+}
+}
+.skin-blue .sidebar-menu>li>.treeview-menu {
+    margin: 0 1px;
+    background: #002444;
+}
+.skin-blue .sidebar-menu .treeview-menu>li>a {
+    color: #ffffff;
+}
+.skin-blue .sidebar-form input[type="text"], .skin-blue .sidebar-form .btn {
+    box-shadow: none;
+    background-color: white;
+    border: 1px solid transparent;
+    height: 35px;
+}
+.main-header .logo {
+    height: 55px;
+}
+.main-header .logo .logo-lg {
+    display: block;
+    margin-right: 0px;
+}
+.sidebar-menu, .main-sidebar .user-panel, .sidebar-menu>li.header {
+    padding-top: 20px;
+}
+.skin-blue .main-header .logo:hover {
+    background-color: white;
+}
+.text-success {
+    color: #00ff04;
+}
+
+.box-header>.fa, .box-header>.glyphicon, .box-header>.ion, .box-header .box-title {
+    padding-bottom: 10px;
+}
+
+.box.box-primary {
+    border-top-color: #f7941e;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+@media (min-width: 768px){
+		.navbar-nav {
+	    float: left;
+	    margin: 0;
+	    padding-top: 5px;
+	}
+}
