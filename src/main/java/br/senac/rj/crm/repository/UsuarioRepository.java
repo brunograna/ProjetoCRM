@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
+    long count();
+
     Optional<Usuario> findByUsuarioLogin(String login);
 
 }

@@ -77,6 +77,14 @@ public class Usuario implements UserDetails {
         this.usuarioStatus = usuarioStatus;
     }
 
+    public List<PerfilUsuario> getPerfisUsuario() {
+        return perfisUsuario;
+    }
+
+    public void setPerfisUsuario(List<PerfilUsuario> perfisUsuario) {
+        this.perfisUsuario = perfisUsuario;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.perfisUsuario;
