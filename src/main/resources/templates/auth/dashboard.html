@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:insert="fragments/head.html :: head"></head>
-<body>
-    <h1>Dashboard</h1>
-    Hello, [[${#httpServletRequest.remoteUser}]]
+<th:block th:insert="fragments/head.html :: head"></th:block>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:insert="fragments/navbar.html :: header"></th:block>
 
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
+    <th:block th:insert="fragments/sidebar.html :: aside"></th:block>
+
+    <div class="content-wrapper">
+        <h1>Dashboard</h1>
+        Hello, [[${#httpServletRequest.remoteUser}]]
+
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+
+    <footer th:insert="fragments/footer.html :: footer"></footer>
+</div>
+    <th:block th:insert="fragments/footer-scripts.html :: scripts">
+    </th:block>
 </body>
 </html>
