@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class PerfilUsuarioService {
         return repository.findAll();
     }
 
-    public PerfilUsuario save(PerfilUsuario perfil){
+    public PerfilUsuario save(@Valid PerfilUsuario perfil){
         return repository.save(perfil);
     }
 
@@ -44,8 +45,8 @@ public class PerfilUsuarioService {
         }
     }
 
-    public void softDelete(PerfilUsuario u) {
-        Optional<PerfilUsuario> usuarioFromDB = repository.findById(u.getPerfilUsuarioId());
+    public void softDelete(Integer id) {
+        Optional<PerfilUsuario> usuarioFromDB = repository.findById(id);
         if(usuarioFromDB.isPresent()){
             usuarioFromDB.get().setPerfilUsuarioStatus(false);
         }

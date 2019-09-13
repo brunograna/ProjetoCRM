@@ -46,8 +46,8 @@ public class ProdutoService {
         }
     }
 
-    public void softDelete(Produto p) {
-        Optional<Produto> produtoFromDB = repository.findById(p.getProdutoId());
+    public void softDelete(Integer id) {
+        Optional<Produto> produtoFromDB = repository.findById(id);
         if(produtoFromDB.isPresent()){
             produtoFromDB.get().setProdutoStatus(false);
         }

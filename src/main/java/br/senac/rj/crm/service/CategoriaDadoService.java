@@ -45,8 +45,8 @@ public class CategoriaDadoService {
         }
     }
 
-    public void softDelete(CategoriaDado c) {
-        Optional<CategoriaDado> categoriaFromDB = repository.findById(c.getCategoriaDadoId());
+    public void softDelete(Integer id) {
+        Optional<CategoriaDado> categoriaFromDB = repository.findById(id);
         if(categoriaFromDB.isPresent()){
             categoriaFromDB.get().setCategoriaDadoStatus(false);
         }

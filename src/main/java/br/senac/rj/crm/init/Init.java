@@ -60,8 +60,8 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
             System.out.println(produtoIndv.toString());
         }
 
-        produtoService.softDelete(produto);
-        instrucaoService.softDelete(instrucao);
+        produtoService.softDelete(produto.getProdutoId());
+        instrucaoService.softDelete(instrucao.getInstrucaoId());
 
         Usuario usuario = new Usuario();
 

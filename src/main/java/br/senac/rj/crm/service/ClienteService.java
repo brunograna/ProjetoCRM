@@ -50,8 +50,8 @@ public class ClienteService {
         }
     }
 
-    public void softDelete(Cliente c) {
-        Optional<Cliente> clienteFromDB = repository.findById(c.getClienteId());
+    public void softDelete(Integer id) {
+        Optional<Cliente> clienteFromDB = repository.findById(id);
         if(clienteFromDB.isPresent()){
             clienteFromDB.get().setClienteStatus(false);
         }

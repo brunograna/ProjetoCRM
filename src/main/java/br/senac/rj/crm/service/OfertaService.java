@@ -49,8 +49,8 @@ public class OfertaService {
         }
     }
 
-    public void softDelete(Oferta oferta) {
-        Optional<Oferta> ofertaFromDB = repository.findById(oferta.getOfertaId());
+    public void softDelete(Integer id) {
+        Optional<Oferta> ofertaFromDB = repository.findById(id);
         if(ofertaFromDB.isPresent()){
             ofertaFromDB.get().setOfertaStatus(false);
         }

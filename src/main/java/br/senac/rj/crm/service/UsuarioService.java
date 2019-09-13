@@ -46,8 +46,8 @@ public class UsuarioService {
         }
     }
 
-    public void softDelete(Usuario u) {
-        Optional<Usuario> usuarioFromDB = repository.findById(u.getUsuarioId());
+    public void softDelete(Integer id) {
+        Optional<Usuario> usuarioFromDB = repository.findById(id);
         if(usuarioFromDB.isPresent()){
             usuarioFromDB.get().setUsuarioStatus(false);
         }

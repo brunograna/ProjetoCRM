@@ -49,8 +49,8 @@ public class NivelInstrucaoService {
         }
     }
 
-    public void softDelete(NivelInstrucao instrucao) {
-        Optional<NivelInstrucao> instrucaoFromDB = repository.findById(instrucao.getInstrucaoId());
+    public void softDelete(Integer id) {
+        Optional<NivelInstrucao> instrucaoFromDB = repository.findById(id);
         if(instrucaoFromDB.isPresent()){
             instrucaoFromDB.get().setInstrucaoStatus(false);
         }

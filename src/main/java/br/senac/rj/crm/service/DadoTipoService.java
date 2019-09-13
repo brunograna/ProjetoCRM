@@ -49,8 +49,8 @@ public class DadoTipoService {
         }
     }
 
-    public void softDelete(DadoTipo dado) {
-        Optional<DadoTipo> dadoFromDB = repository.findById(dado.getDadoTipoId());
+    public void softDelete(Integer id) {
+        Optional<DadoTipo> dadoFromDB = repository.findById(id);
         if(dadoFromDB.isPresent()){
             dadoFromDB.get().setDadoTipoStatus(false);
         }

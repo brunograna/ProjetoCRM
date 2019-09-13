@@ -10,79 +10,45 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Painel
-                <small>Bem vindo(a) ao CRM NESAC</small>
+                Perfil de Usuário
+                <small>Cadastro do perfil de usuário</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Painel</li>
+                <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a th:href="@{/perfis-usuarios}"><i class="fa fa-tags"></i> Perfil de Usuário</a></li>
+                <li class="active">Cadastro</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-            <!-- Small boxes (Stat box) -->
-            <div class="row">
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-aqua">
-                        <div class="inner">
-                            <h3>150</h3>
-
-                            <p>Novos clientes</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">Veja mais <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Adicionar</h3>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-green">
-                        <div class="inner">
-                            <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                            <p>convertidos</p>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form th:action="@{/perfis-usuarios}" th:object="${perfilUsuario}" method="post" role="form">
+                        <!-- text input -->
+                        <div class="form-group">
+                            <label>Descrição:</label>
+                            <input type="text" class="form-control" th:field="*{perfilUsuarioDescricao}" placeholder="Descrição do perfil">
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
+                        <!-- select -->
+                        <div class="form-group">
+                            <label>Status:</label>
+                            <select class="form-control" th:field="*{perfilUsuarioStatus}">
+                                <option value="1">Ativo</option>
+                                <option value="0">Não Ativo</option>
+                            </select>
                         </div>
-                        <a href="#" class="small-box-footer">Veja mais <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-warning">Cadastrar</button>
+                            <a th:href="@{/perfis-usuarios}" class="btn btn-default">Cancelar</a>
+                        </div>
+                    </form>
                 </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-yellow">
-                        <div class="inner">
-                            <h3>44</h3>
-
-                            <p>Ofertas</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">Veja mais <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-6">
-                    <!-- small box -->
-                    <div class="small-box bg-red">
-                        <div class="inner">
-                            <h3>5</h3>
-
-                            <p>Atendentes</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">Veja mais <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
+                <!-- /.box-body -->
             </div>
         </section>
     </div>
