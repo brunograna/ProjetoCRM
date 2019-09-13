@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -40,8 +40,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="modulos/cliente/adicionar_cliente.html"><i class="fa fa-circle-o"></i> Adicionar clientes</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Listar clientes</a></li>
+                    <li class="active"><a th:href="@{/clientes/adicionar}"><i class="fa fa-circle-o"></i> Adicionar clientes</a></li>
+                    <li><a th:href="@{/clientes}"><i class="fa fa-circle-o"></i> Listar clientes</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -53,8 +53,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Adicionar produtos</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Listar produtos</a></li>
+                    <li><a th:href="@{/produtos/adicionar}"><i class="fa fa-circle-o"></i> Adicionar produtos</a></li>
+                    <li><a th:href="@{/produtos}"><i class="fa fa-circle-o"></i> Listar produtos</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -66,12 +66,38 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Adicionar ofertas de produtos</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Listar ofertas de produtos</a></li>
+                    <li><a th:href="@{/ofertas/adicionar}"><i class="fa fa-circle-o"></i> Adicionar ofertas de produtos</a></li>
+                    <li><a th:href="@{/ofertas}"><i class="fa fa-circle-o"></i> Listar ofertas de produtos</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i> <span>Usuários</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+                        <!--<span class="label label-primary pull-right">4</span>-->
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a th:href="@{/usuarios/adicionar}"><i class="fa fa-circle-o"></i> Adicionar usuário</a></li>
+                    <li><a th:href="@{/usuarios}"><i class="fa fa-circle-o"></i> Listar usuários</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-tags"></i> <span>Perfis de Usuários</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+                        <!--<span class="label label-primary pull-right">4</span>-->
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a th:href="@{/perfis-usuarios/adicionar}"><i class="fa fa-circle-o"></i> Adicionar Perfil de Usuário</a></li>
+                    <li><a th:href="@{/perfis-usuarios}"><i class="fa fa-circle-o"></i> Listar Perfis de Usuários</a></li>
                 </ul>
             </li>
             <li>
-                <a href="pages/calendar.html">
+                <a href="#">
                     <i class="fa fa-calendar"></i> <span>Calendário</span>
                     <span class="pull-right-container">
               <!--<small class="label pull-right bg-red">3</small>
@@ -80,7 +106,7 @@
                 </a>
             </li>
             <li>
-                <a href="pages/mailbox/mailbox.html">
+                <a href="#">
                     <i class="fa fa-envelope"></i> <span>E-mail</span>
                     <span class="pull-right-container">
               <!--<small class="label pull-right bg-yellow">12</small>

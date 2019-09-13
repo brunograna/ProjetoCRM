@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<th:block th:insert="fragments/head.html :: head"></th:block>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:insert="fragments/navbar.html :: header"></th:block>
+
+    <th:block th:insert="fragments/sidebar.html :: aside"></th:block>
+
+    <div class="content-wrapper">
+
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Página de erro 404
+            </h1>
+            <ol class="breadcrumb">
+                <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Erro 404</li>
+            </ol>
+        </section>
+
+        <section class="content">
+            <div class="error-page">
+                <h2 class="headline text-yellow"> 404</h2>
+
+                <div class="error-content">
+                    <h3><i class="fa fa-warning text-yellow"></i> Oops! Página não encontrada.</h3>
+
+                    <p>
+                       Não foi possível encontrar esta página que você requisitou. Tente novamente mais tarde.
+                        Por enquanto, você pode <a th:href="@{/dashboard}">retornar para o Dashboard</a>.
+                    </p>
+                </div>
+                <!-- /.error-content -->
+            </div>
+            <!-- /.error-page -->
+        </section>
+
+    </div>
+
+    <footer th:insert="fragments/footer.html :: footer"></footer>
+</div>
+<th:block th:insert="fragments/footer-scripts.html :: scripts">
+</th:block>
+</body>
+</html>
