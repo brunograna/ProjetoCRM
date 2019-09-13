@@ -12,7 +12,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public ModelAndView home(){
-        return new ModelAndView("index");
+        return new ModelAndView("redirect:/dashboard");
     }
 
     @RequestMapping("/login")

@@ -6,8 +6,11 @@ import br.senac.rj.crm.service.PerfilUsuarioService;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/perfis-usuarios")
@@ -24,7 +27,12 @@ public class PerfilUsuarioController {
     }
 
     @PostMapping
-    public ModelAndView save(PerfilUsuario perfilUsuario){
+    public ModelAndView save(@Valid PerfilUsuario perfilUsuario, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            System.out.println("Has errors");
+            return new ModelAndView("/auth/perfis-usuarios/cadastrarPerfisUsuarios");
+        }
+
         ModelAndView mv = new ModelAndView("redirect:/perfis-usuarios");
         try{
             perfilUsuarioService.save(perfilUsuario);
@@ -54,7 +62,11 @@ public class PerfilUsuarioController {
 
 
     @PostMapping("/edit")
-    public ModelAndView saveEdit(PerfilUsuario perfilUsuario){
+    public ModelAndView saveEdit(@Valid PerfilUsuario perfilUsuario, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return new ModelAndView("/auth/perfis-usuarios/alterarPerfisUsuarios");
+        }
+
         ModelAndView mv = new ModelAndView("redirect:/perfis-usuarios/");
         try {
             perfilUsuarioService.update(perfilUsuario);

@@ -31,17 +31,21 @@
                     <form th:action="@{/perfis-usuarios/edit}" th:object="${perfilUsuario}" method="post" role="form">
                         <input type="hidden" th:field="*{perfilUsuarioId}">
                         <!-- text input -->
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('perfilUsuarioDescricao')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('perfilUsuarioDescricao')}"><i class="fa fa-times-circle-o"></i></label>
                             <label>Descrição:</label>
                             <input type="text" class="form-control" th:field="*{perfilUsuarioDescricao}" placeholder="Descrição do perfil">
+                            <span class="help-block" th:if="${#fields.hasErrors('perfilUsuarioDescricao')}" th:errors="*{perfilUsuarioDescricao}"></span>
                         </div>
                         <!-- select -->
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('perfilUsuarioStatus')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('perfilUsuarioStatus')}"><i class="fa fa-times-circle-o"></i></label>
                             <label>Status:</label>
                             <select class="form-control" th:field="*{perfilUsuarioStatus}">
                                 <option value="1">Ativo</option>
                                 <option value="0">Não Ativo</option>
                             </select>
+                            <span class="help-block" th:if="${#fields.hasErrors('perfilUsuarioStatus')}" th:errors="*{perfilUsuarioStatus}"></span>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-warning">Salvar Alteração</button>
