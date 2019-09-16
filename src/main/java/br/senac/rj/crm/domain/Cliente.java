@@ -3,6 +3,7 @@ package br.senac.rj.crm.domain;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,10 @@ public class Cliente implements Serializable {
     private Integer clienteId;
 
     private String clienteCpf;
+
+    @NotBlank
     private String clienteNome;
+
     private String clienteSobrenome;
     private String clienteEmail;
 

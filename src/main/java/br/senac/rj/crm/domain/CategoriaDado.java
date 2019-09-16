@@ -3,6 +3,7 @@ package br.senac.rj.crm.domain;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 //@Where(clause = "categoria_dado_status")
@@ -13,8 +14,10 @@ public class CategoriaDado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoriaDadoId;
 
+    @NotBlank
     private String categoriaDadoDescricao;
 
+    @NotBlank
     @Column(name = "categoria_dado_status")
     private boolean categoriaDadoStatus;
 

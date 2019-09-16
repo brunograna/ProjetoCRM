@@ -3,6 +3,7 @@ package br.senac.rj.crm.domain;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 //@Where(clause="produto_status=1")
 @Entity
@@ -12,8 +13,10 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer produtoId;
 
+    @NotBlank
     private String produtoDescricao;
 
+    @NotBlank
     @Column(name="produto_status")
     private boolean produtoStatus;
 

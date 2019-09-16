@@ -1,6 +1,7 @@
 package br.senac.rj.crm.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.Instant;
 import java.time.LocalDate;
 
@@ -12,11 +13,16 @@ public class Oferta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ofertaId;
 
+    @NotBlank
     private String ofertaDescricao;
+
     private LocalDate ofertaDataInicio;
     private LocalDate ofertaDataFim;
+
+    @NotBlank
     private double ofertaPreco;
 
+    @NotBlank
     @Column(name="oferta_status")
     private boolean ofertaStatus;
 

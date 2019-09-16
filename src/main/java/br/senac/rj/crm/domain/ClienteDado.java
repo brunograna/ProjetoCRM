@@ -3,6 +3,7 @@ package br.senac.rj.crm.domain;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 //@Where(clause="cliente_dado_status=1")
@@ -15,6 +16,7 @@ public class ClienteDado {
 
     private String clienteDadoValor;
 
+    @NotBlank
     @Column(name = "cliente_dado_status")
     private boolean clienteDadoStatus;
 

@@ -3,6 +3,7 @@ package br.senac.rj.crm.domain;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,8 +15,10 @@ public class DadoTipo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer dadoTipoId;
 
+    @NotBlank
     private String dadoTipoDescricao;
 
+    @NotBlank
     @Column(name = "dado_tipo_status")
     private boolean dadoTipoStatus;
 

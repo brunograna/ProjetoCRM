@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -17,10 +18,14 @@ public class Usuario implements UserDetails {
 
     private String usuarioNome;
 
+    @NotBlank
     @Column(nullable = false, unique = true)
     private String usuarioLogin;
 
+    @NotBlank
     private String usuarioSenha;
+
+
     private String usuarioCargo;
     private boolean usuarioStatus;
 
