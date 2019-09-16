@@ -4,6 +4,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 //@Where(clause = "categoria_dado_status")
@@ -17,7 +18,7 @@ public class CategoriaDado {
     @NotBlank
     private String categoriaDadoDescricao;
 
-    @NotBlank
+    @NotNull
     @Column(name = "categoria_dado_status")
     private boolean categoriaDadoStatus;
 

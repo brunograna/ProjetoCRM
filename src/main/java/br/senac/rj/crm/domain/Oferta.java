@@ -2,6 +2,7 @@ package br.senac.rj.crm.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.time.LocalDate;
 
@@ -22,7 +23,7 @@ public class Oferta {
     @NotBlank
     private double ofertaPreco;
 
-    @NotBlank
+    @NotNull
     @Column(name="oferta_status")
     private boolean ofertaStatus;
 

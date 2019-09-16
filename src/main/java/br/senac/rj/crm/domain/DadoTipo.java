@@ -4,6 +4,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class DadoTipo implements Serializable {
     @NotBlank
     private String dadoTipoDescricao;
 
-    @NotBlank
+    @NotNull
     @Column(name = "dado_tipo_status")
     private boolean dadoTipoStatus;
 

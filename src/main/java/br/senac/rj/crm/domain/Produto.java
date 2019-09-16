@@ -4,6 +4,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 //@Where(clause="produto_status=1")
 @Entity
@@ -16,7 +17,7 @@ public class Produto {
     @NotBlank
     private String produtoDescricao;
 
-    @NotBlank
+    @NotNull
     @Column(name="produto_status")
     private boolean produtoStatus;
 
