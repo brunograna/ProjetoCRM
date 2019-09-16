@@ -52,4 +52,7 @@ public class PerfilUsuarioService {
         }
     }
 
+    public List<PerfilUsuario> findAllActive() {
+        return repository.findByPerfilUsuarioStatus(true);
+    }
 }

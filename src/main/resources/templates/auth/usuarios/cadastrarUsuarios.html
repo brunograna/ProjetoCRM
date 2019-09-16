@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<th:block th:insert="fragments/head.html :: head"></th:block>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:insert="fragments/navbar.html :: header"></th:block>
+
+    <th:block th:insert="fragments/sidebar.html :: aside"></th:block>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Usuário
+                <small>Cadastro do usuário</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a th:href="@{/usuarios}"><i class="fa fa-users"></i> Usuário</a></li>
+                <li class="active">Cadastro</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Adicionar</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form th:action="@{/usuarios}" th:object="${usuario}" method="post" role="form">
+                        <!-- text input -->
+                        <div class="form-group" th:classappend="${#fields.hasErrors('usuarioNome')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('usuarioNome')}"><i class="fa fa-times-circle-o"></i></label>
+                            <label>Nome:</label>
+                            <input type="text" class="form-control" th:field="*{usuarioNome}" placeholder="Nome do usuário">
+                            <span class="help-block" th:if="${#fields.hasErrors('usuarioNome')}" th:errors="*{usuarioNome}"></span>
+                        </div>
+                        <!-- text input -->
+                        <div class="form-group" th:classappend="${#fields.hasErrors('usuarioLogin')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('usuarioLogin')}"><i class="fa fa-times-circle-o"></i></label>
+                            <label>Login:</label>
+                            <input type="text" class="form-control" th:field="*{usuarioLogin}" placeholder="Login do usuário">
+                            <span class="help-block" th:if="${#fields.hasErrors('usuarioLogin')}" th:errors="*{usuarioLogin}"></span>
+                        </div>
+                        <!-- password input -->
+                        <div class="form-group" th:classappend="${#fields.hasErrors('usuarioSenha')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('usuarioSenha')}"><i class="fa fa-times-circle-o"></i></label>
+                            <label>Senha:</label>
+                            <input type="password" class="form-control" th:field="*{usuarioSenha}" placeholder="Senha do usuário">
+                            <span class="help-block" th:if="${#fields.hasErrors('usuarioSenha')}" th:errors="*{usuarioSenha}"></span>
+                        </div>
+                        <!-- text input -->
+                        <div class="form-group" th:classappend="${#fields.hasErrors('usuarioCargo')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('usuarioCargo')}"><i class="fa fa-times-circle-o"></i></label>
+                            <label>Cargo:</label>
+                            <input type="text" class="form-control" th:field="*{usuarioCargo}" placeholder="Cargo">
+                            <span class="help-block" th:if="${#fields.hasErrors('usuarioCargo')}" th:errors="*{usuarioCargo}"></span>
+                        </div>
+                        <!-- select -->
+                        <div class="form-group" th:classappend="${#fields.hasErrors('perfisUsuario')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('perfisUsuario')}"><i class="fa fa-times-circle-o"></i></label>
+                            <label>Perfil do Usuário:</label>
+                            <select class="form-control" th:field="*{perfisUsuario}">
+                                <option value="">Selecione o perfil do usuário</option>
+                                <option th:each="perfilUsuario : ${perfisUsuarios}" th:value="${perfilUsuario.perfilUsuarioId}" th:text="${perfilUsuario.perfilUsuarioDescricao}"></option>
+                            </select>
+                            <span class="help-block" th:if="${#fields.hasErrors('perfisUsuario')}" th:errors="*{perfisUsuario}"></span>
+                        </div>
+                        <!-- select -->
+                        <div class="form-group" th:classappend="${#fields.hasErrors('usuarioStatus')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('usuarioStatus')}"><i class="fa fa-times-circle-o"></i></label>
+                            <label>Status:</label>
+                            <select class="form-control" th:field="*{usuarioStatus}">
+                                <option value="1">Ativo</option>
+                                <option value="0">Não Ativo</option>
+                            </select>
+                            <span class="help-block" th:if="${#fields.hasErrors('usuarioStatus')}" th:errors="*{usuarioStatus}"></span>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-warning">Cadastrar</button>
+                            <a th:href="@{/perfis-usuarios}" class="btn btn-default">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </section>
+    </div>
+
+    <footer th:insert="fragments/footer.html :: footer"></footer>
+</div>
+<th:block th:insert="fragments/footer-scripts.html :: scripts">
+</th:block>
+</body>
+</html>

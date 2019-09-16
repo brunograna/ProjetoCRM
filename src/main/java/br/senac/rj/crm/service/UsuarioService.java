@@ -4,6 +4,7 @@ import br.senac.rj.crm.domain.Usuario;
 import br.senac.rj.crm.repository.UsuarioRepository;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,9 +37,12 @@ public class UsuarioService {
 
         if(usuarioFromDB.isPresent()){
             usuarioFromDB.get().setUsuarioNome(u.getUsuarioNome());
-            usuarioFromDB.get().setUsuarioSenha(u.getUsuarioSenha());
+            if(!u.getUsuarioSenha().isEmpty() || u.getUsuarioSenha() == null){
+                usuarioFromDB.get().setUsuarioSenha(new BCryptPasswordEncoder().encode(u.getUsuarioSenha()));
+            }
             usuarioFromDB.get().setUsuarioCargo(u.getUsuarioCargo());
             usuarioFromDB.get().setUsuarioStatus(u.getUsuarioStatus());
+            usuarioFromDB.get().setPerfisUsuario(u.getPerfisUsuario());
 
             return usuarioFromDB.get();
         }else{

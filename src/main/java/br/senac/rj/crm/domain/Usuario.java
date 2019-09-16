@@ -22,7 +22,6 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, unique = true)
     private String usuarioLogin;
 
-    @NotBlank
     private String usuarioSenha;
 
 
