@@ -59,14 +59,14 @@
                             <span class="help-block" th:if="${#fields.hasErrors('usuarioCargo')}" th:errors="*{usuarioCargo}"></span>
                         </div>
                         <!-- select -->
-                        <div class="form-group" th:classappend="${#fields.hasErrors('perfisUsuario')} ? has-error : noerror">
-                            <label class="control-label" th:if="${#fields.hasErrors('perfisUsuario')}"><i class="fa fa-times-circle-o"></i></label>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('perfilUsuario')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('perfilUsuario')}"><i class="fa fa-times-circle-o"></i></label>
                             <label>Perfil do Usuário:</label>
-                            <select class="form-control" th:field="*{perfisUsuario}">
+                            <select class="form-control" th:field="*{perfilUsuario}">
                                 <option value="">Selecione o perfil do usuário</option>
-                                <option th:each="perfilUsuario : ${perfisUsuarios}" th:value="${perfilUsuario.perfilUsuarioId}" th:text="${perfilUsuario.perfilUsuarioDescricao}"></option>
+                                <option th:each="perfilUsuarioOption : ${perfisUsuarios}" th:value="${perfilUsuarioOption.perfilUsuarioId}" th:text="${perfilUsuarioOption.perfilUsuarioDescricao}"></option>
                             </select>
-                            <span class="help-block" th:if="${#fields.hasErrors('perfisUsuario')}" th:errors="*{perfisUsuario}"></span>
+                            <span class="help-block" th:if="${#fields.hasErrors('perfilUsuario')}" th:errors="*{perfilUsuario}"></span>
                         </div>
                         <!-- select -->
                         <div class="form-group" th:classappend="${#fields.hasErrors('usuarioStatus')} ? has-error : noerror">

@@ -77,11 +77,9 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 
         perfilUsuarioRepository.save(perfil);
 
-        List<PerfilUsuario> perfis = new ArrayList<>();
-        perfis.add(perfil);
-        usuario.setPerfisUsuario(
-            perfis
-        );
+//        List<PerfilUsuario> perfis = new ArrayList<>();
+//        perfis.add(perfil);
+        usuario.setPerfilUsuario(perfil);
 
         usuarioRepository.save(usuario);
     }

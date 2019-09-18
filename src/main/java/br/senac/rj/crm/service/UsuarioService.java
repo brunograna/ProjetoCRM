@@ -29,6 +29,7 @@ public class UsuarioService {
     }
 
     public Usuario save(Usuario u){
+        u.setUsuarioSenha(new BCryptPasswordEncoder().encode(u.getUsuarioSenha()));
         return repository.save(u);
     }
 
@@ -42,7 +43,7 @@ public class UsuarioService {
             }
             usuarioFromDB.get().setUsuarioCargo(u.getUsuarioCargo());
             usuarioFromDB.get().setUsuarioStatus(u.getUsuarioStatus());
-            usuarioFromDB.get().setPerfisUsuario(u.getPerfisUsuario());
+            usuarioFromDB.get().setPerfilUsuario(u.getPerfilUsuario());
 
             return usuarioFromDB.get();
         }else{

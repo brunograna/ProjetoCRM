@@ -28,10 +28,10 @@ public class Usuario implements UserDetails {
     private String usuarioCargo;
     private boolean usuarioStatus;
 
-    @ManyToMany(
+    @ManyToOne(
             fetch = FetchType.EAGER
     )
-    private List<PerfilUsuario> perfisUsuario = new ArrayList<>();
+    private PerfilUsuario perfilUsuario;
 
     public Integer getUsuarioId() {
         return usuarioId;
@@ -81,17 +81,26 @@ public class Usuario implements UserDetails {
         this.usuarioStatus = usuarioStatus;
     }
 
-    public List<PerfilUsuario> getPerfisUsuario() {
-        return perfisUsuario;
+    public PerfilUsuario getPerfilUsuario() {
+        return perfilUsuario;
     }
 
-    public void setPerfisUsuario(List<PerfilUsuario> perfisUsuario) {
-        this.perfisUsuario = perfisUsuario;
+    public void setPerfilUsuario(PerfilUsuario perfilUsuario) {
+        this.perfilUsuario = perfilUsuario;
     }
+
+
+    //    public List<PerfilUsuario> getPerfisUsuario() {
+//        return perfisUsuario;
+//    }
+
+//    public void setPerfisUsuario(List<PerfilUsuario> perfisUsuario) {
+//        this.perfisUsuario = perfisUsuario;
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.perfisUsuario;
+        return new ArrayList<>();
     }
 
     @Override
