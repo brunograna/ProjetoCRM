@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -223,7 +224,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img th:src="@{statics/template/img/user2-160x160.jpg}" class="user-image" alt="User Image">
-                        <span class="hidden-xs">Grupo 1</span>
+                        <span class="hidden-xs" sec:authentication="name" style="text-transform: capitalize;"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->

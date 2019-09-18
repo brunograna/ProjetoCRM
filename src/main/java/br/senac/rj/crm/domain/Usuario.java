@@ -31,6 +31,7 @@ public class Usuario implements UserDetails {
     @ManyToOne(
             fetch = FetchType.EAGER
     )
+    @JoinColumn(name = "perfil_usuario_id")
     private PerfilUsuario perfilUsuario;
 
     public Integer getUsuarioId() {
@@ -88,15 +89,6 @@ public class Usuario implements UserDetails {
     public void setPerfilUsuario(PerfilUsuario perfilUsuario) {
         this.perfilUsuario = perfilUsuario;
     }
-
-
-    //    public List<PerfilUsuario> getPerfisUsuario() {
-//        return perfisUsuario;
-//    }
-
-//    public void setPerfisUsuario(List<PerfilUsuario> perfisUsuario) {
-//        this.perfisUsuario = perfisUsuario;
-//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
