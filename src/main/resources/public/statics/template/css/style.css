@@ -1,5 +1,14 @@
+.pdg_left_5{
+    padding-left: 5px;
+}
+
+.pdg_right_10{
+    padding-right: 10px;
+}
+
 .skin-blue .main-header .navbar {
     background-color: #004a8d;
+    height: 50px;
 }
 .skin-blue .main-header .logo {
     background-color: white;
@@ -36,7 +45,7 @@
     height: 35px;
 }
 .main-header .logo {
-    height: 55px;
+    height: 50px;
 }
 .main-header .logo .logo-lg {
     display: block;
@@ -65,10 +74,72 @@
     margin-top: 10px;
 }
 
+.box {
+    border-top: 3px solid #004a8d;
+}
+
+.btn_wht{
+    color: white; 
+    padding-right: 5px;
+}
+
+.btn-laranja {
+    background-color: #f7941e;
+    border-color: #f7941e;
+    color: white;
+}
+
+.btn-laranja:hover {
+    background-color: #ed8f1e;
+    border-color: #ed8f1e;
+    color: white;
+}
+
+.btn-azul-escuro {
+    background-color: #004a8d;
+    border-color: #004a8d;
+    color: white;
+}
+
+.btn-azul-escuro:hover {
+    background-color: #003a6e;
+    border-color: #003a6e;
+    color: white;
+}
+
+.main-header .logo .logo-lg img {
+    padding-bottom: 5px;
+}
+
+.skin-blue .main-header li.user-header {
+    background-color: #024b8e;
+}
+
+.login-page, .register-page {
+    height: auto;
+    display: table;
+    width: 100%;
+    height: 100vh;
+    background: url(../img/bg_login.jpg) top center fixed;
+    background-size: cover;
+    background-attachment:scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.login-box-body, .register-box-body {
+    background: #fff;
+    padding: 20px;
+    border-top: 0;
+    color: #666;
+    -webkit-box-shadow: 4px 4px 70px -20px rgba(0, 0, 0, 0.5);
+    box-shadow: 4px 4px 70px -20px rgba(0, 0, 0, 0.5);
+}
+
 @media (min-width: 768px){
 		.navbar-nav {
 	    float: left;
 	    margin: 0;
-	    padding-top: 5px;
 	}
 }
