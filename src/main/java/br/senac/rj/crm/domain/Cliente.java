@@ -30,8 +30,7 @@ public class Cliente implements Serializable {
 
     @OneToMany(
             mappedBy = "cliente",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL
     )
     private List<ClienteDado> clienteDado = new ArrayList<>();
 

@@ -15,8 +15,9 @@
                 <small>Formulário</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="../../dashboard.html"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Adicionar cliente</li>
+                <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a th:href="@{/clientes}"><i class="fa fa-users"></i>Clientes</a></li>
+                <li class="active">Edição</li>
             </ol>
         </section>
 
@@ -32,7 +33,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form th:action="@{/clientes}" th:object="${cliente}" method="post" role="form">
+                        <form th:action="@{/clientes/edit}" th:object="${cliente}" method="post" role="form">
                             <div class="box-body">
                                 <input type="hidden" th:field="*{clienteId}">
                                 <div class="row">
@@ -136,7 +137,7 @@
                                 </div>
 
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-plus add_field_button btn_wht"></i> Atualizar Cliente</button>
+                                    <button type="submit" class="btn btn-primary">Atualizar Cliente</button>
                                     <a th:href="@{/clientes}" class="btn btn-primary"><i class="fa fa-list add_field_button btn_wht"></i> Listar Clientes</a>
                                     <a th:href="@{/dashboard}" class="btn btn-laranja"><i class="fa fa-chevron-left add_field_button btn_wht"></i> Voltar para Painel Inicial</a>
                                 </div>

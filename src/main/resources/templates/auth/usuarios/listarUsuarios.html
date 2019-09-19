@@ -44,7 +44,9 @@
                                 <tr th:each="usuario: ${usuarios}">
                                     <td th:text="${usuario.usuarioId}"></td>
                                     <td th:text="${usuario.usuarioLogin}"></td>
-                                    <td th:text="${usuario.usuarioStatus} ? 'Ativo' : 'Desativado'"></td>
+                                    <td>
+                                        <span class="label" th:classappend="${usuario.usuarioStatus} ? label-success : label-danger" th:text="${usuario.usuarioStatus} ? 'Ativo' : 'Desativado'"></span>
+                                    </td>
                                     <td>
                                         <div>
                                             <a th:href="@{/usuarios/{id}(id=${usuario.usuarioId})}"><i class="fa fa-2x fa-edit"></i></a>

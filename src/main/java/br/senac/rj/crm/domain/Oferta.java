@@ -1,5 +1,7 @@
 package br.senac.rj.crm.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,18 +19,24 @@ public class Oferta {
     @NotBlank
     private String ofertaDescricao;
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy", iso = DateTimeFormat.ISO.DATE)
     private LocalDate ofertaDataInicio;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy", iso = DateTimeFormat.ISO.DATE)
     private LocalDate ofertaDataFim;
 
-    @NotBlank
+    @NotNull
     private double ofertaPreco;
 
     @NotNull
     @Column(name="oferta_status")
     private boolean ofertaStatus;
 
-    @OneToOne
+    @OneToOne(
+            fetch = FetchType.LAZY
+    )
     @JoinColumn( name = "produto_id" )
+    @NotNull
     private Produto ofertaProduto;
 
     public Integer getOfertaId() {

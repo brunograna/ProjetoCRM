@@ -44,7 +44,9 @@
                                 <tr th:each="perfil: ${perfisUsuarios}">
                                     <td th:text="${perfil.perfilUsuarioId}"></td>
                                     <td th:text="${perfil.perfilUsuarioDescricao}"></td>
-                                    <td th:text="${perfil.perfilUsuarioStatus} ? 'Ativo' : 'Desativado'"></td>
+                                    <td>
+                                        <span class="label" th:classappend="${perfil.perfilUsuarioStatus} ? label-success : label-danger" th:text="${perfil.perfilUsuarioStatus} ? 'Ativo' : 'Desativado'"></span>
+                                    </td>
                                     <td>
                                         <div>
                                             <a th:href="@{/perfis-usuarios/{id}(id=${perfil.perfilUsuarioId})}"><i class="fa fa-2x fa-edit"></i></a>

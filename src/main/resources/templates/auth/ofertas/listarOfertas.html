@@ -10,12 +10,12 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Cliente
-                <small>Listagem dos clientes</small>
+                Oferta
+                <small>Listagem dos ofertas</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active"><i class="fa fa-users"></i> Clientes</li>
+                <li class="active"><i class="fa fa-star"></i> Ofertas</li>
             </ol>
         </section>
 
@@ -23,7 +23,7 @@
         <section class="content">
             <div class="box-tools">
                 <br/>
-                <a th:href="@{/clientes/adicionar}" class="btn btn-warning" style="display:table;margin-left:auto;">Adicionar Cliente</a>
+                <a th:href="@{/ofertas/adicionar}" class="btn btn-warning" style="display:table;margin-left:auto;">Adicionar Oferta</a>
                 <br/>
             </div>
             <div class="row">
@@ -37,23 +37,25 @@
                             <table class="table table-hover">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Email</th>
+                                    <th>Descrição da Oferta</th>
+                                    <th>Produto da Oferta</th>
+                                    <th>Preço</th>
                                     <th>Status</th>
                                     <th>Ações</th>
                                 </tr>
-                                <tr th:each="cliente: ${clientes}">
-                                    <td th:text="${cliente.clienteId}"></td>
-                                    <td th:text="${cliente.clienteNome}"></td>
-                                    <td th:text="${cliente.clienteEmail}"></td>
+                                <tr th:each="oferta: ${ofertas}">
+                                    <td th:text="${oferta.ofertaId}"></td>
+                                    <td th:text="${oferta.ofertaDescricao}"></td>
+                                    <td th:text="${oferta.ofertaProduto.produtoDescricao}"></td>
+                                    <td th:text="${oferta.ofertaPreco}"></td>
                                     <td>
-                                        <span class="label" th:classappend="${cliente.clienteStatus} ? label-success : label-danger" th:text="${cliente.clienteStatus} ? 'Ativo' : 'Desativado'"></span>
+                                        <span class="label" th:classappend="${oferta.ofertaStatus} ? label-success : label-danger" th:text="${oferta.ofertaStatus} ? 'Ativo' : 'Desativado'"></span>
                                     </td>
                                     <td>
                                         <div>
-                                            <a th:href="@{/clientes/{id}(id=${cliente.clienteId})}"><i class="fa fa-2x fa-edit"></i></a>
+                                            <a th:href="@{/ofertas/{id}(id=${oferta.ofertaId})}"><i class="fa fa-2x fa-edit"></i></a>
                                             &nbsp;
-                                            <a th:href="@{/clientes/excluir/{id}(id=${cliente.clienteId})}"><i class="fa fa-2x fa-trash"></i></a>
+                                            <a th:href="@{/ofertas/excluir/{id}(id=${oferta.ofertaId})}"><i class="fa fa-2x fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

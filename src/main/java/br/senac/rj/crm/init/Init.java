@@ -41,11 +41,11 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
         Produto produto = new Produto();
-        produto.setProdutoDescricao("Belo produto");
+        produto.setProdutoDescricao("Análise e Desenvolvimento de Sistemas");
         produto.setProdutoStatus(true);
 
         NivelInstrucao instrucao = new NivelInstrucao();
-        instrucao.setInstrucaoDescricao("Instrucao");
+        instrucao.setInstrucaoDescricao("Instrução");
         instrucao.setInstrucaoStatus(true);
 
         instrucao = instrucaoService.save(instrucao);
@@ -73,7 +73,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 
         PerfilUsuario perfil = new PerfilUsuario();
         perfil.setPerfilUsuarioStatus(true);
-        perfil.setPerfilUsuarioDescricao("ATENDENTE");
+        perfil.setPerfilUsuarioDescricao("Atendente");
 
         perfilUsuarioRepository.save(perfil);
 
