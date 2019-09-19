@@ -77,7 +77,10 @@ public class Cliente implements Serializable {
         return clienteDado;
     }
 
-    public void setClienteDado(List<ClienteDado> clienteDado) {
+    public void setClienteDado(List<ClienteDado> clienteDados) {
+        for (ClienteDado clienteDado: clienteDados) {
+            clienteDado.setCliente(this);
+        }
         this.clienteDado = clienteDado;
     }
 

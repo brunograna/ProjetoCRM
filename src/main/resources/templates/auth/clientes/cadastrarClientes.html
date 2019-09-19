@@ -66,58 +66,38 @@
                                             <span class="help-block" th:if="${#fields.hasErrors('clienteEmail')}" th:errors="*{clienteEmail}"></span>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div id="nextSprint">
 
-<!--                                    <div id="nextSprint" style="display:none;">-->
-<!--                                        <div class="box-header with-border" style="position: static;">-->
-<!--                                            <h3 class="box-title pdg_left_5">Informações Opcionais</h3>-->
-<!--                                        </div>-->
+                                        <div class="row">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title pdg_left_5">Campos adicionais</h3>
+                                            </div>
 
-<!--                                        <div class="col-xs-3 form-group">-->
-<!--                                            <label for="Telefone">Telefone Fixo</label>-->
-<!--                                            <div class="input-group">-->
-<!--                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>-->
-<!--                                                <input type="email" class="form-control" placeholder="Telefone">-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                            <div class="col-md-12 form-group">
+                                                <label>Selecione o tipo de campo que deseja adicionar e depois clique no +:</label>
 
-<!--                                        <div class="col-xs-3 form-group">-->
-<!--                                            <label for="Celular">Celular</label>-->
-<!--                                            <div class="input-group">-->
-<!--                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>-->
-<!--                                                <input type="email" class="form-control" placeholder="Celular">-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                                <div class="input-group">
+                                                    <span class="input-group-addon" id="addFieldButton"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>
+                                                    <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;">
+                                                        <option value="" disabled selected>Selecione uma opção</option>
+                                                        <option th:each="dadoTipoOption : ${dadoTipos}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>
+                                                    </select>
+                                                </div>
 
-<!--                                        <div class="row">-->
-    <!--                                        <div class="box-header with-border">-->
-    <!--                                            <h3 class="box-title pdg_left_5">Campos adicionais</h3>-->
-    <!--                                        </div>-->
+                                                <div class="input_fields_wrap" id="input_fields_wrap">
+                                                    <!--<button class="add_field_button">Adicionar mais campos</button>-->
+                                                    <div>
+                                                        <!--<input type="text" name="mytext[]">-->
+                                                    </div>
+                                                </div>
 
-    <!--                                        <div class="col-md-12 form-group">-->
-    <!--                                            <label>Selecione o tipo de campo que deseja adicionar e depois clique no +:</label>-->
+                                            </div>
 
-    <!--                                            <div class="input-group">-->
-    <!--                                                <span class="input-group-addon"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>-->
-    <!--                                                <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;" onchange="SelectCampos(this.value);">-->
-    <!--                                                    <option value="" disabled selected>Selecione uma opção</option>-->
-    <!--                                                    <option value="Telefone">Telefone</option>-->
-    <!--                                                    <option value="Email">Email</option>-->
-    <!--                                                    <option value="Endereco">Endereço</option>-->
-    <!--                                                </select>-->
-    <!--                                            </div>-->
+                                        </div>
 
-    <!--                                            <div class="input_fields_wrap">-->
-    <!--                                                &lt;!&ndash;<button class="add_field_button">Adicionar mais campos</button>&ndash;&gt;-->
-    <!--                                                <div>-->
-    <!--                                                    &lt;!&ndash;<input type="text" name="mytext[]">&ndash;&gt;-->
-    <!--                                                </div>-->
-    <!--                                            </div>-->
-
-    <!--                                        </div>-->
-
-<!--                                        </div>-->
-
-<!--                                    </div>-->
+                                    </div>
 
 
                             </div>
@@ -146,152 +126,6 @@
 
                 </div>
                 <!--/.col (left) -->
-                <!-- right column -->
-                <div class="col-md-6" style="display: none;">
-                    <!-- general form elements disabled -->
-                    <div class="box box-warning">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">General Elements</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <form role="form">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>Text</label>
-                                    <input type="text" class="form-control" placeholder="Enter ...">
-                                </div>
-                                <div class="form-group">
-                                    <label>Text Disabled</label>
-                                    <input type="text" class="form-control" placeholder="Enter ..." disabled>
-                                </div>
-
-                                <!-- textarea -->
-                                <div class="form-group">
-                                    <label>Textarea</label>
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Textarea Disabled</label>
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
-                                </div>
-
-                                <!-- input states -->
-                                <div class="form-group has-success">
-                                    <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i> Input with success</label>
-                                    <input type="text" class="form-control" id="inputSuccess" placeholder="Enter ...">
-                                    <span class="help-block">Help block with success</span>
-                                </div>
-                                <div class="form-group has-warning">
-                                    <label class="control-label" for="inputWarning"><i class="fa fa-bell-o"></i> Input with
-                                        warning</label>
-                                    <input type="text" class="form-control" id="inputWarning" placeholder="Enter ...">
-                                    <span class="help-block">Help block with warning</span>
-                                </div>
-                                <div class="form-group has-error">
-                                    <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with
-                                        error</label>
-                                    <input type="text" class="form-control" id="inputError" placeholder="Enter ...">
-                                    <span class="help-block">Help block with error</span>
-                                </div>
-
-                                <!-- checkbox -->
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">
-                                            Checkbox 1
-                                        </label>
-                                    </div>
-
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">
-                                            Checkbox 2
-                                        </label>
-                                    </div>
-
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" disabled>
-                                            Checkbox disabled
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- radio -->
-                                <div class="form-group">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                            Option one is this and that&mdash;be sure to include why it's great
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                            Option two can be something else and selecting it will deselect option one
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-                                            Option three is disabled
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- select -->
-                                <div class="form-group">
-                                    <label>Select</label>
-                                    <select class="form-control">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Select Disabled</label>
-                                    <select class="form-control" disabled>
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-
-                                <!-- Select multiple-->
-                                <div class="form-group">
-                                    <label>Select Multiple</label>
-                                    <select multiple class="form-control">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Select Multiple Disabled</label>
-                                    <select multiple class="form-control" disabled>
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
-                                </div>
-
-                            </form>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                </div>
-                <!--/.col (right) -->
             </div>
             <!-- /.row -->
         </section>
@@ -302,5 +136,47 @@
 </div>
 <th:block th:insert="fragments/footer-scripts.html :: scripts">
 </th:block>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+	  var max_fields = 10; //maximum input boxes allowed
+	  var wrapper = $("#input_fields_wrap"); //Fields wrapper
+      var add_button = $("#addFieldButton"); //Add button ID
+      var counter = 0;
+
+      $(add_button).click(function(e) { //on add input button click
+         e.preventDefault();
+
+        console.log($(this).find("select option:selected"));
+
+        var dadoTipoId = $('#campos_adicionais').children("option:selected").val();
+        var isObrigatorio = $('#campos_adicionais').children("option:selected").attr("data-obrigatorio");
+        var valorPadrao = $('#campos_adicionais').children("option:selected").attr("data-padrao");
+
+        apppendOption(dadoTipoId, isObrigatorio, valorPadrao);
+      });
+
+       function apppendOption(dadoTipoId, isObrigatorio, valorPadrao){
+          var inputDadoTipo = "<input type='hidden' name='clienteDado["+counter+"].dadoTipo' value='"+dadoTipoId+"'><br/>";
+          var inputValue = "<input type='text' placeholder='"+valorPadrao+"' name='clienteDado["+counter+"].clienteDadoValor' required='"+isObrigatorio+"' placeholder='"+valorPadrao+"'><br/>";
+          var inputCliente = "<input type='hidden' placeholder='"+valorPadrao+"' name='clienteDado["+counter+"].cliente' ><br/>";
+
+          var inputs = inputDadoTipo+inputValue+inputCliente;
+
+          wrapper.append(inputs);
+
+          counter++;
+       }
+
+	  $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
+	    e.preventDefault();
+	    $(this).parent('div').remove();
+	    x--;
+	  })
+
+	}
+	);
+</script>
 </body>
 </html>

@@ -2,6 +2,7 @@ package br.senac.rj.crm.controller;
 
 import br.senac.rj.crm.domain.Cliente;
 import br.senac.rj.crm.service.ClienteService;
+import br.senac.rj.crm.service.DadoTipoService;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private DadoTipoService dadoTipoService;
 
     @GetMapping
     public ModelAndView listAll(){
@@ -34,6 +38,7 @@ public class ClienteController {
 
         ModelAndView mv = new ModelAndView("redirect:/clientes");
         try{
+            cliente.setClienteDado(cliente.getClienteDado());
             clienteService.save(cliente);
         }catch (Exception e){
             mv = new ModelAndView("redirect:/clientes/adicionar?error");
@@ -45,6 +50,7 @@ public class ClienteController {
     public ModelAndView add(){
         ModelAndView mv = new ModelAndView("/auth/clientes/cadastrarClientes");
         mv.addObject("cliente", new Cliente());
+        mv.addObject("dadoTipos", dadoTipoService.findAll());
         return mv;
     }
 

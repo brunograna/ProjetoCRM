@@ -1,12 +1,7 @@
 package br.senac.rj.crm.init;
 
-import br.senac.rj.crm.domain.NivelInstrucao;
-import br.senac.rj.crm.domain.PerfilUsuario;
-import br.senac.rj.crm.domain.Produto;
-import br.senac.rj.crm.domain.Usuario;
-import br.senac.rj.crm.repository.PerfilUsuarioRepository;
-import br.senac.rj.crm.repository.ProdutoRepository;
-import br.senac.rj.crm.repository.UsuarioRepository;
+import br.senac.rj.crm.domain.*;
+import br.senac.rj.crm.repository.*;
 import br.senac.rj.crm.service.NivelInstrucaoService;
 import br.senac.rj.crm.service.ProdutoService;
 import javassist.NotFoundException;
@@ -37,9 +32,15 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private PerfilUsuarioRepository perfilUsuarioRepository;
 
+    @Autowired
+    private CategoriaDadoRepository categoriaDadoRepository;
+
+    @Autowired
+    private DadoTipoRepository dadoTipoRepository;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-
+        initDadoTipo();
         Produto produto = new Produto();
         produto.setProdutoDescricao("Análise e Desenvolvimento de Sistemas");
         produto.setProdutoStatus(true);
@@ -82,5 +83,31 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         usuario.setPerfilUsuario(perfil);
 
         usuarioRepository.save(usuario);
+    }
+
+    private void initDadoTipo() {
+        CategoriaDado categoriaDado = new CategoriaDado();
+        categoriaDado.setCategoriaDadoStatus(true);
+        categoriaDado.setCategoriaDadoDescricao("Dados Pessoais");
+
+        categoriaDadoRepository.save(categoriaDado);
+
+
+        DadoTipo dadoTipo = new DadoTipo();
+        dadoTipo.setDadoTipoStatus(true);
+        dadoTipo.setDadoTipoPadrao("");
+        dadoTipo.setDadoTipoObrigatorio(true);
+        dadoTipo.setDadoTipoDescricao("Passaporte");
+        dadoTipo.setCategoria(categoriaDado);
+
+        dadoTipoRepository.save(dadoTipo);
+
+        DadoTipo dadoTipo2 = new DadoTipo();
+        dadoTipo2.setDadoTipoStatus(true);
+        dadoTipo2.setDadoTipoObrigatorio(true);
+        dadoTipo2.setDadoTipoDescricao("CRM");
+        dadoTipo2.setCategoria(categoriaDado);
+
+        dadoTipoRepository.save(dadoTipo2);
     }
 }
