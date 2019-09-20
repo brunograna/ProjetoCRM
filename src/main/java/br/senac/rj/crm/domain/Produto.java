@@ -21,7 +21,9 @@ public class Produto {
     @Column(name="produto_status")
     private boolean produtoStatus;
 
-    @ManyToOne
+    @ManyToOne(
+            fetch = FetchType.LAZY
+    )
     @JoinColumn(name = "nivel_instrucao_id")
     private NivelInstrucao nivelInstrucao;
 

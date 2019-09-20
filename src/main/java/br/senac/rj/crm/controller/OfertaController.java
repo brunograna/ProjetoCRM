@@ -59,7 +59,7 @@ public class OfertaController {
     public ModelAndView add(){
         ModelAndView mv = new ModelAndView("/auth/ofertas/cadastrarOfertas");
         mv.addObject("oferta", new Oferta());
-        mv.addObject("produtos", produtoService.findAll());
+        mv.addObject("produtos", produtoService.findAllActive());
         return mv;
     }
 

@@ -11,13 +11,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Alterar produto
+                Adicionar produto
                 <small>Formulário</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><a th:href="@{/produtos}"><i class="fa fa-th"></i> Produtos</a></li>
-                <li class="active">Edição</li>
+                <li class="active">Cadastro</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -32,8 +32,7 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form th:action="@{/produtos/edit}" th:object="${produto}" method="post" role="form">
-                            <input type="hidden" th:field="*{produtoId}">
+                        <form th:action="@{/produtos}" th:object="${produto}" method="post" role="form">
                             <div class="box-body">
                                 <div class="row">
 
@@ -71,7 +70,7 @@
                             </div>
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Atualizar Produto</button>
+                                <button type="submit" class="btn btn-primary">Adicionar Produto</button>
                                 <a th:href="@{/produtos}" class="btn btn-default">Cancelar</a>
                             </div>
                         </form>

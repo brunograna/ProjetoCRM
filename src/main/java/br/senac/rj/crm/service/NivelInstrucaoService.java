@@ -56,4 +56,7 @@ public class NivelInstrucaoService {
         }
     }
 
+    public List<NivelInstrucao> findAllActive() {
+        return repository.findByNivelInstrucaoStatus(true);
+    }
 }

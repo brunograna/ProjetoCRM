@@ -52,4 +52,8 @@ public class ProdutoService {
             produtoFromDB.get().setProdutoStatus(false);
         }
     }
+
+    public List<Produto> findAllActive() {
+        return repository.findByProdutoStatus(true);
+    }
 }

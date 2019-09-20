@@ -11,5 +11,5 @@ import java.util.List;
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 
     long count();
-
+    List<Produto> findByProdutoStatus(boolean status);
 }

@@ -8,4 +8,5 @@ import java.util.List;
 
 @Repository
 public interface NivelInstrucaoRepository extends JpaRepository<NivelInstrucao, Integer> {
+    List<NivelInstrucao> findByNivelInstrucaoStatus(boolean status);
 }
