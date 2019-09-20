@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<th:block th:insert="fragments/head.html :: head"></th:block>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:insert="fragments/navbar.html :: header"></th:block>
+
+    <th:block th:insert="fragments/sidebar.html :: aside"></th:block>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Alterar Dado
+                <small>Formulário</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a th:href="@{/dados-tipos}"><i class="fa fa-th"></i> Dados</a></li>
+                <li class="active">Edição</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Informações Essenciais</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form th:action="@{/dados-tipos/edit}" th:object="${dadoTipo}" method="post" role="form">
+                            <input type="hidden" th:field="*{dadoTipoId}">
+                            <div class="box-body">
+                                <div class="row">
+
+                                    <div class="col-xs-6 form-group" th:classappend="${#fields.hasErrors('dadoTipoDescricao')} ? has-error : noerror">
+                                        <label class="control-label" th:if="${#fields.hasErrors('dadoTipoDescricao')}"><i class="fa fa-times-circle-o"></i></label>
+                                        <label for="dadoTipoDescricao">Descrição</label>
+                                        <input type="text" class="form-control" placeholder="Descrição do dado" th:field="*{dadoTipoDescricao}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('dadoTipoDescricao')}" th:errors="*{dadoTipoDescricao}"></span>
+                                    </div>
+
+                                    <div class="col-xs-6 form-group" th:classappend="${#fields.hasErrors('dadoTipoPadrao')} ? has-error : noerror">
+                                        <label class="control-label" th:if="${#fields.hasErrors('dadoTipoPadrao')}"><i class="fa fa-times-circle-o"></i></label>
+                                        <label for="dadoTipoPadrao">Dado Padrão</label>
+                                        <input type="text" class="form-control" placeholder="Dado padrão" th:field="*{dadoTipoPadrao}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('dadoTipoPadrao')}" th:errors="*{dadoTipoPadrao}"></span>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-xs-4 form-group" th:classappend="${#fields.hasErrors('dadoTipoMascara')} ? has-error : noerror">
+                                        <label class="control-label" th:if="${#fields.hasErrors('dadoTipoMascara')}"><i class="fa fa-times-circle-o"></i></label>
+                                        <label for="dadoTipoMascara">Mascara</label>
+                                        <input type="text" class="form-control" placeholder="#######" th:field="*{dadoTipoMascara}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('dadoTipoMascara')}" th:errors="*{dadoTipoMascara}"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 form-group" th:classappend="${#fields.hasErrors('dadoTipoStatus')} ? has-error : noerror">
+                                        <label class="control-label" th:if="${#fields.hasErrors('dadoTipoStatus')}"><i class="fa fa-times-circle-o"></i></label>
+                                        <label>Status:</label>
+                                        <select class="form-control" th:field="*{dadoTipoStatus}">
+                                            <option value="1">Ativo</option>
+                                            <option value="0">Não Ativo</option>
+                                        </select>
+                                        <span class="help-block" th:if="${#fields.hasErrors('dadoTipoStatus')}" th:errors="*{dadoTipoStatus}"></span>
+                                    </div>
+
+                                    <div class="col-xs-4 form-group" th:classappend="${#fields.hasErrors('dadoTipoObrigatorio')} ? has-error : noerror">
+                                        <label class="control-label" th:if="${#fields.hasErrors('dadoTipoObrigatorio')}"><i class="fa fa-times-circle-o"></i></label>
+                                        <label>Obrigatório:</label>
+                                        <select class="form-control" th:field="*{dadoTipoObrigatorio}">
+                                            <option value="1">Ativo</option>
+                                            <option value="0">Não Ativo</option>
+                                        </select>
+                                        <span class="help-block" th:if="${#fields.hasErrors('dadoTipoObrigatorio')}" th:errors="*{dadoTipoObrigatorio}"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Atualizar Dado</button>
+                                <a th:href="@{/dados-tipos}" class="btn btn-default">Cancelar</a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <footer th:insert="fragments/footer.html :: footer"></footer>
+</div>
+<th:block th:insert="fragments/footer-scripts.html :: scripts">
+</th:block>
+</body>
+</html>
