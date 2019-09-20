@@ -21,7 +21,9 @@ public class ClienteDado {
     @Column(name = "cliente_dado_status")
     private boolean clienteDadoStatus;
 
-    @OneToOne
+    @OneToOne(
+            fetch = FetchType.EAGER
+    )
     @JoinColumn(name = "dado_tipo_id")
     private DadoTipo dadoTipo;
 

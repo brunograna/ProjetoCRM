@@ -30,6 +30,7 @@ public class Cliente implements Serializable {
     private boolean clienteStatus;
 
     @OneToMany(
+            fetch = FetchType.EAGER,
             mappedBy = "cliente",
             cascade = CascadeType.ALL
     )

@@ -60,6 +60,7 @@ public class ClienteController {
         try {
             Cliente clienteRetrieved = clienteService.findById(id);
             mv.addObject("cliente", clienteRetrieved);
+            mv.addObject("dadoTipos", dadoTipoService.findAll());
         } catch (ObjectNotFoundException e) {
             mv = new ModelAndView("redirect:/clientes?error");
         }
@@ -70,7 +71,10 @@ public class ClienteController {
     @PostMapping("/edit")
     public ModelAndView saveEdit(@Valid Cliente cliente, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            return new ModelAndView("/auth/clientes/alterarClientes");
+            ModelAndView mv = new ModelAndView("/auth/clientes/alterarClientes");
+            mv.addObject("cliente", cliente);
+            mv.addObject("dadoTipos", dadoTipoService.findAll());
+            return mv;
         }
 
         ModelAndView mv = new ModelAndView("redirect:/clientes/");

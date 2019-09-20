@@ -68,57 +68,41 @@
                                         </div>
                                     </div>
 
-                                    <!--                                    <div id="nextSprint" style="display:none;">-->
-                                    <!--                                        <div class="box-header with-border" style="position: static;">-->
-                                    <!--                                            <h3 class="box-title pdg_left_5">Informações Opcionais</h3>-->
-                                    <!--                                        </div>-->
 
-                                    <!--                                        <div class="col-xs-3 form-group">-->
-                                    <!--                                            <label for="Telefone">Telefone Fixo</label>-->
-                                    <!--                                            <div class="input-group">-->
-                                    <!--                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>-->
-                                    <!--                                                <input type="email" class="form-control" placeholder="Telefone">-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </div>-->
+                                </div>
 
-                                    <!--                                        <div class="col-xs-3 form-group">-->
-                                    <!--                                            <label for="Celular">Celular</label>-->
-                                    <!--                                            <div class="input-group">-->
-                                    <!--                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>-->
-                                    <!--                                                <input type="email" class="form-control" placeholder="Celular">-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </div>-->
+                                <div class="row">
+                                    <div id="nextSprint">
 
-                                    <!--                                        <div class="row">-->
-                                    <!--                                        <div class="box-header with-border">-->
-                                    <!--                                            <h3 class="box-title pdg_left_5">Campos adicionais</h3>-->
-                                    <!--                                        </div>-->
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title pdg_left_5">Campos adicionais</h3>
+                                        </div>
 
-                                    <!--                                        <div class="col-md-12 form-group">-->
-                                    <!--                                            <label>Selecione o tipo de campo que deseja adicionar e depois clique no +:</label>-->
+                                        <div class="col-md-12 form-group">
+                                            <label>Selecione o tipo de campo que deseja adicionar e depois clique no +:</label>
 
-                                    <!--                                            <div class="input-group">-->
-                                    <!--                                                <span class="input-group-addon"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>-->
-                                    <!--                                                <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;" onchange="SelectCampos(this.value);">-->
-                                    <!--                                                    <option value="" disabled selected>Selecione uma opção</option>-->
-                                    <!--                                                    <option value="Telefone">Telefone</option>-->
-                                    <!--                                                    <option value="Email">Email</option>-->
-                                    <!--                                                    <option value="Endereco">Endereço</option>-->
-                                    <!--                                                </select>-->
-                                    <!--                                            </div>-->
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="addFieldButton"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>
+                                                <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;">
+                                                    <option value="-1" disabled selected>Selecione uma opção</option>
+                                                    <option th:each="dadoTipoOption : ${dadoTipos}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>
+                                                </select>
+                                            </div>
 
-                                    <!--                                            <div class="input_fields_wrap">-->
-                                    <!--                                                &lt;!&ndash;<button class="add_field_button">Adicionar mais campos</button>&ndash;&gt;-->
-                                    <!--                                                <div>-->
-                                    <!--                                                    &lt;!&ndash;<input type="text" name="mytext[]">&ndash;&gt;-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
+                                            <div class="input_fields_wrap" id="input_fields_wrap">
 
-                                    <!--                                        </div>-->
+                                                <div class="form-group" th:each="clienteDadoTipoEach,iter : ${cliente.clienteDado}">
+                                                    <input type="hidden" th:name="'clienteDado['+${iter.index}+'].dadoTipo'" th:value="${clienteDadoTipoEach.dadoTipo.dadoTipoId}">
+                                                    <label style="display:block;" th:text="${clienteDadoTipoEach.dadoTipo.dadoTipoDescricao}+':'"></label>
+                                                    <input style="max-width:335px; display: inline-block;" type="text" th:placeholder="${clienteDadoTipoEach.dadoTipo.dadoTipoPadrao}" th:name="'clienteDado['+${iter.index}+'].clienteDadoValor'" th:required="${clienteDadoTipoEach.dadoTipo.dadoTipoObrigatorio}" th:value="${clienteDadoTipoEach.clienteDadoValor}" class="form-control extra_input">
+                                                    <a href="#" class="remove_field"> <i class="fa fa-minus" style="color: red;"></i></a>
+                                                </div>
 
-                                    <!--                                        </div>-->
+                                            </div>
 
-                                    <!--                                    </div>-->
+                                        </div>
+
+                                    </div>
 
 
                                 </div>
@@ -157,5 +141,50 @@
 </div>
 <th:block th:insert="fragments/footer-scripts.html :: scripts">
 </th:block>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+	  var max_fields = 10; //maximum input boxes allowed
+	  var wrapper = $("#input_fields_wrap"); //Fields wrapper
+      var add_button = $("#addFieldButton"); //Add button ID
+      var counter = $('.extra_input').length;
+
+      $(add_button).click(function(e) { //on add input button click
+         e.preventDefault();
+
+        console.log($(this).find("select option:selected"));
+
+        var dadoTipoId = $('#campos_adicionais').children("option:selected").val();
+        console.log(dadoTipoId);
+        if(dadoTipoId != -1){
+            var dadoTipoText = $('#campos_adicionais').children("option:selected").text();
+            var isObrigatorio = $('#campos_adicionais').children("option:selected").attr("data-obrigatorio");
+            var valorPadrao = $('#campos_adicionais').children("option:selected").attr("data-padrao");
+
+            apppendOption(dadoTipoId, dadoTipoText, isObrigatorio, valorPadrao);
+        }
+      });
+
+       function apppendOption(dadoTipoId, dadoTipoText, isObrigatorio, valorPadrao){
+
+          var inputDadoTipo = "<input type='hidden' name='clienteDado["+counter+"].dadoTipo' value='"+dadoTipoId+"'>";
+          var inputValue = "<label style=\"display:block;\">"+dadoTipoText+":</label><input style=\"max-width:335px; display: inline-block;\" type='text' placeholder='"+dadoTipoText+"' name='clienteDado["+counter+"].clienteDadoValor' required='"+isObrigatorio+"' value='"+valorPadrao+"' class=\"form-control extra_input\"><a href=\"#\" class=\"remove_field\"> <i class=\"fa fa-minus\" style=\"color: red;\"></i></a>";
+          var inputCliente = "<input type='hidden' name='clienteDado["+counter+"].cliente' >";
+
+          var inputs = "<div class=\"form-group\">"+inputDadoTipo+inputValue+inputCliente+"</div>";
+          wrapper.append(inputs);
+          counter++;
+       }
+
+	  $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
+	    e.preventDefault();
+	    $(this).parent('div').remove();
+	    x--;
+	  })
+
+	}
+	);
+</script>
 </body>
 </html>

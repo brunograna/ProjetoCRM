@@ -2,6 +2,7 @@ package br.senac.rj.crm.service;
 
 import br.senac.rj.crm.domain.Cliente;
 import br.senac.rj.crm.domain.NivelInstrucao;
+import br.senac.rj.crm.repository.ClienteDadoRepository;
 import br.senac.rj.crm.repository.ClienteRepository;
 import javassist.NotFoundException;
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -18,6 +19,9 @@ public class ClienteService {
 
     @Autowired
     private ClienteRepository repository;
+
+    @Autowired
+    private ClienteDadoRepository clienteDadoRepository;
 
     public Cliente findById(Integer id) throws ObjectNotFoundException {
         Optional<Cliente> dadoTipo = repository.findById(id);
@@ -38,6 +42,8 @@ public class ClienteService {
         Optional<Cliente> clienteFromDB = repository.findById(c.getClienteId());
 
         if(clienteFromDB.isPresent()){
+            clienteDadoRepository.removeByClienteClienteId(clienteFromDB.get().getClienteId());
+            c.cleanClienteDadoList(c.getClienteDado());
             clienteFromDB.get().setClienteCpf(c.getClienteCpf());
             clienteFromDB.get().setClienteDado(c.getClienteDado());
             clienteFromDB.get().setClienteEmail(c.getClienteEmail());
