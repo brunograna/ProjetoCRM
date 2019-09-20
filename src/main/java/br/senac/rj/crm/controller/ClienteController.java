@@ -38,9 +38,9 @@ public class ClienteController {
 
         ModelAndView mv = new ModelAndView("redirect:/clientes");
         try{
-            cliente.setClienteDado(cliente.getClienteDado());
             clienteService.save(cliente);
         }catch (Exception e){
+            e.printStackTrace();
             mv = new ModelAndView("redirect:/clientes/adicionar?error");
         }
         return mv;

@@ -70,29 +70,26 @@
                                 <div class="row">
                                     <div id="nextSprint">
 
-                                        <div class="row">
-                                            <div class="box-header with-border">
-                                                <h3 class="box-title pdg_left_5">Campos adicionais</h3>
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title pdg_left_5">Campos adicionais</h3>
+                                        </div>
+
+                                        <div class="col-md-12 form-group">
+                                            <label>Selecione o tipo de campo que deseja adicionar e depois clique no +:</label>
+
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="addFieldButton"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>
+                                                <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;">
+                                                    <option value="-1" disabled selected>Selecione uma opção</option>
+                                                    <option th:each="dadoTipoOption : ${dadoTipos}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>
+                                                </select>
                                             </div>
 
-                                            <div class="col-md-12 form-group">
-                                                <label>Selecione o tipo de campo que deseja adicionar e depois clique no +:</label>
-
-                                                <div class="input-group">
-                                                    <span class="input-group-addon" id="addFieldButton"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>
-                                                    <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;">
-                                                        <option value="" disabled selected>Selecione uma opção</option>
-                                                        <option th:each="dadoTipoOption : ${dadoTipos}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>
-                                                    </select>
+                                            <div class="input_fields_wrap" id="input_fields_wrap">
+                                                <!--<button class="add_field_button">Adicionar mais campos</button>-->
+                                                <div>
+                                                    <!--<input type="text" name="mytext[]">-->
                                                 </div>
-
-                                                <div class="input_fields_wrap" id="input_fields_wrap">
-                                                    <!--<button class="add_field_button">Adicionar mais campos</button>-->
-                                                    <div>
-                                                        <!--<input type="text" name="mytext[]">-->
-                                                    </div>
-                                                </div>
-
                                             </div>
 
                                         </div>
@@ -132,6 +129,7 @@
         <!-- /.content -->
     </div>
 
+
     <footer th:insert="fragments/footer.html :: footer"></footer>
 </div>
 <th:block th:insert="fragments/footer-scripts.html :: scripts">
@@ -151,21 +149,24 @@
         console.log($(this).find("select option:selected"));
 
         var dadoTipoId = $('#campos_adicionais').children("option:selected").val();
-        var isObrigatorio = $('#campos_adicionais').children("option:selected").attr("data-obrigatorio");
-        var valorPadrao = $('#campos_adicionais').children("option:selected").attr("data-padrao");
+        console.log(dadoTipoId);
+        if(dadoTipoId != -1){
+            var dadoTipoText = $('#campos_adicionais').children("option:selected").text();
+            var isObrigatorio = $('#campos_adicionais').children("option:selected").attr("data-obrigatorio");
+            var valorPadrao = $('#campos_adicionais').children("option:selected").attr("data-padrao");
 
-        apppendOption(dadoTipoId, isObrigatorio, valorPadrao);
+            apppendOption(dadoTipoId, dadoTipoText, isObrigatorio, valorPadrao);
+        }
       });
 
-       function apppendOption(dadoTipoId, isObrigatorio, valorPadrao){
-          var inputDadoTipo = "<input type='hidden' name='clienteDado["+counter+"].dadoTipo' value='"+dadoTipoId+"'><br/>";
-          var inputValue = "<input type='text' placeholder='"+valorPadrao+"' name='clienteDado["+counter+"].clienteDadoValor' required='"+isObrigatorio+"' placeholder='"+valorPadrao+"'><br/>";
-          var inputCliente = "<input type='hidden' placeholder='"+valorPadrao+"' name='clienteDado["+counter+"].cliente' ><br/>";
+       function apppendOption(dadoTipoId, dadoTipoText, isObrigatorio, valorPadrao){
 
-          var inputs = inputDadoTipo+inputValue+inputCliente;
+          var inputDadoTipo = "<input type='hidden' name='clienteDado["+counter+"].dadoTipo' value='"+dadoTipoId+"'>";
+          var inputValue = "<label style=\"display:block;\">"+dadoTipoText+":</label><input style=\"max-width:335px; display: inline-block;\" type='text' placeholder='"+dadoTipoText+"' name='clienteDado["+counter+"].clienteDadoValor' required='"+isObrigatorio+"' value='"+valorPadrao+"' class=\"form-control extra_input\"><a href=\"#\" class=\"remove_field\"> <i class=\"fa fa-minus\" style=\"color: red;\"></i></a>";
+          var inputCliente = "<input type='hidden' name='clienteDado["+counter+"].cliente' >";
 
+          var inputs = "<div class=\"form-group\">"+inputDadoTipo+inputValue+inputCliente+"</div>";
           wrapper.append(inputs);
-
           counter++;
        }
 

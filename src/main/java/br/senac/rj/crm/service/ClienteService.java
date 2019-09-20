@@ -26,6 +26,7 @@ public class ClienteService {
     }
 
     public Cliente save(Cliente c){
+        c.cleanClienteDadoList(c.getClienteDado());
         return repository.save(c);
     }
 

@@ -95,7 +95,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 
         DadoTipo dadoTipo = new DadoTipo();
         dadoTipo.setDadoTipoStatus(true);
-        dadoTipo.setDadoTipoPadrao("");
+        dadoTipo.setDadoTipoPadrao("Passaporte");
         dadoTipo.setDadoTipoObrigatorio(true);
         dadoTipo.setDadoTipoDescricao("Passaporte");
         dadoTipo.setCategoria(categoriaDado);
@@ -105,6 +105,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         DadoTipo dadoTipo2 = new DadoTipo();
         dadoTipo2.setDadoTipoStatus(true);
         dadoTipo2.setDadoTipoObrigatorio(true);
+        dadoTipo2.setDadoTipoPadrao("CRM");
         dadoTipo2.setDadoTipoDescricao("CRM");
         dadoTipo2.setCategoria(categoriaDado);
 

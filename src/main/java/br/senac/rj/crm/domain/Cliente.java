@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -78,14 +79,24 @@ public class Cliente implements Serializable {
     }
 
     public void setClienteDado(List<ClienteDado> clienteDados) {
-        for (ClienteDado clienteDado: clienteDados) {
-            clienteDado.setCliente(this);
+        this.clienteDado = clienteDados;
+    }
+
+    public void cleanClienteDadoList(List<ClienteDado> clienteDados){
+        List<ClienteDado> clienteDadoList = new ArrayList<>();
+        for (ClienteDado clienteDadoEach : clienteDados) {
+            if (!(clienteDadoEach.getDadoTipo() == null)){
+                clienteDadoEach.setCliente(this);
+                clienteDadoEach.setClienteDadoStatus(true);
+                clienteDadoList.add(clienteDadoEach);
+            }
         }
-        this.clienteDado = clienteDado;
+        this.clienteDado = clienteDadoList;
     }
 
     public void addClienteDado(ClienteDado clienteDado){
         clienteDado.setCliente(this);
+        clienteDado.setClienteDadoStatus(true);
         this.clienteDado.add(clienteDado);
     }
 
