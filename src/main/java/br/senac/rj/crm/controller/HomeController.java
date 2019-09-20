@@ -22,8 +22,8 @@ public class HomeController {
 
     @RequestMapping("/dashboard")
     public ModelAndView dashboard(Authentication authentication){
-        System.out.println("Username: "+authentication.getName());
-        System.out.println("Authorities: "+authentication.getAuthorities());
+//        System.out.println("Username: "+authentication.getName());
+//        System.out.println("Authorities: "+authentication.getAuthorities());
         return new ModelAndView("/auth/dashboard");
     }
 }

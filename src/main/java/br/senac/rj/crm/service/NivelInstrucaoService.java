@@ -37,22 +37,22 @@ public class NivelInstrucaoService {
         return repository.save(instrucao);
     }
 
-    public NivelInstrucao update(NivelInstrucao instrucao) throws NotFoundException {
-        Optional<NivelInstrucao> instrucaoFromDB = repository.findById(instrucao.getInstrucaoId());
+    public NivelInstrucao update(NivelInstrucao instrucao) throws ObjectNotFoundException {
+        Optional<NivelInstrucao> instrucaoFromDB = repository.findById(instrucao.getNivelInstrucaoId());
 
         if(instrucaoFromDB.isPresent()){
-            instrucaoFromDB.get().setInstrucaoStatus(instrucao.getInstrucaoStatus());
-            instrucaoFromDB.get().setInstrucaoDescricao(instrucao.getInstrucaoDescricao());
+            instrucaoFromDB.get().setNivelInstrucaoStatus(instrucao.getNivelInstrucaoStatus());
+            instrucaoFromDB.get().setNivelInstrucaoDescricao(instrucao.getNivelInstrucaoDescricao());
             return instrucaoFromDB.get();
         }else{
-            throw new NotFoundException("NivelInstrucao Not Found");
+            throw new ObjectNotFoundException("NivelInstrucao Not Found");
         }
     }
 
     public void softDelete(Integer id) {
         Optional<NivelInstrucao> instrucaoFromDB = repository.findById(id);
         if(instrucaoFromDB.isPresent()){
-            instrucaoFromDB.get().setInstrucaoStatus(false);
+            instrucaoFromDB.get().setNivelInstrucaoStatus(false);
         }
     }
 

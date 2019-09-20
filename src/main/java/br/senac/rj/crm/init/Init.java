@@ -46,8 +46,8 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         produto.setProdutoStatus(true);
 
         NivelInstrucao instrucao = new NivelInstrucao();
-        instrucao.setInstrucaoDescricao("Instrução");
-        instrucao.setInstrucaoStatus(true);
+        instrucao.setNivelInstrucaoDescricao("Instrução");
+        instrucao.setNivelInstrucaoStatus(true);
 
         instrucao = instrucaoService.save(instrucao);
 
@@ -62,7 +62,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         }
 
         produtoService.softDelete(produto.getProdutoId());
-        instrucaoService.softDelete(instrucao.getInstrucaoId());
+        instrucaoService.softDelete(instrucao.getNivelInstrucaoId());
 
         Usuario usuario = new Usuario();
 

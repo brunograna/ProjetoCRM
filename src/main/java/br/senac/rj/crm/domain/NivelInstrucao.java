@@ -12,26 +12,36 @@ public class NivelInstrucao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer instrucaoId;
+    private Integer nivelInstrucaoId;
 
     @NotBlank
-    private String instrucaoDescricao;
+    private String nivelInstrucaoDescricao;
 
     @NotNull
     @Column(name="instrucao_status")
-    private boolean instrucaoStatus;
+    private boolean nivelInstrucaoStatus;
 
-    public Integer getInstrucaoId() { return instrucaoId; }
-
-    public void setInstrucaoId(Integer instrucaoId) { this.instrucaoId = instrucaoId; }
-
-    public String getInstrucaoDescricao() { return instrucaoDescricao; }
-
-    public void setInstrucaoDescricao(String instrucaoDescricao) {
-        this.instrucaoDescricao = instrucaoDescricao;
+    public Integer getNivelInstrucaoId() {
+        return nivelInstrucaoId;
     }
 
-    public boolean getInstrucaoStatus() { return instrucaoStatus; }
+    public void setNivelInstrucaoId(Integer nivelInstrucaoId) {
+        this.nivelInstrucaoId = nivelInstrucaoId;
+    }
 
-    public void setInstrucaoStatus(boolean instrucaoStatus) { this.instrucaoStatus = instrucaoStatus; }
+    public String getNivelInstrucaoDescricao() {
+        return nivelInstrucaoDescricao;
+    }
+
+    public void setNivelInstrucaoDescricao(String nivelInstrucaoDescricao) {
+        this.nivelInstrucaoDescricao = nivelInstrucaoDescricao;
+    }
+
+    public boolean getNivelInstrucaoStatus() {
+        return nivelInstrucaoStatus;
+    }
+
+    public void setNivelInstrucaoStatus(boolean nivelInstrucaoStatus) {
+        this.nivelInstrucaoStatus = nivelInstrucaoStatus;
+    }
 }

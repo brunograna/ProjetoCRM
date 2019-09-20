@@ -10,12 +10,12 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Perfil de Usuário
-                <small>Edição do perfil de usuário</small>
+                Nível de Instrução
+                <small>Edição do nível de instrução</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a th:href="@{/perfis-usuarios}"><i class="fa fa-tags"></i> Perfil de Usuário</a></li>
+                <li><a th:href="@{/niveis-instrucao}"><i class="fa fa-tags"></i> Nível de Instrução</a></li>
                 <li class="active">Edição</li>
             </ol>
         </section>
@@ -28,28 +28,28 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form th:action="@{/perfis-usuarios/edit}" th:object="${perfilUsuario}" method="post" role="form">
-                        <input type="hidden" th:field="*{perfilUsuarioId}">
+                    <form th:action="@{/niveis-instrucao/edit}" th:object="${nivelInstrucao}" method="post" role="form">
+                        <input type="hidden" th:field="*{nivelInstrucaoId}">
                         <!-- text input -->
-                        <div class="form-group" th:classappend="${#fields.hasErrors('perfilUsuarioDescricao')} ? has-error : noerror">
-                            <label class="control-label" th:if="${#fields.hasErrors('perfilUsuarioDescricao')}"><i class="fa fa-times-circle-o"></i></label>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('nivelInstrucaoDescricao')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('nivelInstrucaoDescricao')}"><i class="fa fa-times-circle-o"></i></label>
                             <label>Descrição:</label>
-                            <input type="text" class="form-control" th:field="*{perfilUsuarioDescricao}" placeholder="Descrição do perfil">
-                            <span class="help-block" th:if="${#fields.hasErrors('perfilUsuarioDescricao')}" th:errors="*{perfilUsuarioDescricao}"></span>
+                            <input type="text" class="form-control" th:field="*{nivelInstrucaoDescricao}" placeholder="Descrição do perfil">
+                            <span class="help-block" th:if="${#fields.hasErrors('nivelInstrucaoDescricao')}" th:errors="*{nivelInstrucaoDescricao}"></span>
                         </div>
                         <!-- select -->
-                        <div class="form-group" th:classappend="${#fields.hasErrors('perfilUsuarioStatus')} ? has-error : noerror">
-                            <label class="control-label" th:if="${#fields.hasErrors('perfilUsuarioStatus')}"><i class="fa fa-times-circle-o"></i></label>
+                        <div class="form-group" th:classappend="${#fields.hasErrors('nivelInstrucaoStatus')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('nivelInstrucaoStatus')}"><i class="fa fa-times-circle-o"></i></label>
                             <label>Status:</label>
-                            <select class="form-control" th:field="*{perfilUsuarioStatus}">
+                            <select class="form-control" th:field="*{nivelInstrucaoStatus}">
                                 <option value="1">Ativo</option>
                                 <option value="0">Não Ativo</option>
                             </select>
-                            <span class="help-block" th:if="${#fields.hasErrors('perfilUsuarioStatus')}" th:errors="*{perfilUsuarioStatus}"></span>
+                            <span class="help-block" th:if="${#fields.hasErrors('nivelInstrucaoStatus')}" th:errors="*{nivelInstrucaoStatus}"></span>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-warning">Salvar Alteração</button>
-                            <a th:href="@{/perfis-usuarios}" class="btn btn-default">Cancelar</a>
+                            <a th:href="@{/niveis-instrucao}" class="btn btn-default">Cancelar</a>
                         </div>
                     </form>
                 </div>
