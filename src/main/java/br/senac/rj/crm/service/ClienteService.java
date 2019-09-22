@@ -1,10 +1,8 @@
 package br.senac.rj.crm.service;
 
 import br.senac.rj.crm.domain.Cliente;
-import br.senac.rj.crm.domain.NivelInstrucao;
 import br.senac.rj.crm.repository.ClienteDadoRepository;
 import br.senac.rj.crm.repository.ClienteRepository;
-import javassist.NotFoundException;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +60,10 @@ public class ClienteService {
         if(clienteFromDB.isPresent()){
             clienteFromDB.get().setClienteStatus(false);
         }
+    }
+
+    public long getTotalInNumber(){
+        return repository.count();
     }
 
 }

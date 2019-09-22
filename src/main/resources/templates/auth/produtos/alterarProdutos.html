@@ -37,6 +37,13 @@
                             <div class="box-body">
                                 <div class="row">
 
+                                    <div class="col-xs-12 form-group" th:classappend="${#fields.hasErrors('produtoNome')} ? has-error : noerror">
+                                        <label class="control-label" th:if="${#fields.hasErrors('produtoNome')}"><i class="fa fa-times-circle-o"></i></label>
+                                        <label for="produtoNome">Nome</label>
+                                        <textarea type="text" class="form-control" placeholder="Nome do produto" th:field="*{produtoNome}"></textarea>
+                                        <span class="help-block" th:if="${#fields.hasErrors('produtoNome')}" th:errors="*{produtoNome}"></span>
+                                    </div>
+
                                     <div class="col-xs-12 form-group" th:classappend="${#fields.hasErrors('produtoDescricao')} ? has-error : noerror">
                                         <label class="control-label" th:if="${#fields.hasErrors('produtoDescricao')}"><i class="fa fa-times-circle-o"></i></label>
                                         <label for="produtoDescricao">Descrição</label>

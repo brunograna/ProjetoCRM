@@ -43,7 +43,7 @@
                                 </tr>
                                 <tr th:each="produto: ${produtos}">
                                     <td th:text="${produto.produtoId}"></td>
-                                    <td th:text="${produto.produtoDescricao}"></td>
+                                    <td th:text="${produto.produtoNome}"></td>
                                     <td>
                                         <span class="label" th:classappend="${produto.produtoStatus} ? label-success : label-danger" th:text="${produto.produtoStatus} ? 'Ativo' : 'Desativado'"></span>
                                     </td>

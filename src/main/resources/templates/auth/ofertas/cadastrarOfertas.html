@@ -50,7 +50,7 @@
                                         <label for="ofertaProduto">Produto*</label>
                                         <select class="form-control" th:field="*{ofertaProduto}">
                                             <option value="">Selecione o produto</option>
-                                            <option th:each="produtoOption : ${produtos}" th:value="${produtoOption.produtoId}" th:text="${produtoOption.produtoDescricao}"></option>
+                                            <option th:each="produtoOption : ${produtos}" th:value="${produtoOption.produtoId}" th:text="${produtoOption.produtoNome}"></option>
                                         </select>
                                         <span class="help-block" th:if="${#fields.hasErrors('ofertaProduto')}" th:errors="*{ofertaProduto}"></span>
                                     </div>

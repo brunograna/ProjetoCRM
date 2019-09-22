@@ -5,6 +5,7 @@ import br.senac.rj.crm.repository.UsuarioRepository;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,5 +57,9 @@ public class UsuarioService {
         if(usuarioFromDB.isPresent()){
             usuarioFromDB.get().setUsuarioStatus(false);
         }
+    }
+
+    public long getTotalInNumber() {
+        return repository.count();
     }
 }

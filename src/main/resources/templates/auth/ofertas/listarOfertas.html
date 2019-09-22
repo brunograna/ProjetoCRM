@@ -46,7 +46,7 @@
                                 <tr th:each="oferta: ${ofertas}">
                                     <td th:text="${oferta.ofertaId}"></td>
                                     <td th:text="${oferta.ofertaDescricao}"></td>
-                                    <td th:text="${oferta.ofertaProduto.produtoDescricao}"></td>
+                                    <td th:text="${oferta.ofertaProduto.produtoNome}"></td>
                                     <td th:text="${oferta.ofertaPreco}"></td>
                                     <td>
                                         <span class="label" th:classappend="${oferta.ofertaStatus} ? label-success : label-danger" th:text="${oferta.ofertaStatus} ? 'Ativo' : 'Desativado'"></span>

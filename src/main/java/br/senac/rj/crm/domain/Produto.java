@@ -15,6 +15,8 @@ public class Produto {
     private Integer produtoId;
 
     @NotBlank
+    private String produtoNome;
+
     private String produtoDescricao;
 
     @NotNull
@@ -41,6 +43,14 @@ public class Produto {
 
     public void setProdutoDescricao(String produtoDescricao) {
         this.produtoDescricao = produtoDescricao;
+    }
+
+    public String getProdutoNome() {
+        return produtoNome;
+    }
+
+    public void setProdutoNome(String produtoNome) {
+        this.produtoNome = produtoNome;
     }
 
     public boolean getProdutoStatus() {

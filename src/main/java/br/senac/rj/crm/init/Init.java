@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Component
 public class Init implements ApplicationListener<ContextRefreshedEvent> {
@@ -40,14 +41,17 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        Locale.setDefault(new Locale("pt", "BR"));
+
         initDadoTipo();
         Produto produto = new Produto();
-        produto.setProdutoDescricao("Análise e Desenvolvimento de Sistemas");
         produto.setProdutoStatus(true);
+        produto.setProdutoNome("Análise e Desenvolvimento de Sistemas");
+        produto.setProdutoDescricao("Curso da Faculdade Senac Rio");
 
         NivelInstrucao instrucao = new NivelInstrucao();
-        instrucao.setNivelInstrucaoDescricao("Instrução");
         instrucao.setNivelInstrucaoStatus(true);
+        instrucao.setNivelInstrucaoDescricao("Ensino Médio");
 
         instrucao = instrucaoService.save(instrucao);
 
@@ -55,14 +59,6 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 
         produto = produtoService.save(produto);
 
-        List<Produto> produtos = produtoService.findAll();
-
-        for (Produto produtoIndv : produtos) {
-            System.out.println(produtoIndv.toString());
-        }
-
-        produtoService.softDelete(produto.getProdutoId());
-        instrucaoService.softDelete(instrucao.getNivelInstrucaoId());
 
         Usuario usuario = new Usuario();
 
@@ -95,7 +91,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 
         DadoTipo dadoTipo = new DadoTipo();
         dadoTipo.setDadoTipoStatus(true);
-        dadoTipo.setDadoTipoPadrao("Passaporte");
+        dadoTipo.setDadoTipoPadrao("");
         dadoTipo.setDadoTipoObrigatorio(true);
         dadoTipo.setDadoTipoDescricao("Passaporte");
         dadoTipo.setCategoria(categoriaDado);
@@ -105,7 +101,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         DadoTipo dadoTipo2 = new DadoTipo();
         dadoTipo2.setDadoTipoStatus(true);
         dadoTipo2.setDadoTipoObrigatorio(true);
-        dadoTipo2.setDadoTipoPadrao("CRM");
+        dadoTipo2.setDadoTipoPadrao("");
         dadoTipo2.setDadoTipoDescricao("CRM");
         dadoTipo2.setCategoria(categoriaDado);
 

@@ -56,4 +56,7 @@ public class OfertaService {
         }
     }
 
+    public long getTotalInNumber() {
+        return repository.count();
+    }
 }

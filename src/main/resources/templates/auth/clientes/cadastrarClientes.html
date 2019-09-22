@@ -155,14 +155,22 @@
             var isObrigatorio = $('#campos_adicionais').children("option:selected").attr("data-obrigatorio");
             var valorPadrao = $('#campos_adicionais').children("option:selected").attr("data-padrao");
 
+            dadoTipoText = (dadoTipoText == undefined) ? "" : dadoTipoText;
+            valorPadrao = (valorPadrao == undefined) ? "" : valorPadrao;
+
             apppendOption(dadoTipoId, dadoTipoText, isObrigatorio, valorPadrao);
         }
       });
 
        function apppendOption(dadoTipoId, dadoTipoText, isObrigatorio, valorPadrao){
+          var isTrueSet = (isObrigatorio === 'true');
+          var requiredText = "";
+           if(isTrueSet){
+                requiredText = "required";
+          }
 
           var inputDadoTipo = "<input type='hidden' name='clienteDado["+counter+"].dadoTipo' value='"+dadoTipoId+"'>";
-          var inputValue = "<label style=\"display:block;\">"+dadoTipoText+":</label><input style=\"max-width:335px; display: inline-block;\" type='text' placeholder='"+dadoTipoText+"' name='clienteDado["+counter+"].clienteDadoValor' required='"+isObrigatorio+"' value='"+valorPadrao+"' class=\"form-control extra_input\"><a href=\"#\" class=\"remove_field\"> <i class=\"fa fa-minus\" style=\"color: red;\"></i></a>";
+          var inputValue = "<label style=\"display:block;\">"+dadoTipoText+":</label><input style=\"max-width:335px; display: inline-block;\" type='text' placeholder='"+dadoTipoText+"' name='clienteDado["+counter+"].clienteDadoValor' "+requiredText+" value='"+valorPadrao+"' class=\"form-control extra_input\"><a href=\"#\" class=\"remove_field\"> <i class=\"fa fa-minus\" style=\"color: red;\"></i></a>";
           var inputCliente = "<input type='hidden' name='clienteDado["+counter+"].cliente' >";
 
           var inputs = "<div class=\"form-group\">"+inputDadoTipo+inputValue+inputCliente+"</div>";
@@ -173,7 +181,6 @@
 	  $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
 	    e.preventDefault();
 	    $(this).parent('div').remove();
-	    x--;
 	  })
 
 	}

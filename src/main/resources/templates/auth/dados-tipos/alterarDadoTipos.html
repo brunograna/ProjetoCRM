@@ -16,7 +16,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a th:href="@{/dados-tipos}"><i class="fa fa-th"></i> Dados</a></li>
+                <li><a th:href="@{/dados-tipos}"><i class="fa fa-database"></i> Dados</a></li>
                 <li class="active">Edição</li>
             </ol>
         </section>
@@ -75,8 +75,8 @@
                                         <label class="control-label" th:if="${#fields.hasErrors('dadoTipoObrigatorio')}"><i class="fa fa-times-circle-o"></i></label>
                                         <label>Obrigatório:</label>
                                         <select class="form-control" th:field="*{dadoTipoObrigatorio}">
-                                            <option value="1">Ativo</option>
-                                            <option value="0">Não Ativo</option>
+                                            <option value="1">É Obrigatório</option>
+                                            <option value="0">Não é obrigatório</option>
                                         </select>
                                         <span class="help-block" th:if="${#fields.hasErrors('dadoTipoObrigatorio')}" th:errors="*{dadoTipoObrigatorio}"></span>
                                     </div>

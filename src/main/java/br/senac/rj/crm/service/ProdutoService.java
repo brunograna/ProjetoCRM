@@ -38,6 +38,7 @@ public class ProdutoService {
 
         if(produtoFromDB.isPresent()){
             produtoFromDB.get().setProdutoStatus(p.getProdutoStatus());
+            produtoFromDB.get().setProdutoNome(p.getProdutoNome());
             produtoFromDB.get().setProdutoDescricao(p.getProdutoDescricao());
             produtoFromDB.get().setNivelInstrucao(p.getNivelInstrucao());
             return produtoFromDB.get();
@@ -55,5 +56,9 @@ public class ProdutoService {
 
     public List<Produto> findAllActive() {
         return repository.findByProdutoStatus(true);
+    }
+
+    public long getTotalInNumber() {
+        return repository.count();
     }
 }
