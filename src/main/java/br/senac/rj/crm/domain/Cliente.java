@@ -84,15 +84,17 @@ public class Cliente implements Serializable {
     }
 
     public void cleanClienteDadoList(List<ClienteDado> clienteDados){
-        List<ClienteDado> clienteDadoList = new ArrayList<>();
-        for (ClienteDado clienteDadoEach : clienteDados) {
-            if (!(clienteDadoEach.getDadoTipo() == null)){
-                clienteDadoEach.setCliente(this);
-                clienteDadoEach.setClienteDadoStatus(true);
-                clienteDadoList.add(clienteDadoEach);
+        if(clienteDados != null){
+            List<ClienteDado> clienteDadoList = new ArrayList<>();
+            for (ClienteDado clienteDadoEach : clienteDados) {
+                if (!(clienteDadoEach.getDadoTipo() == null)){
+                    clienteDadoEach.setCliente(this);
+                    clienteDadoEach.setClienteDadoStatus(true);
+                    clienteDadoList.add(clienteDadoEach);
+                }
             }
+            this.clienteDado = clienteDadoList;
         }
-        this.clienteDado = clienteDadoList;
     }
 
     public void addClienteDado(ClienteDado clienteDado){
