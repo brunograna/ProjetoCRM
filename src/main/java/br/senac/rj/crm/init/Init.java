@@ -85,9 +85,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         CategoriaDado categoriaDado = new CategoriaDado();
         categoriaDado.setCategoriaDadoStatus(true);
         categoriaDado.setCategoriaDadoDescricao("Dados Pessoais");
-
         categoriaDadoRepository.save(categoriaDado);
-
 
         DadoTipo dadoTipo = new DadoTipo();
         dadoTipo.setDadoTipoStatus(true);
@@ -95,7 +93,6 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         dadoTipo.setDadoTipoObrigatorio(true);
         dadoTipo.setDadoTipoDescricao("Passaporte");
         dadoTipo.setCategoria(categoriaDado);
-
         dadoTipoRepository.save(dadoTipo);
 
         DadoTipo dadoTipo2 = new DadoTipo();
@@ -104,7 +101,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         dadoTipo2.setDadoTipoPadrao("");
         dadoTipo2.setDadoTipoDescricao("CRM");
         dadoTipo2.setCategoria(categoriaDado);
-
         dadoTipoRepository.save(dadoTipo2);
+
     }
 }
