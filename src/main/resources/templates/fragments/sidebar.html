@@ -102,6 +102,19 @@
             </li>
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-comment"></i> <span>Ações</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+                        <!--<span class="label label-primary pull-right">4</span>-->
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a th:href="@{/acoes/adicionar}"><i class="fa fa-circle-o"></i> Adicionar Ação</a></li>
+                    <li><a th:href="@{/acoes}"><i class="fa fa-circle-o"></i> Listar Ações</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-users"></i> <span>Usuários</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

@@ -53,14 +53,14 @@
                                 </div>
                                 <div class="row">
 
-                                    <div class="col-xs-4 form-group" th:classappend="${#fields.hasErrors('dadoTipoMascara')} ? has-error : noerror">
+                                    <div class="col-xs-3 form-group" th:classappend="${#fields.hasErrors('dadoTipoMascara')} ? has-error : noerror">
                                         <label class="control-label" th:if="${#fields.hasErrors('dadoTipoMascara')}"><i class="fa fa-times-circle-o"></i></label>
                                         <label for="dadoTipoMascara">Mascara</label>
                                         <input type="text" class="form-control" placeholder="#######" th:field="*{dadoTipoMascara}">
                                         <span class="help-block" th:if="${#fields.hasErrors('dadoTipoMascara')}" th:errors="*{dadoTipoMascara}"></span>
                                     </div>
 
-                                    <div class="col-xs-4 form-group" th:classappend="${#fields.hasErrors('dadoTipoStatus')} ? has-error : noerror">
+                                    <div class="col-xs-3 form-group" th:classappend="${#fields.hasErrors('dadoTipoStatus')} ? has-error : noerror">
                                         <label class="control-label" th:if="${#fields.hasErrors('dadoTipoStatus')}"><i class="fa fa-times-circle-o"></i></label>
                                         <label>Status:</label>
                                         <select class="form-control" th:field="*{dadoTipoStatus}">
@@ -70,7 +70,7 @@
                                         <span class="help-block" th:if="${#fields.hasErrors('dadoTipoStatus')}" th:errors="*{dadoTipoStatus}"></span>
                                     </div>
 
-                                    <div class="col-xs-4 form-group" th:classappend="${#fields.hasErrors('dadoTipoObrigatorio')} ? has-error : noerror">
+                                    <div class="col-xs-3 form-group" th:classappend="${#fields.hasErrors('dadoTipoObrigatorio')} ? has-error : noerror">
                                         <label class="control-label" th:if="${#fields.hasErrors('dadoTipoObrigatorio')}"><i class="fa fa-times-circle-o"></i></label>
                                         <label>Obrigatório:</label>
                                         <select class="form-control" th:field="*{dadoTipoObrigatorio}">
@@ -78,6 +78,16 @@
                                             <option value="0">Não é obrigatório</option>
                                         </select>
                                         <span class="help-block" th:if="${#fields.hasErrors('dadoTipoObrigatorio')}" th:errors="*{dadoTipoObrigatorio}"></span>
+                                    </div>
+
+                                    <div class="col-xs-3 form-group" th:classappend="${#fields.hasErrors('categoria')} ? has-error : noerror">
+                                        <label class="control-label" th:if="${#fields.hasErrors('categoria')}"><i class="fa fa-times-circle-o"></i></label>
+                                        <label>Categoria:</label>
+                                        <select class="form-control" th:field="*{categoria}">
+                                            <option value="">Selecione a categoria</option>
+                                            <option th:each="categoriaOption : ${categorias}" th:value="${categoriaOption.categoriaDadoId}" th:text="${categoriaOption.categoriaDadoDescricao}"></option>
+                                        </select>
+                                        <span class="help-block" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></span>
                                     </div>
 
                                 </div>

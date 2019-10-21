@@ -1,6 +1,7 @@
 package br.senac.rj.crm.controller;
 
 import br.senac.rj.crm.domain.DadoTipo;
+import br.senac.rj.crm.service.CategoriaDadoService;
 import br.senac.rj.crm.service.DadoTipoService;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.slf4j.Logger;
@@ -24,6 +25,9 @@ public class DadoTipoController {
 
     @Autowired
     private DadoTipoService dadoTipoService;
+
+    @Autowired
+    private CategoriaDadoService categoriaDadoService;
 
     @GetMapping
     public ModelAndView listAll(){
@@ -54,6 +58,7 @@ public class DadoTipoController {
     public ModelAndView add(){
         ModelAndView mv = new ModelAndView("/auth/dados-tipos/cadastrarDadoTipos");
         mv.addObject("dadoTipo", new DadoTipo());
+        mv.addObject("categorias", categoriaDadoService.findAll());
         return mv;
     }
 
@@ -63,6 +68,7 @@ public class DadoTipoController {
         try {
             DadoTipo dadoRetrieved = dadoTipoService.findById(id);
             mv.addObject("dadoTipo", dadoRetrieved);
+            mv.addObject("categorias", categoriaDadoService.findAll());
         } catch (ObjectNotFoundException e) {
             mv = new ModelAndView("redirect:/dados-tipos?error");
         }

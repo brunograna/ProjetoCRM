@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<th:block th:insert="fragments/head.html :: head"></th:block>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:insert="fragments/navbar.html :: header"></th:block>
+
+    <th:block th:insert="fragments/sidebar.html :: aside"></th:block>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Ação
+                <small>Cadastro de Ação</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a th:href="@{/acoes}"><i class="fa fa-comment"></i> Ação</a></li>
+                <li class="active">Cadastro</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Adicionar</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form th:action="@{/acoes}" th:object="${acao}" method="post" role="form">
+                        <!-- text input -->
+                        <div class="form-group" th:classappend="${#fields.hasErrors('acaoDescricao')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('acaoDescricao')}"><i class="fa fa-times-circle-o"></i></label>
+                            <label>Descrição:</label>
+                            <input type="text" class="form-control" th:field="*{acaoDescricao}" placeholder="Descrição da ação">
+                            <span class="help-block" th:if="${#fields.hasErrors('acaoDescricao')}" th:errors="*{acaoDescricao}"></span>
+                        </div>
+                        <!-- select -->
+                        <div class="form-group" th:classappend="${#fields.hasErrors('acaoStatus')} ? has-error : noerror">
+                            <label class="control-label" th:if="${#fields.hasErrors('acaoStatus')}"><i class="fa fa-times-circle-o"></i></label>
+                            <label>Status:</label>
+                            <select class="form-control" th:field="*{acaoStatus}">
+                                <option value="1">Ativo</option>
+                                <option value="0">Não Ativo</option>
+                            </select>
+                            <span class="help-block" th:if="${#fields.hasErrors('acaoStatus')}" th:errors="*{acaoStatus}"></span>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-warning">Salvar Alteração</button>
+                            <a th:href="@{/niveis-instrucao}" class="btn btn-default">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </section>
+    </div>
+
+    <footer th:insert="fragments/footer.html :: footer"></footer>
+</div>
+<th:block th:insert="fragments/footer-scripts.html :: scripts">
+</th:block>
+</body>
+</html>

@@ -10,12 +10,12 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Produto
-                <small>Listagem dos produtos</small>
+                Ação
+                <small>Listagem das ações</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active"><i class="fa fa-users"></i> Produtos</li>
+                <li class="active"><i class="fa fa-comment"></i> Ações</li>
             </ol>
         </section>
 
@@ -23,7 +23,7 @@
         <section class="content">
             <div class="box-tools">
                 <br/>
-                <a th:href="@{/produtos/adicionar}" class="btn btn-warning" style="display:table;margin-left:auto;">Adicionar Produto</a>
+                <a th:href="@{/acoes/adicionar}" class="btn btn-warning" style="display:table;margin-left:auto;">Adicionar Ação</a>
                 <br/>
             </div>
             <div class="row">
@@ -37,21 +37,21 @@
                             <table class="table table-hover">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nome</th>
+                                    <th>Descrição</th>
                                     <th>Status</th>
                                     <th>Ações</th>
                                 </tr>
-                                <tr th:each="produto: ${produtos}">
-                                    <td th:text="${produto.produtoId}"></td>
-                                    <td th:text="${produto.produtoNome}"></td>
+                                <tr th:each="acao: ${acoes}">
+                                    <td th:text="${acao.acaoId}"></td>
+                                    <td th:text="${acao.acaoDescricao}"></td>
                                     <td>
-                                        <span class="label" th:classappend="${produto.produtoStatus} ? label-success : label-danger" th:text="${produto.produtoStatus} ? 'Ativo' : 'Desativado'"></span>
+                                        <span class="label" th:classappend="${acao.acaoStatus} ? label-success : label-danger" th:text="${acao.acaoStatus} ? 'Ativo' : 'Desativado'"></span>
                                     </td>
                                     <td>
                                         <div>
-                                            <a th:href="@{/produtos/{id}(id=${produto.produtoId})}"><i class="fa fa-2x fa-edit"></i></a>
+                                            <a th:href="@{/acoes/{id}(id=${acao.acaoId})}"><i class="fa fa-2x fa-edit"></i></a>
                                             &nbsp;
-                                            <a th:href="@{/produtos/excluir/{id}(id=${produto.produtoId})}"><i class="fa fa-2x fa-trash"></i></a>
+                                            <a th:href="@{/acoes/excluir/{id}(id=${acao.acaoId})}"><i class="fa fa-2x fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
