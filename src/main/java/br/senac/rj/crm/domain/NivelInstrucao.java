@@ -18,7 +18,7 @@ public class NivelInstrucao {
     private String nivelInstrucaoDescricao;
 
     @NotNull
-    @Column(name="instrucao_status")
+    @Column(name="nivel_instrucao_status")
     private boolean nivelInstrucaoStatus;
 
     public Integer getNivelInstrucaoId() {

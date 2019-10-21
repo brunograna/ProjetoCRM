@@ -2,10 +2,7 @@ package br.senac.rj.crm.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -16,13 +13,16 @@ public class PerfilUsuario implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "permissao_id")
     private Integer perfilUsuarioId;
 
     @NotBlank
     @Size(min = 1, max = 20)
+    @Column(name = "permissao_descricao")
     private String perfilUsuarioDescricao;
 
     @NotNull
+    @Column(name = "permissao_status")
     private boolean perfilUsuarioStatus;
 
     public Integer getPerfilUsuarioId() {

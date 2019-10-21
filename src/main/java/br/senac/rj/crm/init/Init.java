@@ -41,44 +41,44 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        Locale.setDefault(new Locale("pt", "BR"));
-
-        initDadoTipo();
-        Produto produto = new Produto();
-        produto.setProdutoStatus(true);
-        produto.setProdutoNome("Análise e Desenvolvimento de Sistemas");
-        produto.setProdutoDescricao("Curso da Faculdade Senac Rio");
-
-        NivelInstrucao instrucao = new NivelInstrucao();
-        instrucao.setNivelInstrucaoStatus(true);
-        instrucao.setNivelInstrucaoDescricao("Ensino Médio");
-
-        instrucao = instrucaoService.save(instrucao);
-
-        produto.setNivelInstrucao(instrucao);
-
-        produto = produtoService.save(produto);
-
-
-        Usuario usuario = new Usuario();
-
-        usuario.setUsuarioCargo("Cargo");
-        usuario.setUsuarioLogin("admin");
-        usuario.setUsuarioSenha(new BCryptPasswordEncoder().encode("123456"));
-        usuario.setUsuarioNome("admin");
-        usuario.setUsuarioStatus(true);
-
-        PerfilUsuario perfil = new PerfilUsuario();
-        perfil.setPerfilUsuarioStatus(true);
-        perfil.setPerfilUsuarioDescricao("Atendente");
-
-        perfilUsuarioRepository.save(perfil);
-
-//        List<PerfilUsuario> perfis = new ArrayList<>();
-//        perfis.add(perfil);
-        usuario.setPerfilUsuario(perfil);
-
-        usuarioRepository.save(usuario);
+//        Locale.setDefault(new Locale("pt", "BR"));
+//
+//        initDadoTipo();
+//        Produto produto = new Produto();
+//        produto.setProdutoStatus(true);
+//        produto.setProdutoNome("Análise e Desenvolvimento de Sistemas");
+//        produto.setProdutoDescricao("Curso da Faculdade Senac Rio");
+//
+//        NivelInstrucao instrucao = new NivelInstrucao();
+//        instrucao.setNivelInstrucaoStatus(true);
+//        instrucao.setNivelInstrucaoDescricao("Ensino Médio");
+//
+//        instrucao = instrucaoService.save(instrucao);
+//
+//        produto.setNivelInstrucao(instrucao);
+//
+//        produto = produtoService.save(produto);
+//
+//
+//        Usuario usuario = new Usuario();
+//
+//        usuario.setUsuarioCargo("Cargo");
+//        usuario.setUsuarioLogin("admin");
+//        usuario.setUsuarioSenha(new BCryptPasswordEncoder().encode("123456"));
+//        usuario.setUsuarioNome("admin");
+//        usuario.setUsuarioStatus(true);
+//
+//        PerfilUsuario perfil = new PerfilUsuario();
+//        perfil.setPerfilUsuarioStatus(true);
+//        perfil.setPerfilUsuarioDescricao("Atendente");
+//
+//        perfilUsuarioRepository.save(perfil);
+//
+////        List<PerfilUsuario> perfis = new ArrayList<>();
+////        perfis.add(perfil);
+//        usuario.setPerfilUsuario(perfil);
+//
+//        usuarioRepository.save(usuario);
     }
 
     private void initDadoTipo() {
