@@ -60,25 +60,25 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 //        produto = produtoService.save(produto);
 //
 //
-//        Usuario usuario = new Usuario();
-//
-//        usuario.setUsuarioCargo("Cargo");
-//        usuario.setUsuarioLogin("admin");
-//        usuario.setUsuarioSenha(new BCryptPasswordEncoder().encode("123456"));
-//        usuario.setUsuarioNome("admin");
-//        usuario.setUsuarioStatus(true);
-//
-//        PerfilUsuario perfil = new PerfilUsuario();
-//        perfil.setPerfilUsuarioStatus(true);
-//        perfil.setPerfilUsuarioDescricao("Atendente");
-//
-//        perfilUsuarioRepository.save(perfil);
-//
-////        List<PerfilUsuario> perfis = new ArrayList<>();
-////        perfis.add(perfil);
-//        usuario.setPerfilUsuario(perfil);
-//
-//        usuarioRepository.save(usuario);
+        Usuario usuario = new Usuario();
+
+        usuario.setUsuarioCargo("Cargo");
+        usuario.setUsuarioLogin("admin");
+        usuario.setUsuarioSenha(new BCryptPasswordEncoder().encode("123456"));
+        usuario.setUsuarioNome("admin");
+        usuario.setUsuarioStatus(true);
+
+        PerfilUsuario perfil = new PerfilUsuario();
+        perfil.setPerfilUsuarioStatus(true);
+        perfil.setPerfilUsuarioDescricao("Atendente");
+
+        perfilUsuarioRepository.save(perfil);
+
+//        List<PerfilUsuario> perfis = new ArrayList<>();
+//        perfis.add(perfil);
+        usuario.setPerfilUsuario(perfil);
+
+        usuarioRepository.save(usuario);
     }
 
     private void initDadoTipo() {
