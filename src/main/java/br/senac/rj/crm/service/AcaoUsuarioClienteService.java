@@ -38,7 +38,6 @@ public class AcaoUsuarioClienteService {
             acaoUsuarioClienteFromDB.get().setAcaoUsuarioClienteDescricao(a.getAcaoUsuarioClienteDescricao());
             acaoUsuarioClienteFromDB.get().setAcao(a.getAcao());
             acaoUsuarioClienteFromDB.get().setAcaoUsuarioClienteData(a.getAcaoUsuarioClienteData());
-            acaoUsuarioClienteFromDB.get().setAcaoUsuarioClienteDescricao(a.getAcaoUsuarioClienteDescricao());
             acaoUsuarioClienteFromDB.get().setCliente(a.getCliente());
             acaoUsuarioClienteFromDB.get().setUsuario(a.getUsuario());
 
