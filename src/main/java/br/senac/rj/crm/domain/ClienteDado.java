@@ -1,5 +1,6 @@
 package br.senac.rj.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -7,8 +8,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
-//@Where(clause="cliente_dado_status=1")
 @Entity
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ClienteDado {
 
     @Id
@@ -27,7 +28,7 @@ public class ClienteDado {
     @JoinColumn(name = "dado_tipo_id")
     private DadoTipo dadoTipo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 

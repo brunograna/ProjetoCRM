@@ -1,5 +1,7 @@
 package br.senac.rj.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -7,6 +9,7 @@ import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Embeddable
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ClienteOfertaId implements Serializable {
 
     @ManyToOne
@@ -16,6 +19,14 @@ public class ClienteOfertaId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "oferta_id")
     private Oferta oferta;
+
+    public ClienteOfertaId() {
+    }
+
+    public ClienteOfertaId(Cliente cliente, Oferta oferta) {
+        this.cliente = cliente;
+        this.oferta = oferta;
+    }
 
     public Cliente getCliente() {
         return cliente;

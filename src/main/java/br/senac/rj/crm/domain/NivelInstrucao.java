@@ -1,13 +1,14 @@
 package br.senac.rj.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-//@Where(clause="instrucao_status=1")
 @Entity
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class NivelInstrucao {
 
     @Id
@@ -20,6 +21,7 @@ public class NivelInstrucao {
     @NotNull
     @Column(name="nivel_instrucao_status")
     private boolean nivelInstrucaoStatus;
+
 
     public Integer getNivelInstrucaoId() {
         return nivelInstrucaoId;

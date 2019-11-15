@@ -1,5 +1,6 @@
 package br.senac.rj.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -11,8 +12,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-//@Where(clause = "cliente_status=1")
 @Entity
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Cliente implements Serializable {
 
     @Id

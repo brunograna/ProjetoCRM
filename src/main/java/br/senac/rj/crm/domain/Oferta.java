@@ -1,5 +1,6 @@
 package br.senac.rj.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -8,8 +9,8 @@ import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.time.LocalDate;
 
-//@Where(clause="oferta_status=1")
 @Entity
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Oferta {
 
     @Id
@@ -33,7 +34,7 @@ public class Oferta {
     private boolean ofertaStatus;
 
     @OneToOne(
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     @JoinColumn( name = "produto_id" )
     @NotNull
@@ -94,4 +95,6 @@ public class Oferta {
     public void setOfertaProduto(Produto ofertaProduto) {
         this.ofertaProduto = ofertaProduto;
     }
+
+
 }

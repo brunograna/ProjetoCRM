@@ -1,13 +1,14 @@
 package br.senac.rj.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-//@Where(clause="produto_status=1")
 @Entity
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Produto {
 
     @Id
@@ -24,7 +25,7 @@ public class Produto {
     private boolean produtoStatus;
 
     @ManyToOne(
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     @JoinColumn(name = "nivel_instrucao_id")
     private NivelInstrucao nivelInstrucao;

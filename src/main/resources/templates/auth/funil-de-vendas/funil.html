@@ -3,22 +3,27 @@
 <th:block th:insert="fragments/head.html :: head"></th:block>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/riktar/jkanban/dist/jkanban.min.css'>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.4.0/css/perfect-scrollbar.min.css'>
+<!--    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/riktar/jkanban/dist/jkanban.min.css'>-->
+<!--    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.4.0/css/perfect-scrollbar.min.css'>-->
     <link rel="stylesheet" th:href="@{/statics/css/style-funil.css}">
+    <link rel="stylesheet" th:href="@{/statics/libs/alert/css/alertify.css}">
+    <link rel="stylesheet" th:href="@{/statics/libs/alert/css/themes/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/statics/css/jkanban.min.css}">
 
     <th:block th:insert="fragments/navbar.html :: header"></th:block>
 
     <th:block th:insert="fragments/sidebar.html :: aside"></th:block>
-
+    <a th:href="@{/cliente-oferta}" id="cliente_oferta_url" style="display: none"></a>
+    <a th:href="@{/cliente-oferta/funil-update}" id="cliente_oferta_funil_etapa_url" style="display: none"></a>
     <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
                 Funil de Vendas
             </h1>
             <ol class="breadcrumb">
                 <li><a th:href="@{/dashboard}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active"><i class="fa fa-table"></i> Funil De Vendas</li>
+                <li class="active">Funil de Vendas</li>
             </ol>
         </section>
 
@@ -31,23 +36,21 @@
                     <div class="page">
                         <div class="main">
 
-                            <!-- meta-tasks component -->
-                            <div class="meta-tasks-wrapper">
-                                <div id="myKanban" class="meta-tasks"></div>
-                            </div>
+<!--                            <button class="btn btn-primary" id="addDefault"><i class="fa fa-plus add_field_button btn_wht"></i> Adicionar nova coluna</button>-->
+<!--                            <button class="btn btn-primary" id="addToDo"><i class="fa fa-plus add_field_button btn_wht"></i> Adicionar oferta na coluna "Visitante"</button>-->
+<!--                            <button class="btn btn-danger" id="removeBoard"><i class="fa fa-close add_field_button btn_wht"></i> Remover coluna "Visitante"</button>-->
+                            <a th:href="@{/dashboard}" class="btn btn-laranja"><i class="fa fa-chevron-left add_field_button btn_wht"></i> Voltar para Painel Inicial</a>
+                            <a th:href="@{/cliente-oferta/adicionar}" class="btn btn-laranja"><i class="fa fa-plus add_field_button btn_wht"></i> Adicionar novo Cliente Oferta</a>
 
-                            <div id="dev-float">
-                                <!-- Button trigger modal -->
-                                <button type="button" data-toggle="modal" data-target="#cardModal">
-                                    Abrir Modal
-                                </button>
-                            </div>
+                            <div id="myKanban"></div>
                         </div>
                     </div>
 
                 </div>
             </div>
+            <!-- /.row -->
         </section>
+        <!-- /.content -->
     </div>
 
     <footer th:insert="fragments/footer.html :: footer"></footer>
@@ -56,14 +59,12 @@
 </th:block>
 
 <!-- partial -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js'></script>
-<script src='https://cdn.jsdelivr.net/gh/riktar/jkanban/dist/jkanban.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
-<script src='https://use.fontawesome.com/releases/v5.5.0/js/all.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.4.0/dist/perfect-scrollbar.min.js'></script>
-<script th:src="@{/statics/js/script_funil.js}"></script>
+<script th:src='@{/statics/libs/jquery/3.1.1/jquery.min.js}'></script>
+<script th:src='@{/statics/libs/bootstrap/4.1.3/bootstrap.min.js}'></script>
+<script th:src="@{/statics/js/prefixfree.min.js}"></script>
+<script th:src="@{/statics/js/alertify.js}"></script>
+<script th:src="@{/statics/js/jkanban.min.js}"></script>
+<script th:src="@{/statics/js/script-funil.js}"></script>
 
 </body>
 </html>

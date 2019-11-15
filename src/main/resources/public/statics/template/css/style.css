@@ -30,7 +30,7 @@
     color: #fff;
     background: #004a8d;
 }
-}
+
 .skin-blue .sidebar-menu>li>.treeview-menu {
     margin: 0 1px;
     background: #002444;
@@ -79,7 +79,7 @@
 }
 
 .btn_wht{
-    color: white; 
+    color: white;
     padding-right: 5px;
 }
 

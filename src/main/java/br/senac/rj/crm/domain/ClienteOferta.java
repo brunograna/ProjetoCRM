@@ -1,10 +1,13 @@
 package br.senac.rj.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ClienteOferta implements Serializable {
 
     @EmbeddedId
@@ -60,4 +63,5 @@ public class ClienteOferta implements Serializable {
     public void setFunilEtapa(FunilEtapa funilEtapa) {
         this.funilEtapa = funilEtapa;
     }
+
 }
