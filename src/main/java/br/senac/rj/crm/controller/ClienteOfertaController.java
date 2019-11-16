@@ -42,6 +42,7 @@ public class ClienteOfertaController {
             clienteOfertaService.updateFunilEtapaByClienteIdAndOfertaId(Integer.parseInt(clienteId), Integer.parseInt(ofertaId), Integer.parseInt(funilEtapaId));
             return "{\"success\": true}";
         }catch (Exception e){
+            e.printStackTrace();
             return "{\"success\": false}";
         }
     }

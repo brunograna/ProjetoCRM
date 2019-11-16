@@ -2,6 +2,30 @@ var KanbanTest;
 $(document).ready(function (){
     var clienteOfertaUrl = $('#cliente_oferta_url').attr('href');
     var updateClienteOfertaFunilEtapaUrl = $('#cliente_oferta_funil_etapa_url').attr('href');
+
+    function recalculateTotalQuantity(){
+        $( ".kanban-board" ).each(function( index ) {
+            var boardQuantity = 0;
+            $(this).find('.kanban-item').each(function (index) {
+                boardQuantity++;
+            });
+            console.log( $( this ).text() );
+            console.log("-----------------")
+            $(this).find('.total-qtd').text(boardQuantity);
+        });
+    }
+    function recalculateTotalValue(){
+        $( ".kanban-board" ).each(function( index ) {
+            var boardPrice = 0.0;
+            $(this).find('.kanban-item').each(function (index) {
+                boardPrice = boardPrice + parseFloat($(this).find('.item-valor').text());
+            });
+            console.log( $( this ).text() );
+            console.log("-----------------")
+            $(this).find('.total-price').text(boardPrice);
+        });
+    }
+
     $.get(clienteOfertaUrl, function (data) {
         KanbanTest = new jKanban({
             element : '#myKanban',
@@ -13,6 +37,8 @@ $(document).ready(function (){
                 //alert(el.dataset.eid)
             },
             dropEl : function(el, target, source, sibling){
+                recalculateTotalQuantity();
+                recalculateTotalValue();
                 console.log("Card Movido: ", el, target, source, sibling);
                 console.log("Card ["+$(el).attr('data-eid')+"]");
                 console.log("Movido para: "+$(target).parent().attr('data-id'));
@@ -32,10 +58,11 @@ $(document).ready(function (){
                         alertify.error('Algo de errado aconteceu.');
                     }
                 });
-                //alert(target);
             },
             boards  : data.funilEtapaDtos
         });
+        recalculateTotalQuantity();
+        recalculateTotalValue();
     });
 
 

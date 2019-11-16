@@ -37,7 +37,7 @@ public class FunilEtapaDto {
     }
 
     public String getTitle() {
-        return "<i class=\"fa fa-table\"></i> "+title+" <br><br>2 Oportunidade(s) <br> Total: R$0.000";
+        return "<i class=\"fa fa-table\"></i> "+title+" <br><br><span class=\"total-qtd\">0</span> Oportunidade(s) <br> Total: R$<span class=\"total-price\">0.000</span>";
     }
 
     public void setTitle(String title) {
