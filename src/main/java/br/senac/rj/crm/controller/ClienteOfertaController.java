@@ -2,6 +2,7 @@ package br.senac.rj.crm.controller;
 
 import br.senac.rj.crm.domain.*;
 import br.senac.rj.crm.domain.dto.ClienteOfertaDto;
+import br.senac.rj.crm.domain.dto.TimelineDto;
 import br.senac.rj.crm.service.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -12,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.util.StringUtils;
 
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -190,6 +194,40 @@ public class ClienteOfertaController {
         } catch (Exception e) {
             e.printStackTrace();
             return "{\"success\": false}";
+        }
+    }
+
+    @GetMapping("/timeline/{clienteId}/{ofertaId}")
+    @ResponseBody
+    public List<TimelineDto> timelineForClienteOferta(@PathVariable("clienteId") String clienteId,
+                                                                   @PathVariable("ofertaId") String ofertaId) {
+
+        try {
+            Cliente cliente = clienteService.findById(Integer.parseInt(clienteId));
+            Oferta oferta = ofertaService.findById(Integer.parseInt(ofertaId));
+            ClienteOfertaId clienteOfertaId = new ClienteOfertaId(cliente, oferta);
+
+            //Format date
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
+            ClienteOferta clienteOfertaRetrieved = clienteOfertaService.findById(clienteOfertaId);
+            List<AcaoUsuarioClienteOferta> timeline = acaoUsuarioClienteOfertaService.getTimelineForClienteOferta(clienteOfertaRetrieved);
+            List<TimelineDto> timelineDto = new ArrayList<>();
+            TimelineDto timelineItem;
+            for (AcaoUsuarioClienteOferta acaoUsuarioClienteOferta: timeline){
+                timelineItem = new TimelineDto();
+                timelineItem.setAcao(acaoUsuarioClienteOferta.getAcao().getAcaoDescricao());
+                timelineItem.setAutor(StringUtils.capitalize(acaoUsuarioClienteOferta.getUsuario().getUsuarioNome()));
+                timelineItem.setData(formatter.format(acaoUsuarioClienteOferta.getAcaoUsuarioClienteOfertaData()));
+                timelineItem.setDescricao(acaoUsuarioClienteOferta.getAcaoUsuarioClienteOfertaDescricao());
+
+                timelineDto.add(timelineItem);
+            }
+
+            return timelineDto;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 

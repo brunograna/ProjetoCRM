@@ -15,6 +15,8 @@
     <a th:href="@{/cliente-oferta/funil-update}" id="cliente_oferta_funil_etapa_url" style="display: none"></a>
     <a th:href="@{/cliente-oferta/json}" id="cliente_oferta_get_url" style="display: none"></a>
     <a th:href="@{/cliente-oferta/json/acao}" id="cliente_oferta_acao_url" style="display: none"></a>
+    <a th:href="@{/cliente-oferta/timeline}" id="cliente_oferta_timeline_url" style="display: none"></a>
+    <img th:src="@{/statics/images/empty.svg}" id="empty-list-image" alt="" style="display: none;">
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -58,6 +60,7 @@
 
 <th:block th:insert="auth/funil-de-vendas/visualizar-clienteoferta.html :: modal-oferta"></th:block>
 <th:block th:insert="auth/funil-de-vendas/acao-clienteoferta.html :: modal-acao"></th:block>
+<th:block th:insert="auth/funil-de-vendas/timeline-clienteoferta.html :: modal-timeline"></th:block>
 
 <th:block th:insert="fragments/footer-scripts.html :: scripts">
 </th:block>

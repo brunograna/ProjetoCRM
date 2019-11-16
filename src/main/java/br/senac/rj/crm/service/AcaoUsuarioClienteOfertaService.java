@@ -1,6 +1,7 @@
 package br.senac.rj.crm.service;
 
 import br.senac.rj.crm.domain.AcaoUsuarioClienteOferta;
+import br.senac.rj.crm.domain.ClienteOferta;
 import br.senac.rj.crm.repository.AcaoUsuarioClienteOfertaRepository;
 import javassist.tools.rmi.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,10 @@ public class AcaoUsuarioClienteOfertaService {
 
     public List<AcaoUsuarioClienteOferta> findAll(){
         return repository.findAll();
+    }
+
+    public List<AcaoUsuarioClienteOferta> getTimelineForClienteOferta(ClienteOferta clienteOferta){
+        return repository.findAllByClienteOfertaOrderByAcaoUsuarioClienteOfertaDataAsc(clienteOferta);
     }
 
     public AcaoUsuarioClienteOferta save(AcaoUsuarioClienteOferta a){

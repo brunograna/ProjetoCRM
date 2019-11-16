@@ -27,7 +27,7 @@ public class FunilItemDto {
                     "<i class=\"fa fa-money\"></i> R$<span class=\"item-valor\">" + preco + "</span>" +
                 "</div>" +
                 "<div class=\"div_item_icons\">" +
-                    "<a href=\"#\" data-toggle=\"modal\" data-target=\"#modal-timeline\">" +
+                    "<a href=\"#\" class=\"timelinemodal-open\" data-toggle=\"modal\" data-target=\"#modal-timeline\">" +
                         "<i class=\"fa fa-map-o icon_item\"></i>" +
                     "</a>" +
                     "<a href=\"#\" class=\"viewmodal-open\" data-toggle=\"modal\" data-target=\"#modal-oferta\">" +

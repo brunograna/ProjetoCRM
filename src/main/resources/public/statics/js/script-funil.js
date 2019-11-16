@@ -1,5 +1,5 @@
 var KanbanTest;
-$(document).ready(function (){
+$(document).ready(function () {
     /**
      * Variables that store the correct URL path
      */
@@ -7,6 +7,50 @@ $(document).ready(function (){
     var updateClienteOfertaFunilEtapaUrl = $('#cliente_oferta_funil_etapa_url').attr('href');
     var getClienteOfertaByClienteOfertaUrl = $('#cliente_oferta_get_url').attr('href');
     var acaoClienteOfertaUrl = $('#cliente_oferta_acao_url').attr('href');
+    var timelineUrl = $('#cliente_oferta_timeline_url').attr('href');
+
+
+    /**
+     * Build timeline item element
+     * @returns {string}
+     */
+    function buildTimeLineItem(autor, acao, descricao, data) {
+        return "<li>" +
+            "                                    <i class=\"fa fa-envelope bg-blue\"></i>\n" +
+            "                                    <div class=\"timeline-item\">\n" +
+            "                                        <span class=\"time\"><i class=\"fa fa-clock-o\"></i> "+data+"</span>\n" +
+            "                                        <h3 class=\"timeline-header\"><a href=\"#\">"+autor+"</a> fez a seguinte ação: "+acao+"</h3>\n" +
+            "                                        <div class=\"timeline-body\">\n"+
+                                                     descricao+
+            "                                        </div>\n" +
+            "                                    </div>\n" +
+            "                                </li>";
+    }
+
+    /**
+     * Fill timeline
+     */
+    $(document).on('click', '.timelinemodal-open', function (e) {
+        e.preventDefault();
+
+        var clienteOfertaId = $(this).closest('.kanban-item').attr('data-eid');
+        var arrayId = clienteOfertaId.split("_");
+        var clienteId = arrayId[0];
+        var ofertaId = arrayId[1];
+        var timelineDataUrl = timelineUrl + '/' + clienteId + '/' + ofertaId;
+        $("#timeline-list li").remove();
+        $("#empty-timeline").remove();
+        $.get(timelineDataUrl, function (timeline) {
+            if(timeline.length > 0){
+                timeline.forEach(function (item) {
+                    $("#timeline-list").append(buildTimeLineItem(item.autor, item.acao, item.descricao, item.data))
+                });
+            }else {
+                var emptyImageSrc = $("#empty-list-image").attr("src");
+                $("#timeline-list").after("<img src=\""+emptyImageSrc+"\" id='empty-timeline' style='width: 30%;display: block;margin: 0 auto;'>");
+            }
+        });
+    })
 
     /**
      * Submit of Acao Modal Form
@@ -18,11 +62,11 @@ $(document).ready(function (){
             type: 'POST',
             url: acaoClienteOfertaUrl,
             data: $(this).serialize(),
-            success: function(result){
+            success: function (result) {
                 var resultObject = JSON.parse(result);
-                if(resultObject.success){
+                if (resultObject.success) {
                     alertify.success('Ação registrada com sucesso.');
-                }else{
+                } else {
                     alertify.error('Não foi possível salvar esta ação.\nPreencha os campos corretamente.');
                 }
             }
@@ -48,7 +92,7 @@ $(document).ready(function (){
             $("#descricao-input").val("");
             $("#acaoSelect").prop('selectedIndex', 0);
         });
-    })
+    });
 
     /**
      * Fill the modal with ClienteOfertas
@@ -86,13 +130,13 @@ $(document).ready(function (){
     /**
      * Calculate the total number of cards on board
      */
-    function recalculateTotalQuantity(){
-        $( ".kanban-board" ).each(function( index ) {
+    function recalculateTotalQuantity() {
+        $(".kanban-board").each(function (index) {
             var boardQuantity = 0;
             $(this).find('.kanban-item').each(function (index) {
                 boardQuantity++;
             });
-            console.log( $( this ).text() );
+            console.log($(this).text());
             console.log("-----------------")
             $(this).find('.total-qtd').text(boardQuantity);
         });
@@ -101,13 +145,13 @@ $(document).ready(function (){
     /**
      * Calculate the total price of cards on board
      */
-    function recalculateTotalValue(){
-        $( ".kanban-board" ).each(function( index ) {
+    function recalculateTotalValue() {
+        $(".kanban-board").each(function (index) {
             var boardPrice = 0.0;
             $(this).find('.kanban-item').each(function (index) {
                 boardPrice = boardPrice + parseFloat($(this).find('.item-valor').text());
             });
-            console.log( $( this ).text() );
+            console.log($(this).text());
             console.log("-----------------")
             $(this).find('.total-price').text(boardPrice.toFixed(2));
         });
@@ -118,20 +162,20 @@ $(document).ready(function (){
      */
     $.get(clienteOfertaUrl, function (data) {
         KanbanTest = new jKanban({
-            element : '#myKanban',
-            gutter  : '10px',
-            dragBoards : false,
+            element: '#myKanban',
+            gutter: '10px',
+            dragBoards: false,
             responsivePercentage: false,
-            click : function(el){
+            click: function (el) {
                 //alert(el.innerHTML);
                 //alert(el.dataset.eid)
             },
-            dropEl : function(el, target, source, sibling){
+            dropEl: function (el, target, source, sibling) {
                 recalculateTotalQuantity();
                 recalculateTotalValue();
                 console.log("Card Movido: ", el, target, source, sibling);
-                console.log("Card ["+$(el).attr('data-eid')+"]");
-                console.log("Movido para: "+$(target).parent().attr('data-id'));
+                console.log("Card [" + $(el).attr('data-eid') + "]");
+                console.log("Movido para: " + $(target).parent().attr('data-id'));
 
                 var clienteOfertaId = $(el).attr('data-eid');
                 var arrayId = clienteOfertaId.split("_");
@@ -139,17 +183,17 @@ $(document).ready(function (){
                 var ofertaId = arrayId[1];
 
                 var novoFunilEtapaId = $(target).parent().attr('data-id');
-                var update_url = updateClienteOfertaFunilEtapaUrl+"/"+clienteId+"/"+ofertaId+"/"+novoFunilEtapaId;
+                var update_url = updateClienteOfertaFunilEtapaUrl + "/" + clienteId + "/" + ofertaId + "/" + novoFunilEtapaId;
                 $.get(update_url, function (data) {
                     var dataObject = JSON.parse(data);
-                    if(dataObject.success){
+                    if (dataObject.success) {
                         alertify.success('Atualizado com sucesso.');
-                    }else{
+                    } else {
                         alertify.error('Algo de errado aconteceu.');
                     }
                 });
             },
-            boards  : data.funilEtapaDtos
+            boards: data.funilEtapaDtos
         });
         recalculateTotalQuantity();
         recalculateTotalValue();
