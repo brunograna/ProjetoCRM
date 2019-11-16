@@ -3,6 +3,8 @@ package br.senac.rj.crm.domain;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -11,6 +13,7 @@ import java.io.Serializable;
 public class ClienteOferta implements Serializable {
 
     @EmbeddedId
+    @Valid
     private ClienteOfertaId clienteOfertaId;
 
     private double clienteOfertaPreco;
@@ -22,6 +25,7 @@ public class ClienteOferta implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "funil_etapa_id")
+    @NotNull
     private FunilEtapa funilEtapa;
 
     public ClienteOfertaId getClienteOfertaId() {

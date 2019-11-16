@@ -43,6 +43,19 @@
                     <i class="fa fa-table"></i> <span>Funil de Vendas</span>
                 </a>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pause"></i> <span>Etapas do Funil de Vendas</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+                        <!--<span class="label label-primary pull-right">4</span>-->
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a th:href="@{/funil-etapa/adicionar}"><i class="fa fa-circle-o"></i> Adicionar Etapa</a></li>
+                    <li><a th:href="@{/funil-etapa}"><i class="fa fa-circle-o"></i> Listar Etapas</a></li>
+                </ul>
+            </li>
             <li class="treeview"> <!--class="active">-->
                 <a href="#">
                     <i class="fa fa-users"></i> <span>Clientes</span>

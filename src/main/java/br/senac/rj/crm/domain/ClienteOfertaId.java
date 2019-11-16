@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Embeddable
@@ -14,10 +15,12 @@ public class ClienteOfertaId implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @NotNull
     private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "oferta_id")
+    @NotNull
     private Oferta oferta;
 
     public ClienteOfertaId() {

@@ -2,10 +2,8 @@ package br.senac.rj.crm.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -18,6 +16,7 @@ public class FunilEtapa implements Serializable {
     private Integer funilEtapaId;
 
     @Size(max = 100)
+    @NotBlank
     private String funilEtapaDescricao;
 
     private boolean funilEtapaStatus;

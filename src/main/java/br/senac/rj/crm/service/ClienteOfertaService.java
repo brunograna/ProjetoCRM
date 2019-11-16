@@ -64,7 +64,7 @@ public class ClienteOfertaService {
 
     public ClienteOferta updateFunilEtapaByClienteIdAndOfertaId(Integer clienteId, Integer ofertaId, Integer funilEtapaId) throws ObjectNotFoundException {
         Optional<Cliente> clienteFromDB = clienteRepository.findById(clienteId);
-        Optional<Oferta> ofertaFromDB = ofertaRepository.findById(clienteId);
+        Optional<Oferta> ofertaFromDB = ofertaRepository.findById(ofertaId);
         Optional<FunilEtapa> funilEtapa = funilEtapaRepository.findById(funilEtapaId);
 
         if(clienteFromDB.isPresent() && ofertaFromDB.isPresent() && funilEtapa.isPresent()){

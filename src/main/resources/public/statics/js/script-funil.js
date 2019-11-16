@@ -22,7 +22,7 @@ $(document).ready(function (){
             });
             console.log( $( this ).text() );
             console.log("-----------------")
-            $(this).find('.total-price').text(boardPrice);
+            $(this).find('.total-price').text(boardPrice.toFixed(2));
         });
     }
 

@@ -124,7 +124,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 
         ClienteOferta clienteOferta = new ClienteOferta();
         clienteOferta.setClienteOfertaPrecoDescricao("Descricao do cliente oferta");
-        clienteOferta.setClienteOfertaPreco(550);
+        clienteOferta.setClienteOfertaPreco(550.59);
         clienteOferta.setClienteOfertaStatus(true);
         clienteOferta.setFunilEtapa(funilEtapaService.findById(1));
 
