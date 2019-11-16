@@ -52,11 +52,16 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private DadoTipoRepository dadoTipoRepository;
 
+    @Autowired
+    private AcaoService acaoService;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         initAdminUser();
 
         initFunilEtapa();
+
+        initAcoes();
 
         try {
             initClienteOferta();
@@ -66,6 +71,18 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         }
 
         initDadoTipo();
+    }
+
+    private void initAcoes() {
+        Acao acao = new Acao();
+        acao.setAcaoDescricao("Enviar Email");
+        acao.setAcaoStatus(true);
+        acaoService.save(acao);
+
+        acao = new Acao();
+        acao.setAcaoDescricao("Telefonar");
+        acao.setAcaoStatus(true);
+        acaoService.save(acao);
     }
 
     private void initAdminUser(){

@@ -14,6 +14,7 @@
     <a th:href="@{/cliente-oferta}" id="cliente_oferta_url" style="display: none"></a>
     <a th:href="@{/cliente-oferta/funil-update}" id="cliente_oferta_funil_etapa_url" style="display: none"></a>
     <a th:href="@{/cliente-oferta/json}" id="cliente_oferta_get_url" style="display: none"></a>
+    <a th:href="@{/cliente-oferta/json/acao}" id="cliente_oferta_acao_url" style="display: none"></a>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -56,13 +57,14 @@
 </div>
 
 <th:block th:insert="auth/funil-de-vendas/visualizar-clienteoferta.html :: modal-oferta"></th:block>
+<th:block th:insert="auth/funil-de-vendas/acao-clienteoferta.html :: modal-acao"></th:block>
 
 <th:block th:insert="fragments/footer-scripts.html :: scripts">
 </th:block>
 
 <!-- partial -->
-<script th:src='@{/statics/libs/jquery/3.1.1/jquery.min.js}'></script>
-<script th:src='@{/statics/libs/bootstrap/4.1.3/bootstrap.min.js}'></script>
+<!--<script th:src='@{/statics/libs/jquery/3.1.1/jquery.min.js}'></script>-->
+<!--<script th:src='@{/statics/libs/bootstrap/4.1.3/bootstrap.min.js}'></script>-->
 <script th:src="@{/statics/js/prefixfree.min.js}"></script>
 <script th:src="@{/statics/js/jkanban.min.js}"></script>
 <script th:src="@{/statics/js/script-funil.js}"></script>

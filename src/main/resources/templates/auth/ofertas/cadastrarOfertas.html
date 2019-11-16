@@ -150,17 +150,17 @@
 <th:block th:insert="fragments/footer-scripts.html :: scripts">
 </th:block>
 <script>
-    $(document).ready(()=>{
+    $(document).ready(function(){
          $('#ofertaDataInicio').datepicker({
              format: 'dd/mm/yyyy',
              language: 'pt-BR',
              autoclose: true
-        })
+        });
         $('#ofertaDataFim').datepicker({
             format: 'dd/mm/yyyy',
             language: 'pt-BR',
             autoclose: true
-        })
+        });
     });
 </script>
 </body>

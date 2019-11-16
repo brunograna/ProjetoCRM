@@ -1,9 +1,6 @@
 package br.senac.rj.crm.controller;
 
-import br.senac.rj.crm.domain.Cliente;
-import br.senac.rj.crm.domain.ClienteOferta;
-import br.senac.rj.crm.domain.ClienteOfertaId;
-import br.senac.rj.crm.domain.Oferta;
+import br.senac.rj.crm.domain.*;
 import br.senac.rj.crm.domain.dto.ClienteOfertaDto;
 import br.senac.rj.crm.service.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -17,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 @Controller
@@ -39,6 +39,15 @@ public class ClienteOfertaController {
 
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private AcaoService acaoService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private AcaoUsuarioClienteOfertaService acaoUsuarioClienteOfertaService;
 
     @GetMapping
     @ResponseBody
@@ -135,7 +144,7 @@ public class ClienteOfertaController {
 
     @GetMapping("json/{clienteId}/{ofertaId}")
     @ResponseBody
-    public ClienteOferta updateClienteOfertaFunilEtapa(@PathVariable("clienteId") String clienteId,
+    public ClienteOferta getClienteOferta(@PathVariable("clienteId") String clienteId,
                                                 @PathVariable("ofertaId") String ofertaId) {
         try {
             Cliente cliente = clienteService.findById(Integer.parseInt(clienteId));
@@ -147,6 +156,40 @@ public class ClienteOfertaController {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @PostMapping("json/acao")
+    @ResponseBody
+    public String saveAcaoUsuarioClienteOferta(@RequestBody @RequestParam("clienteId") String clienteId,
+                                               @RequestBody @RequestParam("ofertaId") String ofertaId,
+                                               @RequestBody @RequestParam("acaoId") String acaoId,
+                                               @RequestBody @RequestParam("descricao") String descricao,
+                                               @RequestBody @RequestParam("data") String data,
+                                               Principal principal) {
+        try {
+            Cliente cliente = clienteService.findById(Integer.parseInt(clienteId));
+            Oferta oferta = ofertaService.findById(Integer.parseInt(ofertaId));
+            Acao acao = acaoService.findById(Integer.parseInt(acaoId));
+            ClienteOfertaId clienteOfertaId = new ClienteOfertaId(cliente, oferta);
+            ClienteOferta clienteOferta = clienteOfertaService.findById(clienteOfertaId);
+
+            //Format date
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
+            AcaoUsuarioClienteOferta acaoUsuarioClienteOferta = new AcaoUsuarioClienteOferta();
+            acaoUsuarioClienteOferta.setClienteOferta(clienteOferta);
+            acaoUsuarioClienteOferta.setAcao(acao);
+            acaoUsuarioClienteOferta.setAcaoUsuarioClienteOfertaDescricao(descricao);
+            acaoUsuarioClienteOferta.setAcaoUsuarioClienteOfertaData(LocalDate.parse(data, formatter));
+            acaoUsuarioClienteOferta.setUsuario(usuarioService.findByUsername(principal.getName()));
+
+            acaoUsuarioClienteOfertaService.save(acaoUsuarioClienteOferta);
+
+            return "{\"success\": true}";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "{\"success\": false}";
         }
     }
 

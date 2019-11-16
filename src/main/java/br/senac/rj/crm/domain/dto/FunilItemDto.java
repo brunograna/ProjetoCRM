@@ -33,7 +33,7 @@ public class FunilItemDto {
                     "<a href=\"#\" class=\"viewmodal-open\" data-toggle=\"modal\" data-target=\"#modal-oferta\">" +
                         "<i class=\"fa fa-eye icon_item\"></i>" +
                     "</a>" +
-                    "<a href=\"#\" data-toggle=\"modal\" data-target=\"#modal-acao\">" +
+                    "<a href=\"#\" class=\"acaomodal-open\" data-toggle=\"modal\" data-target=\"#modal-acao\">" +
                         "<i class=\"fa fa-plus-circle icon_item\"></i>" +
                     "</a>" +
                 "</div>";

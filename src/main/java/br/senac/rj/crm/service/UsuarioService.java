@@ -59,6 +59,12 @@ public class UsuarioService {
         }
     }
 
+    public Usuario findByUsername(String username) throws ObjectNotFoundException {
+        Optional<Usuario> usuario = repository.findByUsuarioLogin(username);
+
+        return usuario.orElseThrow(() -> new ObjectNotFoundException("Usuario wih username ("+username+") not found"));
+    }
+
     public long getTotalInNumber() {
         return repository.count();
     }
