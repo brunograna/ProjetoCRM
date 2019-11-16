@@ -13,6 +13,7 @@
     <th:block th:insert="fragments/sidebar.html :: aside"></th:block>
     <a th:href="@{/cliente-oferta}" id="cliente_oferta_url" style="display: none"></a>
     <a th:href="@{/cliente-oferta/funil-update}" id="cliente_oferta_funil_etapa_url" style="display: none"></a>
+    <a th:href="@{/cliente-oferta/json}" id="cliente_oferta_get_url" style="display: none"></a>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -53,6 +54,9 @@
 
     <footer th:insert="fragments/footer.html :: footer"></footer>
 </div>
+
+<th:block th:insert="auth/funil-de-vendas/visualizar-clienteoferta.html :: modal-oferta"></th:block>
+
 <th:block th:insert="fragments/footer-scripts.html :: scripts">
 </th:block>
 

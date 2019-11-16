@@ -48,7 +48,7 @@ public class ClienteOfertaController {
     }
 
     @GetMapping("/adicionar")
-    public ModelAndView add(){
+    public ModelAndView add() {
         ModelAndView mv = new ModelAndView("/auth/cliente-oferta/cadastrarClienteOferta");
         mv.addObject("clienteOferta", new ClienteOferta());
         mv.addObject("ofertas", ofertaService.findAll());
@@ -58,8 +58,8 @@ public class ClienteOfertaController {
     }
 
     @PostMapping
-    public ModelAndView save(@Valid ClienteOferta clienteOferta, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    public ModelAndView save(@Valid ClienteOferta clienteOferta, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             logger.warn("ClienteOferta on Add has errors validation");
             ModelAndView mv = new ModelAndView("/auth/cliente-oferta/cadastrarClienteOferta");
             mv.addObject("clienteOferta", clienteOferta);
@@ -70,9 +70,9 @@ public class ClienteOfertaController {
         }
 
         ModelAndView mv = new ModelAndView("redirect:/funil-de-vendas");
-        try{
+        try {
             clienteOfertaService.save(clienteOferta);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             mv = new ModelAndView("redirect:/cliente-oferta/adicionar?error=Preencha todos os campos corretamente");
         }
@@ -80,7 +80,7 @@ public class ClienteOfertaController {
     }
 
     @GetMapping("/{clienteId}/{ofertaId}")
-    public ModelAndView edit(@PathVariable("clienteId") Integer clienteId, @PathVariable("ofertaId") Integer ofertaId){
+    public ModelAndView edit(@PathVariable("clienteId") Integer clienteId, @PathVariable("ofertaId") Integer ofertaId) {
         ModelAndView mv = new ModelAndView("/auth/cliente-oferta/alterarClienteOferta");
         try {
             Cliente cliente = clienteService.findById(clienteId);
@@ -99,8 +99,8 @@ public class ClienteOfertaController {
     }
 
     @PostMapping("/edit")
-    public ModelAndView saveEdit(@Valid ClienteOferta clienteOferta, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    public ModelAndView saveEdit(@Valid ClienteOferta clienteOferta, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             logger.warn("ClienteOferta on Edit has errors validation");
             ModelAndView mv = new ModelAndView("/auth/cliente-oferta/alterarClienteOferta");
             mv.addObject("clienteOferta", clienteOferta);
@@ -123,13 +123,30 @@ public class ClienteOfertaController {
     @ResponseBody
     public String updateClienteOfertaFunilEtapa(@PathVariable("clienteId") String clienteId,
                                                 @PathVariable("ofertaId") String ofertaId,
-                                                @PathVariable("funilEtapaId") String funilEtapaId){
-        try{
+                                                @PathVariable("funilEtapaId") String funilEtapaId) {
+        try {
             clienteOfertaService.updateFunilEtapaByClienteIdAndOfertaId(Integer.parseInt(clienteId), Integer.parseInt(ofertaId), Integer.parseInt(funilEtapaId));
             return "{\"success\": true}";
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "{\"success\": false}";
+        }
+    }
+
+    @GetMapping("json/{clienteId}/{ofertaId}")
+    @ResponseBody
+    public ClienteOferta updateClienteOfertaFunilEtapa(@PathVariable("clienteId") String clienteId,
+                                                @PathVariable("ofertaId") String ofertaId) {
+        try {
+            Cliente cliente = clienteService.findById(Integer.parseInt(clienteId));
+            Oferta oferta = ofertaService.findById(Integer.parseInt(ofertaId));
+            ClienteOfertaId clienteOfertaId = new ClienteOfertaId(cliente, oferta);
+
+            ClienteOferta clienteOfertaRetrieved = clienteOfertaService.findById(clienteOfertaId);
+            return clienteOfertaRetrieved;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

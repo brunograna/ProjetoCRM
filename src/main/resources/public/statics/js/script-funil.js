@@ -2,6 +2,38 @@ var KanbanTest;
 $(document).ready(function (){
     var clienteOfertaUrl = $('#cliente_oferta_url').attr('href');
     var updateClienteOfertaFunilEtapaUrl = $('#cliente_oferta_funil_etapa_url').attr('href');
+    var getClienteOfertaByClienteOfertaUrl = $('#cliente_oferta_get_url').attr('href');
+
+
+    $(document).on('click', '.viewmodal-open', function (e) {
+        e.preventDefault();
+
+        var clienteOfertaId = $(this).closest('.kanban-item').attr('data-eid');
+        var arrayId = clienteOfertaId.split("_");
+        var clienteId = arrayId[0];
+        var ofertaId = arrayId[1];
+        var urlViewModal = getClienteOfertaByClienteOfertaUrl + '/' + clienteId + '/' + ofertaId;
+        $.get(urlViewModal, function (clienteOferta) {
+            $('#viewmodal-produto-nome').val(clienteOferta.clienteOfertaId.oferta.ofertaProduto.produtoNome);
+            $('#viewmodal-nivelinstrucao-nome').val(clienteOferta.clienteOfertaId.oferta.ofertaProduto.nivelInstrucao.nivelInstrucaoDescricao);
+            $('#viewmodal-produto-descricao').val(clienteOferta.clienteOfertaId.oferta.ofertaProduto.produtoDescricao);
+
+            $('#viewmodal-oferta-datainicio').val(clienteOferta.clienteOfertaId.oferta.ofertaDataInicio);
+            $('#viewmodal-oferta-datafim').val(clienteOferta.clienteOfertaId.oferta.ofertaDataFim);
+
+            $('#viewmodal-oferta-descricao').val(clienteOferta.clienteOfertaId.oferta.ofertaDescricao);
+            $('#viewmodal-oferta-preco').val(clienteOferta.clienteOfertaId.oferta.ofertaPreco.toFixed(2));
+            $('#viewmodal-clienteoferta-preco').val(clienteOferta.clienteOfertaPreco.toFixed(2));
+
+            $('#viewmodal-cliente-nome').val(clienteOferta.clienteOfertaId.cliente.clienteNome);
+            $('#viewmodal-cliente-sobrenome').val(clienteOferta.clienteOfertaId.cliente.clienteSobrenome);
+            $('#viewmodal-cliente-email').val(clienteOferta.clienteOfertaId.cliente.clienteEmail);
+            $('#viewmodal-cliente-cpf').val(clienteOferta.clienteOfertaId.cliente.clienteCpf);
+
+            var editUrl = clienteOfertaUrl + "/" + clienteId + "/" + ofertaId;
+            $('#viewmodal-edit-link').attr('href', editUrl);
+        })
+    });
 
     function recalculateTotalQuantity(){
         $( ".kanban-board" ).each(function( index ) {
