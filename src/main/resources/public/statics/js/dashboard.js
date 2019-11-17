@@ -86,7 +86,7 @@ $(document).ready(function () {
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: "Oferta"
+                            labelString: "Funil Etapa"
                         },
                         ticks: {
                             suggestedMin: 1,
@@ -96,7 +96,7 @@ $(document).ready(function () {
                     xAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: "Funil Etapa"
+                            labelString: "Oferta"
                         },
                         ticks: {
                             suggestedMin: 1,
