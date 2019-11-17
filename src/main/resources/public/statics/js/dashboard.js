@@ -53,6 +53,16 @@ $(document).ready(function () {
                         color: '#fff',
                     }
                 },
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 150  // if i use this it always set it '1', which look very awkward if it have high value  e.g. '100'.
+                            }
+                        }
+                    ]
+                },
                 legend: {
                     display: false,
                 },
