@@ -8,6 +8,7 @@
     <th:block th:insert="fragments/sidebar.html :: aside"></th:block>
 
     <a th:href="@{/acao-indice}" id="acao_indice_url" style="display: none"></a>
+    <a th:href="@{/cliente-valor}" id="cliente_valor_url" style="display: none"></a>
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
@@ -87,9 +88,14 @@
             </div>
 
             <div class="row">
-                <section class="col-lg-7 connectedSortable">
+                <section class="col-lg-6 connectedSortable">
                     <div class="nav-tabs-custom">
                         <canvas id="acoes-chart" width="600" height="250"></canvas>
+                    </div>
+                </section>
+                <section class="col-lg-6 connectedSortable">
+                    <div class="nav-tabs-custom">
+                        <canvas id="clientevalor-chart" width="600" height="250"></canvas>
                     </div>
                 </section>
             </div>

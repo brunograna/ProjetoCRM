@@ -1,12 +1,12 @@
 package br.senac.rj.crm.controller;
 
-import br.senac.rj.crm.domain.dto.AcaoGraficoDto;
-import br.senac.rj.crm.domain.dto.AcaoIndiceDto;
-import br.senac.rj.crm.domain.dto.ChartAcaoDto;
+import br.senac.rj.crm.repository.ClienteOfertaRepository;
+import br.senac.rj.crm.repository.dto.AcaoIndiceDto;
+import br.senac.rj.crm.domain.dto.ChartJsDto;
 import br.senac.rj.crm.repository.AcaoUsuarioClienteOfertaRepository;
+import br.senac.rj.crm.repository.dto.ClienteEtapaValorDto;
 import br.senac.rj.crm.service.ClienteService;
 import br.senac.rj.crm.service.OfertaService;
-import br.senac.rj.crm.service.ProdutoService;
 import br.senac.rj.crm.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.awt.*;
-import java.security.Principal;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.List;
@@ -35,6 +33,9 @@ public class HomeController {
 
     @Autowired
     private AcaoUsuarioClienteOfertaRepository acaoUsuarioClienteOfertaRepository;
+
+    @Autowired
+    private ClienteOfertaRepository clienteOfertaRepository;
 
     @RequestMapping("/")
     public ModelAndView home(){
@@ -58,22 +59,37 @@ public class HomeController {
 
     @RequestMapping("/acao-indice")
     @ResponseBody
-    private ChartAcaoDto percentageOfAcao(){
+    private ChartJsDto percentageOfAcao(){
         DecimalFormat df2 = new DecimalFormat("#.##");
         List<AcaoIndiceDto> percentageOfAcaoUsage = acaoUsuarioClienteOfertaRepository.findPercentageOfAcaoUsage();
         Long totalOfRows = acaoUsuarioClienteOfertaRepository.count();
 
-        ChartAcaoDto acaoGraphic = new ChartAcaoDto();
+        ChartJsDto acaoGraphic = new ChartJsDto();
         for (AcaoIndiceDto acao: percentageOfAcaoUsage) {
 
             acaoGraphic.addLabel(acao.getAcao().getAcaoDescricao());
             acaoGraphic.addData((double)acao.getQuantidade());
             acaoGraphic.addColor(getRandomColor());
-//            acaoGraphic.add(new AcaoGraficoDto(acao.getAcao().getAcaoDescricao(), Double.parseDouble(df2.format(((double)acao.getQuantidade()/(double)totalOfRows)*100.0))));
         }
-        System.out.println(acaoGraphic.toString());
 
         return acaoGraphic;
+    }
+
+    @RequestMapping("/cliente-valor")
+    @ResponseBody
+    private ChartJsDto clienteValor(){
+        List<ClienteEtapaValorDto> funilEtapaClienteValor = clienteOfertaRepository.getFunilEtapaClienteValor();
+
+        ChartJsDto funilEtapaGraphic = new ChartJsDto();
+        for (ClienteEtapaValorDto etapaValorDto: funilEtapaClienteValor) {
+
+            funilEtapaGraphic.addLabel(etapaValorDto.getFunilEtapa().getFunilEtapaDescricao());
+            funilEtapaGraphic.addBarLabel("Valor do cliente na etapa do funil");
+            funilEtapaGraphic.addData((double)etapaValorDto.getValor());
+            funilEtapaGraphic.addColor(getRandomColor());
+        }
+
+        return funilEtapaGraphic;
     }
 
     private String getRandomColor(){

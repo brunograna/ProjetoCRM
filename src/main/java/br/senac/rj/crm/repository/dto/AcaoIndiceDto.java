@@ -1,4 +1,4 @@
-package br.senac.rj.crm.domain.dto;
+package br.senac.rj.crm.repository.dto;
 
 import br.senac.rj.crm.domain.Acao;
 

@@ -2,12 +2,12 @@ package br.senac.rj.crm.domain.dto;
 
 import java.util.ArrayList;
 
-public class ChartAcaoDto {
+public class ChartJsDto {
     private ArrayList<String> labels = new ArrayList<>();
-    private ArrayList<ChartAcaoDatasetDto> datasets = new ArrayList<>();
+    private ArrayList<ChartJsDatasetDto> datasets = new ArrayList<>();
 
-    public ChartAcaoDto() {
-        datasets.add(new ChartAcaoDatasetDto());
+    public ChartJsDto() {
+        datasets.add(new ChartJsDatasetDto());
     }
 
     public ArrayList<String> getLabels() {
@@ -30,16 +30,20 @@ public class ChartAcaoDto {
         this.datasets.get(0).addColor(color);
     }
 
+    public void addBarLabel(String label){
+        this.datasets.get(0).setLabel(label);
+    }
+
 
     public void setLabels(ArrayList<String> labels) {
         this.labels = labels;
     }
 
-    public ArrayList<ChartAcaoDatasetDto> getDatasets() {
+    public ArrayList<ChartJsDatasetDto> getDatasets() {
         return datasets;
     }
 
-    public void setDatasets(ArrayList<ChartAcaoDatasetDto> datasets) {
+    public void setDatasets(ArrayList<ChartJsDatasetDto> datasets) {
         this.datasets = datasets;
     }
 }
