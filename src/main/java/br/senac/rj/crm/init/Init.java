@@ -12,9 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Component
 public class Init implements ApplicationListener<ContextRefreshedEvent> {
@@ -55,8 +53,13 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private AcaoService acaoService;
 
+    @Autowired
+    private AcaoUsuarioClienteOfertaRepository acaoUsuarioClienteOfertaRepository;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+
+
         initAdminUser();
 
         initFunilEtapa();
