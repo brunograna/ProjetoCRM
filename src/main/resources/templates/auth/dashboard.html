@@ -9,6 +9,7 @@
 
     <a th:href="@{/acao-indice}" id="acao_indice_url" style="display: none"></a>
     <a th:href="@{/cliente-valor}" id="cliente_valor_url" style="display: none"></a>
+    <a th:href="@{/oferta-etapa}" id="oferta_etapa_url" style="display: none"></a>
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
@@ -96,6 +97,13 @@
                 <section class="col-lg-6 connectedSortable">
                     <div class="nav-tabs-custom">
                         <canvas id="clientevalor-chart" width="600" height="250"></canvas>
+                    </div>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col-lg-12 connectedSortable">
+                    <div class="nav-tabs-custom">
+                        <canvas id="oferta-etapa-chart" width="1000" height="250"></canvas>
                     </div>
                 </section>
             </div>

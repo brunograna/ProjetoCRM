@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     var acaoIndiceUrl = $("#acao_indice_url").attr("href");
     var clienteValorUrl = $("#cliente_valor_url").attr("href");
+    var ofertaEtapaUrl = $("#oferta_etapa_url").attr("href");
 
     $.get(acaoIndiceUrl, function (dataChart) {
         new Chart(document.getElementById("acoes-chart").getContext('2d'), {
@@ -37,7 +38,7 @@ $(document).ready(function () {
             options: {
                 title: {
                     display: true,
-                    text: 'Valor do cliente na etapa do Funil'
+                    text: 'Valor total do cliente em cada etapa do Funil'
                 },
                 plugins: {
                     datalabels: {
@@ -69,4 +70,41 @@ $(document).ready(function () {
             }
         });
     });
+
+    $.get(ofertaEtapaUrl, function (dataResponse) {
+        new Chart(document.getElementById("oferta-etapa-chart"), {
+            type: 'bubble',
+            data: dataResponse,
+            options: {
+                legend: {
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Quantidade da Oferta em cada Etapa do Funil'
+                }, scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Oferta"
+                        },
+                        ticks: {
+                            suggestedMin: 1,
+                            stepSize: 1  // if i use this it always set it '1', which look very awkward if it have high value  e.g. '100'.
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Funil Etapa"
+                        },
+                        ticks: {
+                            suggestedMin: 1,
+                            stepSize: 1  // if i use this it always set it '1', which look very awkward if it have high value  e.g. '100'.
+                        }
+                    }]
+                }
+            }
+        });
+    })
 });

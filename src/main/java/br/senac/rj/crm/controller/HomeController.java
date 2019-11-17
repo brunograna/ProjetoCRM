@@ -1,10 +1,14 @@
 package br.senac.rj.crm.controller;
 
+import br.senac.rj.crm.domain.dto.BubbleChartJsDatasetDto;
+import br.senac.rj.crm.domain.dto.BubbleChartJsDto;
+import br.senac.rj.crm.domain.dto.BubbleChartJsThreeAxisDto;
 import br.senac.rj.crm.repository.ClienteOfertaRepository;
 import br.senac.rj.crm.repository.dto.AcaoIndiceDto;
 import br.senac.rj.crm.domain.dto.ChartJsDto;
 import br.senac.rj.crm.repository.AcaoUsuarioClienteOfertaRepository;
 import br.senac.rj.crm.repository.dto.ClienteEtapaValorDto;
+import br.senac.rj.crm.repository.dto.OfertaEtapaDto;
 import br.senac.rj.crm.service.ClienteService;
 import br.senac.rj.crm.service.OfertaService;
 import br.senac.rj.crm.service.UsuarioService;
@@ -90,6 +94,30 @@ public class HomeController {
         }
 
         return funilEtapaGraphic;
+    }
+
+    @RequestMapping("/oferta-etapa")
+    @ResponseBody
+    private BubbleChartJsDto ofertaPorEtapa(){
+        List<OfertaEtapaDto> funilEtapaClienteValor = clienteOfertaRepository.getOfertaPorEtapa();
+
+        BubbleChartJsDto ofertaPorEtapaGraphic = new BubbleChartJsDto();
+
+        for (OfertaEtapaDto ofertaEtapaDto: funilEtapaClienteValor) {
+            BubbleChartJsDatasetDto bubbleChartJsDatasetDto = new BubbleChartJsDatasetDto();
+
+            String color = getRandomColor();
+            bubbleChartJsDatasetDto.setBackgroundColor("#606060");
+            bubbleChartJsDatasetDto.addLabel("Funil Etapa: "+ofertaEtapaDto.getEtapa().getFunilEtapaDescricao()+" | Oferta: "+ofertaEtapaDto.getOferta().getOfertaDescricao());
+            bubbleChartJsDatasetDto.setBorderColor(color);
+            bubbleChartJsDatasetDto.setBorderWidth(5);
+            bubbleChartJsDatasetDto.addData(new BubbleChartJsThreeAxisDto(ofertaEtapaDto.getEtapa().getFunilEtapaId(), ofertaEtapaDto.getOferta().getOfertaId(), ofertaEtapaDto.getQuantidade().intValue()*15));
+
+
+            ofertaPorEtapaGraphic.addData(bubbleChartJsDatasetDto);
+        }
+
+        return ofertaPorEtapaGraphic;
     }
 
     private String getRandomColor(){
