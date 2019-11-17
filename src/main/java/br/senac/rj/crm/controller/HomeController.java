@@ -2,6 +2,7 @@ package br.senac.rj.crm.controller;
 
 import br.senac.rj.crm.domain.dto.AcaoGraficoDto;
 import br.senac.rj.crm.domain.dto.AcaoIndiceDto;
+import br.senac.rj.crm.domain.dto.ChartAcaoDto;
 import br.senac.rj.crm.repository.AcaoUsuarioClienteOfertaRepository;
 import br.senac.rj.crm.service.ClienteService;
 import br.senac.rj.crm.service.OfertaService;
@@ -14,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.awt.*;
 import java.security.Principal;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
 
 @Controller
@@ -58,17 +58,34 @@ public class HomeController {
 
     @RequestMapping("/acao-indice")
     @ResponseBody
-    private List<AcaoGraficoDto> percentageOfAcao(){
+    private ChartAcaoDto percentageOfAcao(){
         DecimalFormat df2 = new DecimalFormat("#.##");
         List<AcaoIndiceDto> percentageOfAcaoUsage = acaoUsuarioClienteOfertaRepository.findPercentageOfAcaoUsage();
         Long totalOfRows = acaoUsuarioClienteOfertaRepository.count();
 
-        List<AcaoGraficoDto> acaoGraphic = new ArrayList<>();
+        ChartAcaoDto acaoGraphic = new ChartAcaoDto();
         for (AcaoIndiceDto acao: percentageOfAcaoUsage) {
-            acaoGraphic.add(new AcaoGraficoDto(acao.getAcao().getAcaoDescricao(), Double.parseDouble(df2.format(((double)acao.getQuantidade()/(double)totalOfRows)*100.0))));
+
+            acaoGraphic.addLabel(acao.getAcao().getAcaoDescricao());
+            acaoGraphic.addData((double)acao.getQuantidade());
+            acaoGraphic.addColor(getRandomColor());
+//            acaoGraphic.add(new AcaoGraficoDto(acao.getAcao().getAcaoDescricao(), Double.parseDouble(df2.format(((double)acao.getQuantidade()/(double)totalOfRows)*100.0))));
         }
         System.out.println(acaoGraphic.toString());
 
         return acaoGraphic;
+    }
+
+    private String getRandomColor(){
+        // create random object - reuse this as often as possible
+        Random random = new Random();
+
+        // create a big random number - maximum is ffffff (hex) = 16777215 (dez)
+        int nextInt = random.nextInt(0xffffff + 1);
+
+        // format it as hexadecimal string (with hashtag and leading zeros)
+        String colorCode = String.format("#%06x", nextInt);
+
+        return colorCode;
     }
 }
