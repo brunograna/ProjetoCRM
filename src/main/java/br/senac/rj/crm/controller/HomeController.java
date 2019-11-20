@@ -8,6 +8,7 @@ import br.senac.rj.crm.repository.dto.AcaoIndiceDto;
 import br.senac.rj.crm.domain.dto.ChartJsDto;
 import br.senac.rj.crm.repository.AcaoUsuarioClienteOfertaRepository;
 import br.senac.rj.crm.repository.dto.ClienteEtapaValorDto;
+import br.senac.rj.crm.repository.dto.ClienteOfertaFechamentoDto;
 import br.senac.rj.crm.repository.dto.OfertaEtapaDto;
 import br.senac.rj.crm.service.ClienteService;
 import br.senac.rj.crm.service.OfertaService;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.swing.text.NumberFormatter;
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 
@@ -54,9 +57,10 @@ public class HomeController {
     @RequestMapping("/dashboard")
     public ModelAndView dashboard(Authentication authentication){
         ModelAndView mv = new ModelAndView("/auth/dashboard");
-
+        DecimalFormat df2 = new DecimalFormat("#.#");
         mv.addObject("clientes", clienteService.getTotalInNumber());
         mv.addObject("ofertas", ofertaService.getTotalInNumber());
+        mv.addObject("convertidos", df2.format(((double)clienteOfertaRepository.countByClienteOfertaStatus(false)/(double)clienteOfertaRepository.count())*100.0) +"%");
         mv.addObject("usuarios", usuarioService.getTotalInNumber());
         return mv;
     }
@@ -96,6 +100,25 @@ public class HomeController {
         return funilEtapaGraphic;
     }
 
+    @RequestMapping("/cliente-fechamento")
+    @ResponseBody
+    private ChartJsDto clienteFechamento(){
+        List<ClienteOfertaFechamentoDto> funilEtapaClienteValor = clienteOfertaRepository.getClienteOfertaFechamento();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        ChartJsDto fechamentoGraphic = new ChartJsDto();
+        for (ClienteOfertaFechamentoDto clienteOfertaFechamentoDto: funilEtapaClienteValor) {
+
+            fechamentoGraphic.addLabel(clienteOfertaFechamentoDto.getDataFechamento().format(formatter));
+            fechamentoGraphic.addBarLabel("Valor do cliente na etapa do funil");
+            fechamentoGraphic.addData((double)clienteOfertaFechamentoDto.getValor());
+            fechamentoGraphic.addColor(getRandomColor());
+        }
+
+        return fechamentoGraphic;
+    }
+
     @RequestMapping("/oferta-etapa")
     @ResponseBody
     private BubbleChartJsDto ofertaPorEtapa(){
@@ -108,10 +131,10 @@ public class HomeController {
 
             String color = getRandomColor();
             bubbleChartJsDatasetDto.setBackgroundColor("#606060");
-            bubbleChartJsDatasetDto.addLabel("Funil Etapa: "+ofertaEtapaDto.getEtapa().getFunilEtapaDescricao()+" | Oferta: "+ofertaEtapaDto.getOferta().getOfertaDescricao());
+            bubbleChartJsDatasetDto.addLabel("Funil Etapa: "+ofertaEtapaDto.getEtapa().getFunilEtapaDescricao()+" | Oferta: "+ofertaEtapaDto.getOferta().getOfertaDescricao() + " | Clientes: "+ofertaEtapaDto.getQuantidade());
             bubbleChartJsDatasetDto.setBorderColor(color);
             bubbleChartJsDatasetDto.setBorderWidth(5);
-            bubbleChartJsDatasetDto.addData(new BubbleChartJsThreeAxisDto(ofertaEtapaDto.getEtapa().getFunilEtapaId(), ofertaEtapaDto.getOferta().getOfertaId(), ofertaEtapaDto.getQuantidade().intValue()*15));
+            bubbleChartJsDatasetDto.addData(new BubbleChartJsThreeAxisDto(ofertaEtapaDto.getEtapa().getFunilEtapaId(), ofertaEtapaDto.getOferta().getOfertaId(), ofertaEtapaDto.getQuantidade().intValue()*12));
 
 
             ofertaPorEtapaGraphic.addData(bubbleChartJsDatasetDto);

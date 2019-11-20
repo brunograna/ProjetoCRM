@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +57,11 @@ public class ClienteOfertaService {
             clienteOfertaFromDB.get().setClienteOfertaPreco(clienteOferta.getClienteOfertaPreco());
             clienteOfertaFromDB.get().setClienteOfertaPrecoDescricao(clienteOferta.getClienteOfertaPrecoDescricao());
             clienteOfertaFromDB.get().setFunilEtapa(clienteOferta.getFunilEtapa());
+            if(!clienteOferta.getClienteOfertaStatus()){
+                clienteOfertaFromDB.get().setClienteOfertaDataFechamento(LocalDate.now());
+            }else{
+                clienteOfertaFromDB.get().setClienteOfertaDataFechamento(null);
+            }
             return clienteOfertaFromDB.get();
         }else{
             throw new ObjectNotFoundException("ClienteOferta Not Found");

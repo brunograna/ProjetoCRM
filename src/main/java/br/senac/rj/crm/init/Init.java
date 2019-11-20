@@ -60,20 +60,20 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
 
-        initAdminUser();
-
-        initFunilEtapa();
-
-        initAcoes();
-
-        try {
-            initClienteOferta();
-            initClienteOferta();
-        } catch (ObjectNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        initDadoTipo();
+//        initAdminUser();
+//
+//        initFunilEtapa();
+//
+//        initAcoes();
+//
+//        try {
+//            initClienteOferta("João", "Oferta de ADS");
+//            initClienteOferta("Maria","Oferta de Design");
+//        } catch (ObjectNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//
+//        initDadoTipo();
     }
 
     private void initAcoes() {
@@ -110,7 +110,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         usuarioRepository.save(usuario);
     }
 
-    private void initClienteOferta() throws ObjectNotFoundException {
+    private void initClienteOferta(String nomeCLiente, String nomeOferta) throws ObjectNotFoundException {
         Produto produto = new Produto();
         produto.setProdutoStatus(true);
         produto.setProdutoNome("Análise e Desenvolvimento de Sistemas");
@@ -128,7 +128,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         cliente.setClienteStatus(true);
         cliente.setClienteCpf("12334556711");
         cliente.setClienteEmail("cliente@email.com");
-        cliente.setClienteNome("Cliente");
+        cliente.setClienteNome(nomeCLiente);
         cliente.setClienteSobrenome("Do Senac");
         cliente = clienteService.save(cliente);
 
@@ -136,7 +136,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         oferta.setOfertaStatus(true);
         oferta.setOfertaDataInicio(LocalDate.now());
         oferta.setOfertaDataFim(LocalDate.now().plusDays(7));
-        oferta.setOfertaDescricao("Oferta de curso");
+        oferta.setOfertaDescricao(nomeOferta);
         oferta.setOfertaProduto(produto);
         oferta.setOfertaPreco(599);
 

@@ -7,8 +7,17 @@ public class FunilItemDto {
     private String id;
     private String title;
     private String preco;
+    private boolean isSold;
 
     public FunilItemDto() {
+    }
+
+    public boolean isSold() {
+        return isSold;
+    }
+
+    public void setSold(boolean sold) {
+        isSold = sold;
     }
 
     public String getId() {

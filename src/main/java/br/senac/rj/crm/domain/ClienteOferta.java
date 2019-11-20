@@ -1,12 +1,14 @@
 package br.senac.rj.crm.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -22,6 +24,9 @@ public class ClienteOferta implements Serializable {
     private String clienteOfertaPrecoDescricao;
 
     private boolean clienteOfertaStatus;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy", iso = DateTimeFormat.ISO.DATE)
+    private LocalDate clienteOfertaDataFechamento;
 
     @ManyToOne
     @JoinColumn(name = "funil_etapa_id")
@@ -68,4 +73,11 @@ public class ClienteOferta implements Serializable {
         this.funilEtapa = funilEtapa;
     }
 
+    public LocalDate getClienteOfertaDataFechamento() {
+        return clienteOfertaDataFechamento;
+    }
+
+    public void setClienteOfertaDataFechamento(LocalDate clienteOfertaDataFechamento) {
+        this.clienteOfertaDataFechamento = clienteOfertaDataFechamento;
+    }
 }

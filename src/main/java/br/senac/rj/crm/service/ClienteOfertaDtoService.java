@@ -36,10 +36,10 @@ public class ClienteOfertaDtoService {
             List<ClienteOferta> clienteOfertaList = clienteOfertaRepository.findByFunilEtapa(funilEtapa);
             for(ClienteOferta clienteOferta: clienteOfertaList){
                 FunilItemDto funilItemDto = new FunilItemDto();
+                funilItemDto.setSold(!clienteOferta.getClienteOfertaStatus());
                 funilItemDto.setId(clienteOferta.getClienteOfertaId().getCliente().getClienteId()+"_"+clienteOferta.getClienteOfertaId().getOferta().getOfertaId());
                 funilItemDto.setPreco(String.format("%.2f",clienteOferta.getClienteOfertaPreco()));
                 funilItemDto.setTitle(clienteOferta.getClienteOfertaId().getCliente().getClienteNome());
-
 
                 funilEtapaDto.addItem(funilItemDto);
             }

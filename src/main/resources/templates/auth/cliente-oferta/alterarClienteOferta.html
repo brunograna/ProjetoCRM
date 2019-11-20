@@ -89,8 +89,8 @@
                                         <label class="control-label" th:if="${#fields.hasErrors('clienteOfertaStatus')}"><i class="fa fa-times-circle-o"></i></label>
                                         <label>Status:</label>
                                         <select class="form-control" th:field="*{clienteOfertaStatus}">
-                                            <option value="1" selected>Ativo</option>
-                                            <option value="0">Não Ativo</option>
+                                            <option value="1" selected>Proposta em progresso</option>
+                                            <option value="0">Proposta finalizada</option>
                                         </select>
                                         <span class="help-block" th:if="${#fields.hasErrors('clienteOfertaStatus')}" th:errors="*{clienteOfertaStatus}"></span>
                                     </div>

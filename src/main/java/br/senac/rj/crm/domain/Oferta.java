@@ -1,6 +1,7 @@
 package br.senac.rj.crm.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Oferta {
     private Integer ofertaId;
 
     @NotBlank
+    @Length(max = 255)
     private String ofertaDescricao;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy", iso = DateTimeFormat.ISO.DATE)

@@ -310,3 +310,4 @@
 .icon_item{display: block; font-size: 20px; text-align: center; padding: 7px 0;}
 .kanban-board header .kanban-title-board {font-weight: 500 !important;}
 .kanban-item {box-shadow: rgba(33,33,33,.09) 0 4px 24px 5px;}
+.kanban-item[data-sold="true"] {border-bottom: 4px solid #3cff00}

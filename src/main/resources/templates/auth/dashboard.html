@@ -10,6 +10,7 @@
     <a th:href="@{/acao-indice}" id="acao_indice_url" style="display: none"></a>
     <a th:href="@{/cliente-valor}" id="cliente_valor_url" style="display: none"></a>
     <a th:href="@{/oferta-etapa}" id="oferta_etapa_url" style="display: none"></a>
+    <a th:href="@{/cliente-fechamento}" id="oferta_fechamento_url" style="display: none"></a>
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
@@ -45,7 +46,7 @@
                     <!-- small box -->
                     <div class="small-box bg-green">
                         <div class="inner">
-                            <h3>0<sup style="font-size: 20px">%</sup></h3>
+                            <h3 th:text="${convertidos}"></h3>
 
                             <p>convertidos</p>
                         </div>
@@ -104,6 +105,13 @@
                 <section class="col-lg-12 connectedSortable">
                     <div class="nav-tabs-custom">
                         <canvas id="oferta-etapa-chart" width="1000" height="250"></canvas>
+                    </div>
+                </section>
+            </div>
+            <div class="row">
+                <section class="col-lg-12 connectedSortable">
+                    <div class="nav-tabs-custom">
+                        <canvas id="fechamento-chart" width="1000" height="250"></canvas>
                     </div>
                 </section>
             </div>
