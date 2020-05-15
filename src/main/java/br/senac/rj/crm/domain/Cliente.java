@@ -80,6 +80,9 @@ public class Cliente implements Serializable {
     public void setClienteStatus(boolean clienteStatus) { this.clienteStatus = clienteStatus; }
 
     public List<ClienteDado> getClienteDado() {
+        if (clienteDado == null) {
+            clienteDado = new ArrayList<>();
+        }
         return clienteDado;
     }
 

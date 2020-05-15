@@ -77,13 +77,42 @@
                                         <div class="col-md-12 form-group">
                                             <label>Selecione o tipo de campo que deseja adicionar e depois clique no +:</label>
 
-                                            <div class="input-group">
-                                                <span class="input-group-addon" id="addFieldButton"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>
-                                                <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;">
-                                                    <option value="-1" disabled selected>Selecione uma opção</option>
-                                                    <option th:each="dadoTipoOption : ${dadoTipos}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>
-                                                </select>
-                                            </div>
+<!--                                            <div class="input-group">-->
+<!--                                                <span class="input-group-addon" id="addFieldButton"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>-->
+<!--                                                <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;">-->
+<!--                                                    <option value="-1" disabled selected>Selecione uma opção</option>-->
+<!--                                                    <option th:each="dadoTipoOption : ${dadoTipoList}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>-->
+<!--                                                </select>-->
+<!--                                            </div>-->
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Dado Tipo</th>
+                                                    <th>Valor</th>
+                                                    <th>
+                                                        <button type="submit" name="addClienteDado" >Adicionar dado tipo</button>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr th:each="clienteDado,stat : *{clienteDado}">
+                                                        <td th:text="${stat.count}">1</td>
+                                                        <td>
+                                                            <select th:field="*{clienteDado[__${stat.index}__].dadoTipo}">
+                                                                <option th:each="dadoTipoOption : ${dadoTipoList}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" th:field="*{clienteDado[__${stat.index}__].clienteDadoValor}" />
+                                                        </td>
+                                                        <td>
+                                                            <button type="submit" name="removeClienteDado"
+                                                                    th:value="${stat.index}">Remover Cliente dado</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
 
                                             <div class="input_fields_wrap" id="input_fields_wrap">
                                                 <!--<button class="add_field_button">Adicionar mais campos</button>-->

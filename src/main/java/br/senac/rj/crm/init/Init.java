@@ -60,20 +60,20 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
 
-//        initAdminUser();
-//
-//        initFunilEtapa();
-//
-//        initAcoes();
-//
-//        try {
-//            initClienteOferta("João", "Oferta de ADS");
-//            initClienteOferta("Maria","Oferta de Design");
-//        } catch (ObjectNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//        initDadoTipo();
+        initAdminUser();
+
+        initFunilEtapa();
+
+        initAcoes();
+
+        try {
+            initClienteOferta("João", "Oferta de ADS");
+            initClienteOferta("Maria","Oferta de Design");
+        } catch (ObjectNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        initDadoTipo();
     }
 
     private void initAcoes() {
@@ -200,5 +200,6 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
         dadoTipo2.setDadoTipoDescricao("CRM");
         dadoTipo2.setCategoria(categoriaDado);
         dadoTipoRepository.save(dadoTipo2);
+
     }
 }

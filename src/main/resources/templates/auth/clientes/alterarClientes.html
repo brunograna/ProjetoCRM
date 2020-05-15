@@ -71,39 +71,88 @@
 
                                 </div>
 
-                                <div class="row">
-                                    <div id="nextSprint">
+<!--                                <div class="row">-->
+<!--                                    <div id="nextSprint">-->
 
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title pdg_left_5">Campos adicionais</h3>
-                                        </div>
+<!--                                        <div class="box-header with-border">-->
+<!--                                            <h3 class="box-title pdg_left_5">Campos adicionais</h3>-->
+<!--                                        </div>-->
 
-                                        <div class="col-md-12 form-group">
-                                            <label>Selecione o tipo de campo que deseja adicionar e depois clique no +:</label>
+<!--                                        <div class="col-md-12 form-group">-->
+<!--                                            <label>Selecione o tipo de campo que deseja adicionar e depois clique no +:</label>-->
 
-                                            <div class="input-group">
-                                                <span class="input-group-addon" id="addFieldButton"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>
-                                                <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;">
-                                                    <option value="-1" disabled selected>Selecione uma opção</option>
-                                                    <option th:each="dadoTipoOption : ${dadoTipos}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>
+<!--                                            <div class="input-group">-->
+<!--                                                <span class="input-group-addon" id="addFieldButton"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>-->
+<!--                                                <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;">-->
+<!--                                                    <option value="-1" disabled selected>Selecione uma opção</option>-->
+<!--                                                    <option th:each="dadoTipoOption : ${dadoTipos}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>-->
+<!--                                                </select>-->
+<!--                                            </div>-->
+
+<!--                                            <div class="input_fields_wrap" id="input_fields_wrap">-->
+
+<!--                                                <div class="form-group" th:each="clienteDadoTipoEach,iter : ${cliente.clienteDado}">-->
+<!--                                                    <input type="hidden" th:name="'clienteDado['+${iter.index}+'].dadoTipo'" th:value="${clienteDadoTipoEach.dadoTipo.dadoTipoId}">-->
+<!--                                                    <label style="display:block;" th:text="${clienteDadoTipoEach.dadoTipo.dadoTipoDescricao}+':'"></label>-->
+<!--                                                    <input style="max-width:335px; display: inline-block;" type="text" th:placeholder="${clienteDadoTipoEach.dadoTipo.dadoTipoPadrao}" th:name="'clienteDado['+${iter.index}+'].clienteDadoValor'" th:required="${clienteDadoTipoEach.dadoTipo.dadoTipoObrigatorio}" th:value="${clienteDadoTipoEach.clienteDadoValor}" class="form-control extra_input">-->
+<!--                                                    <a href="#" class="remove_field"> <i class="fa fa-minus" style="color: red;"></i></a>-->
+<!--                                                </div>-->
+
+<!--                                            </div>-->
+
+<!--                                        </div>-->
+
+<!--                                    </div>-->
+
+
+<!--                                </div>-->
+
+                                <div class="col-md-12 form-group">
+                                    <label>Selecione o tipo de campo que deseja adicionar e depois clique no +:</label>
+
+                                    <!--                                            <div class="input-group">-->
+                                    <!--                                                <span class="input-group-addon" id="addFieldButton"><a href="#"><i class="fa fa-plus add_field_button" style="color: green;"></i></a></span>-->
+                                    <!--                                                <select id="campos_adicionais" name="campos_adicionais" class="form-control" style="width: 300px;">-->
+                                    <!--                                                    <option value="-1" disabled selected>Selecione uma opção</option>-->
+                                    <!--                                                    <option th:each="dadoTipoOption : ${dadoTipoList}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>-->
+                                    <!--                                                </select>-->
+                                    <!--                                            </div>-->
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Dado Tipo</th>
+                                            <th>Valor</th>
+                                            <th>
+                                                <button type="submit" name="addClienteDado" >Adicionar dado tipo</button>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="clienteDado,stat : *{clienteDado}">
+                                            <td th:text="${stat.count}">1</td>
+                                            <td>
+                                                <select th:field="*{clienteDado[__${stat.index}__].dadoTipo}">
+                                                    <option th:each="dadoTipoOption : ${dadoTipoList}" th:value="${dadoTipoOption.dadoTipoId}" th:text="${dadoTipoOption.dadoTipoDescricao}" th:data-obrigatorio="${dadoTipoOption.dadoTipoObrigatorio}" th:data-mascara="${dadoTipoOption.dadoTipoMascara}" th:data-padrao="${dadoTipoOption.dadoTipoPadrao}"></option>
                                                 </select>
-                                            </div>
+                                            </td>
+                                            <td>
+                                                <input type="text" th:field="*{clienteDado[__${stat.index}__].clienteDadoValor}" />
+                                            </td>
+                                            <td>
+                                                <button type="submit" name="removeClienteDado"
+                                                        th:value="${stat.index}">Remover Cliente dado</button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
 
-                                            <div class="input_fields_wrap" id="input_fields_wrap">
-
-                                                <div class="form-group" th:each="clienteDadoTipoEach,iter : ${cliente.clienteDado}">
-                                                    <input type="hidden" th:name="'clienteDado['+${iter.index}+'].dadoTipo'" th:value="${clienteDadoTipoEach.dadoTipo.dadoTipoId}">
-                                                    <label style="display:block;" th:text="${clienteDadoTipoEach.dadoTipo.dadoTipoDescricao}+':'"></label>
-                                                    <input style="max-width:335px; display: inline-block;" type="text" th:placeholder="${clienteDadoTipoEach.dadoTipo.dadoTipoPadrao}" th:name="'clienteDado['+${iter.index}+'].clienteDadoValor'" th:required="${clienteDadoTipoEach.dadoTipo.dadoTipoObrigatorio}" th:value="${clienteDadoTipoEach.clienteDadoValor}" class="form-control extra_input">
-                                                    <a href="#" class="remove_field"> <i class="fa fa-minus" style="color: red;"></i></a>
-                                                </div>
-
-                                            </div>
-
+                                    <div class="input_fields_wrap" id="input_fields_wrap">
+                                        <!--<button class="add_field_button">Adicionar mais campos</button>-->
+                                        <div>
+                                            <!--<input type="text" name="mytext[]">-->
                                         </div>
-
                                     </div>
-
 
                                 </div>
 

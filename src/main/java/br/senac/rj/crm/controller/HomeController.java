@@ -16,6 +16,7 @@ import br.senac.rj.crm.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -142,6 +143,7 @@ public class HomeController {
 
         return ofertaPorEtapaGraphic;
     }
+
 
     private String getRandomColor(){
         // create random object - reuse this as often as possible
