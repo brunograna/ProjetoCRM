@@ -67,7 +67,7 @@ public class ClienteController {
         try {
             Cliente clienteRetrieved = clienteService.findById(id);
             mv.addObject("cliente", clienteRetrieved);
-            mv.addObject("dadoTipos", dadoTipoService.findAll());
+            mv.addObject("dadoTipoList", dadoTipoService.findAll());
         } catch (ObjectNotFoundException e) {
             mv = new ModelAndView("redirect:/clientes?error");
         }
