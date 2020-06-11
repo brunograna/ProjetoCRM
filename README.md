@@ -21,8 +21,17 @@
 
 ## :rocket: Sobre o projeto
 
-Desenvolver um CRM para poder ajudar no gerenciamento de clientes e possíveis cliente utilizando [Spring Boot](https://spring.io/projects/spring-boot) e [MYSQL]().
-
+CRM desenvolvido para poder ajudar no gerenciamento de clientes e possíveis cliente utilizando [Spring Boot](https://spring.io/projects/spring-boot) e [MYSQL](https://www.mysql.com/).
+- Features:
+    * Gerenciamento de Clientes com atributos flexíveis
+    * Gerenciamento de Produtos e descontos
+    * Gerenciamento de Ofertas
+    * Gerenciamento de Usuários
+    * Quadro Kanban com etapas do funil de vendas customizável (colunas do quadro Kanban)
+    * Histórico de ações e medidas realizadas em um cliente
+    * Dashboard com informações de vendas e conversões
+    
+:mag: Baixe o projeto e teste você mesmo.
 
 ## :dart: Desafios no desenvolvimento
 
