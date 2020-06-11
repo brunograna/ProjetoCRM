@@ -37,12 +37,12 @@ CRM desenvolvido para poder ajudar no gerenciamento de clientes e possíveis cli
 
 - Quadro Kanban que listasse os clientes em diferentes etapas do funil de vendas.
 
-![kanban](./kanban.gif)
+<img alt="Kanban GIF" src="https://github.com/brunograna/ProjetoCRM/blob/master/kanban.gif" width="100%" />
 
 - Entidade Cliente que possuía dados flexíveis em um banco de dados relacional. Por exemplo:<br/> 
 `Um cliente poderia ter o atributo de passaporte, enquanto outros poderiam ter o atributo de Título de Eleitor`
 
-![multiple](./multiple_attribute.gif)
+<img alt="Multiple Attribute GIF" src="https://github.com/brunograna/ProjetoCRM/blob/master/multiple_attribute.gif" width="100%" />
 
 ## :scroll: Entrega
 
