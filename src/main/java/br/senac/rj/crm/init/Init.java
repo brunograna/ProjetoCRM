@@ -60,20 +60,20 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
 
-//        initAdminUser();
+        initAdminUser();
 //
-//        initFunilEtapa();
+        initFunilEtapa();
 //
-//        initAcoes();
+        initAcoes();
 //
-//        try {
-//            initClienteOferta("João", "Oferta de ADS");
-//            initClienteOferta("Maria","Oferta de Design");
-//        } catch (ObjectNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            initClienteOferta("João", "Oferta de ADS");
+            initClienteOferta("Maria","Oferta de Design");
+        } catch (ObjectNotFoundException e) {
+            e.printStackTrace();
+        }
 //
-//        initDadoTipo();
+        initDadoTipo();
     }
 
     private void initAcoes() {
