@@ -19,7 +19,7 @@
   <a href="#memo-licença">Licença</a>
 </p>
 
-## :rocket:  Sobre o projeto
+## :rocket: Sobre o projeto
 
 CRM desenvolvido para poder ajudar no gerenciamento de clientes e possíveis clientes utilizando [Spring Boot](https://spring.io/projects/spring-boot) e [MYSQL](https://www.mysql.com/).
 - Features:
@@ -31,9 +31,9 @@ CRM desenvolvido para poder ajudar no gerenciamento de clientes e possíveis cli
     * Histórico de ações e medidas realizadas em um cliente
     * Dashboard com informações de vendas e conversões
     
-:mag:  Baixe o projeto e teste você mesmo.
+:mag: Baixe o projeto e teste você mesmo.
 
-## :dart:  Desafios no desenvolvimento
+## :dart: Desafios no desenvolvimento
 
 - Quadro Kanban que listasse os clientes em diferentes etapas do funil de vendas.
 
@@ -44,14 +44,14 @@ CRM desenvolvido para poder ajudar no gerenciamento de clientes e possíveis cli
 
 <img alt="Multiple Attribute GIF" src="https://github.com/brunograna/ProjetoCRM/blob/master/multiple_attribute.gif" width="100%" />
 
-## :scroll:  Entrega
+## :scroll: Entrega
 
 Este projeto foi apresentado para todos os estudantes e docentes da Faculdade de Tecnologia Senac Rio no final de 2019
 
-## :memo:  Licença
+## :memo: Licença
 
 Esse projeto está sob a licença MIT
 
 ---
 
-Desenvolvido por Bruno Garcia :wave:  [Conheça mais sobre o meu trabalho no Linkedin](https://www.linkedin.com/in/dev-brunogarcia/)
+Desenvolvido por Bruno Garcia :wave: [Conheça mais sobre o meu trabalho no Linkedin](https://www.linkedin.com/in/dev-brunogarcia/)
